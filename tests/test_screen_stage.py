@@ -1,12 +1,12 @@
 import allure
 import uuid
 from playwright.sync_api import Page, expect, sync_playwright
-from pages.urls_page import urls, names
+from pages.urls_stage_msk import urls, names
 from pages.screen_page import ScreenPage
 HEADLESS = False
 
 
-@allure.title("Скриншоты Санкт-Петербурга прод")
+@allure.title("Скриншоты Москва стэйдж")
 class TestSearchChrome:
     def test_screenschot(self):
         with sync_playwright() as p:
