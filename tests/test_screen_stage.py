@@ -11,7 +11,7 @@ class TestSearchChrome:
     def test_screenschot(self):
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=HEADLESS)
-            context = browser.new_context()
+            context = browser.new_context(ignore_https_errors=True)
             page = context.new_page()
 
             for screen, name in zip(urls, names):
