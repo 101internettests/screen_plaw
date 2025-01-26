@@ -15,6 +15,16 @@ class MainPageLocators:
     CLOSE_POPUP_BUTTON = "xpath=//div[@aria-label]//button[@aria-label='Закрыть']"
 
 
+class TariffsLocators:
+    TARIFF_LIST = "xpath=//section[@data-sentry-component='TariffList']"
+    TARIFF_CARD = "xpath=(//div[@data-sentry-component='TariffCard'])"
+    PRICE_IN_TARIFFS = "xpath=(//div[@itemprop='offers']//p[text()])"
+    DETAILS_OF_TARIFF_BUTTON = "xpath=(//button[text()='Детали тарифа'])[1]"
+    CONNECTION_INFO = "xpath=//p[text()='Подключение']"
+    ROUTER_INF0 = "xpath=//p[text()='Роутер']"
+    MORE_ABOUT_TARIFF_BUTTON = "xpath=//button[text()='Больше о тарифе']"
+    POPUP_MORE_ABOUT_TARIFF = "xpath=//div[@data-sentry-element='DialogPanel']"
+
 class SelectRegion:
     INPUT_SELECT_REGION = "xpath=//input[@placeholder='Введите город или регион']"
     MAIN_LETTERS_SELECT = "xpath=//span[@class='SelectRegion_letter__7dXQv']"
@@ -30,3 +40,36 @@ class AIPopUp:
     HELP_BUTTON = "xpath=//button[text()='Автоматический подбор тарифов']"
     UNSUCCESSFUL_ALLERT = "xpath=//span[text()='Спасибо! Скоро эта функция заработает']"
     CLOSE_BUTTON = "xpath=//button[@aria-label='Закрыть']"
+
+
+class Header:
+    IN_FLAT_BUTTON = "xpath=//a[text()='В квартиру']"
+    IN_BUSINESS_BUTTON = "xpath=//span[text()='Для бизнеса']"
+    START_TENDER_BUTTON = "xpath=//button[text()='Запустить тендер на подключение']"
+    IN_GARDEN_BUTTON = "xpath=//span[text()='На дачу']"
+    GARDEN_TENDER_BUTTON = "xpath=//button[text()='Все тарифы для дачи']"
+
+
+class Search:
+    STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
+    HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
+    GOROXOWAYA_STREET = "xpath=//em[text()]"
+    STREET_TWENTYTWO = "xpath=//em[text()='22']"
+    BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+
+
+class PopUpAfterSearch:
+    TEXT_IN_POPUP = "xpath=//span[@class='QuizFormContent_title__RknGT']"
+    CLOSE_QUIZ = "xpath=(//button[@aria-label='Закрыть'])[2]"
+    INPUT_QUIZ_TEXT = "xpath=//input[@id='phone_input']"
+    BUTTON_SHOW_RESULT = "xpath=//button[@data-sentry-source-file='PhoneInputWithDownButton.tsx']"
+
+
+class InternetForBusiness:
+    BREADCRUMBS_INTERNET_FOR_BUSINESS = "xpath=//span[text()='Интернет для бизнеса']"
+    BREADCRUMBS_CONNECT_INTERNET = "xpath=//a[text()='Подключить интернет']"
+
+
+class OrdersSatPage:
+    BREADCRUMBS_INTERNET_FOR_SAT = "xpath=//span[text()='Интернет на дачу']"
+    BREADCRUMBS_CONNECT_INTERNET = "xpath=//a[text()='Подключить интернет']"

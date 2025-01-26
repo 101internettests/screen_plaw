@@ -1,7 +1,9 @@
+import time
+
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp
+from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -80,6 +82,33 @@ class MainPage(BasePage):
         with allure.step("Проверить, что сработал негативный попап"):
             expect(self.page.locator(AIPopUp.UNSUCCESSFUL_ALLERT)).to_be_visible()
 
+    @allure.title("Выбрать Сертолово в поиске")
+    def choose_sertolovo(self):
+        with allure.step("Вставить Сер в инпут"):
+            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Сер")
+        with allure.step("Проверить, что текст вставился"):
+            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Сер")
+        with allure.step("Выбрать Сертолово в поиске"):
+            self.page.locator(SelectRegion.SERTOLOVO).click()
+            screenshot = self.page.screenshot()
+            allure.attach(screenshot, name="Скриншот после выбора Сертолово",
+                          attachment_type=allure.attachment_type.PNG)
+
+
+class TariffsSection(BasePage):
+    @allure.title("Проверить наличие блока тарифов")
+    def check_tariffs_section(self):
+        with allure.step("Проверить, что блок есть на странице"):
+            expect(self.page.locator(TariffsLocators.TARIFF_LIST)).to_be_visible()
+        with allure.step("Посчитать количество тарифов в блоке"):
+            tariff_cards = self.page.locator(TariffsLocators.TARIFF_CARD)
+            tariff_count = tariff_cards.count()
+            allure.attach(f"Количество тарифов: {tariff_count}", name="Tariff Count",
+                          attachment_type=allure.attachment_type.TEXT)
+        with allure.step("Сделать скриншот блока тарифов"):
+            screenshot = self.page.locator(TariffsLocators.TARIFF_LIST).screenshot()
+            allure.attach(screenshot, name="Tariffs Section Screenshot", attachment_type=allure.attachment_type.PNG)
+
 
 class SelectRegionPage(BasePage):
     @allure.title("Проверить, что страница Селект регион загрузилась и в ней есть элементы")
@@ -112,14 +141,52 @@ class SelectRegionPage(BasePage):
         with allure.step("Выбрать Ленинградскую область в поиске"):
             self.page.locator(SelectRegion.LENINGRADSKAYA_OBLAST).click()
 
-    @allure.title("Выбрать Сертолово в поиске")
-    def choose_sertolovo(self):
-        with allure.step("Вставить Сер в инпут"):
-            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Сер")
-        with allure.step("Проверить, что текст вставился"):
-            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Сер")
-        with allure.step("Выбрать Сертолово в поиске"):
-            self.page.locator(SelectRegion.SERTOLOVO).click()
-            screenshot = self.page.screenshot()
-            allure.attach(screenshot, name="Скриншот после выбора Сертолово",
-                          attachment_type=allure.attachment_type.PNG)
+
+class SearchFromMain(BasePage):
+    @allure.title("Выбрать тип поиска В квартиру")
+    def choose_type_search_flat(self):
+        self.page.locator(Header.IN_FLAT_BUTTON).click()
+
+    @allure.title("Выбрать тип поиска Для бизнеса")
+    def choose_type_search_business(self):
+        self.page.locator(Header.IN_BUSINESS_BUTTON).click()
+
+    @allure.title("Нажать на кнопку Запустить тендер на поиск")
+    def click_tender_button(self):
+        self.page.locator(Header.START_TENDER_BUTTON).click()
+
+    @allure.title("Выбрать тип поиска На дачу")
+    def choose_type_search_garden(self):
+        self.page.locator(Header.IN_GARDEN_BUTTON).click()
+
+    @allure.title("Нажать на кнопку Запустить тендер на по Даче")
+    def click_all_garden_tariffs(self):
+        self.page.locator(Header.GARDEN_TENDER_BUTTON).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_gorokhovaya(self):
+        with allure.step("Вставить Гороховую улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP).fill("Горохов")
+            time.sleep(5)
+            self.page.locator(Search.GOROXOWAYA_STREET).click()
+        with allure.step("Вставить дом 22"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("22")
+            self.page.locator(Search.STREET_TWENTYTWO).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
+    @allure.title("Проверить, что появился квиз")
+    def check_quiz(self):
+        with allure.step("Проверить наличие текста"):
+            expect(self.page.locator(PopUpAfterSearch.TEXT_IN_POPUP)).to_be_visible()
+
+    @allure.title("Закрыть квиз")
+    def close_quiz(self):
+        self.page.locator(PopUpAfterSearch.CLOSE_QUIZ).click()
+
+    @allure.title("Отправить заявку в квиз")
+    def quiz_send_appl(self):
+        self.page.locator(PopUpAfterSearch.INPUT_QUIZ_TEXT).fill("1111111111")
+        self.page.locator(PopUpAfterSearch.BUTTON_SHOW_RESULT).click()
