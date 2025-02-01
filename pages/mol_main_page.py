@@ -3,7 +3,7 @@ import time
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
+from locators.mol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -17,17 +17,17 @@ class MainPage(BasePage):
         with allure.step("Нажать на селект регион"):
             self.page.locator(MainPageLocators.RegionConfirmPopup).click()
 
-    @allure.title("Проверить, что на главной странице в хедере выбрана Ленинградская область")
+    @allure.title("Проверить, что на главной странице в хедере выбрана Московская область")
     def check_header_city(self):
-        expect(self.page.locator(SelectRegion.LENINGRADSKAYA_OBLAST)).to_be_visible()
-        expect(self.page.locator(SelectRegion.LENINGRADSKAYA_OBLAST)).to_have_text("Ленинградская область")
+        expect(self.page.locator(SelectRegion.MOSKOWSKAYA_OBLAST)).to_be_visible()
+        expect(self.page.locator(SelectRegion.MOSKOWSKAYA_OBLAST)).to_have_text("Московская область")
 
-    @allure.title("Проверить, что на главной странице в хедере выбран г. Сертолово")
-    def check_header_sertolovo(self):
-        expect(self.page.locator(MainPageLocators.SERTOLOVO_HEADER)).to_be_visible()
-        expect(self.page.locator(MainPageLocators.SERTOLOVO_HEADER)).to_have_text("Подключить домашний интернет в г. Сертолово (Ленинградская область)")
+    @allure.title("Проверить, что на главной странице в хедере выбран г. Мытищи")
+    def check_header_mitishi(self):
+        expect(self.page.locator(MainPageLocators.MITISHI_HEADER)).to_be_visible()
+        expect(self.page.locator(MainPageLocators.MITISHI_HEADER)).to_have_text("Подключить интернет в г. Мытищи")
 
-    @allure.title("Проверить, что регион сменился на Ленинградскую область")
+    @allure.title("Проверить, что регион сменился на Московскую область")
     def check_main_page_has_leningrad_region(self):
         with allure.step("Проверить, что в заголовках есть Лен. область"):
             locators = [
@@ -37,8 +37,8 @@ class MainPage(BasePage):
             ]
             for locator in locators:
                 # Проверяем, что текст содержит 'Ленинградская область'
-                expect(self.page.locator(locator)).to_have_text(re.compile(r".*Ленинградской области.*"))
-        with allure.step("Проверить, что в заголовках есть Лен. область"):
+                expect(self.page.locator(locator)).to_have_text(re.compile(r".*Московской области.*"))
+        with allure.step("Проверить, что в заголовках есть Моск. область"):
             locators = [
                 # MainPageLocators.HEADER,
                 MainPageLocators.PIN_SEARCH_CITY,
@@ -46,7 +46,7 @@ class MainPage(BasePage):
             ]
             for locator in locators:
                 # Проверяем, что текст содержит 'Ленинградская область'
-                expect(self.page.locator(locator)).to_have_text(re.compile(r".*Ленинградская область.*"))
+                expect(self.page.locator(locator)).to_have_text(re.compile(r".*Московская область.*"))
 
     @allure.title("Открыть попап для отправки заявки")
     def open_popup_wait_for_call(self):
@@ -82,12 +82,12 @@ class MainPage(BasePage):
         with allure.step("Проверить, что сработал негативный попап"):
             expect(self.page.locator(AIPopUp.UNSUCCESSFUL_ALLERT)).to_be_visible()
 
-    @allure.title("Выбрать Сертолово в поиске")
-    def choose_sertolovo(self):
+    @allure.title("Выбрать Мытищи в поиске")
+    def choose_mitishi(self):
         with allure.step("Вставить Сер в инпут"):
-            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Сер")
+            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Мыт")
         with allure.step("Проверить, что текст вставился"):
-            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Сер")
+            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Мыт")
         with allure.step("Выбрать Сертолово в поиске"):
             self.page.locator(SelectRegion.SERTOLOVO).click()
             screenshot = self.page.screenshot()
@@ -140,6 +140,7 @@ class TariffsSection(BasePage):
     def close_more_about_tariff(self):
         self.page.locator(TariffsLocators.POPUP_MORE_ABOUT_TARIFF).click()
 
+
 class SelectRegionPage(BasePage):
     @allure.title("Проверить, что страница Селект регион загрузилась и в ней есть элементы")
     def check_select_region_page(self):
@@ -153,23 +154,14 @@ class SelectRegionPage(BasePage):
             for locator in locators:
                 expect(self.page.locator(locator)).to_be_visible()
 
-        # with allure.step("Проверить, что в элементах есть текст"):
-        #     new_locators = [
-        #         SelectRegion.CITIES_LOCATOR,
-        #         SelectRegion.CLOSE_BUTTON_ELEMENT
-        #     ]
-        #     for news in new_locators:
-        #         text = self.page.locator(news).text_content()
-        #         assert text is not None and text.strip(), f"Локатор {news} не содержит текста"
-
-    @allure.title("Выбрать Ленинградскую область в поиске")
+    @allure.title("Выбрать Московскую область в поиске")
     def choose_leningrad_region(self):
         with allure.step("Вставить Ленинградскую область в инпут"):
-            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Ленинградская область")
+            self.page.locator(SelectRegion.INPUT_SELECT_REGION).fill("Московская область")
         with allure.step("Проверить, что текст вставился"):
-            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Ленинградская область")
+            expect(self.page.locator(SelectRegion.INPUT_SELECT_REGION)).to_have_value("Московская область")
         with allure.step("Выбрать Ленинградскую область в поиске"):
-            self.page.locator(SelectRegion.LENINGRADSKAYA_OBLAST).click()
+            self.page.locator(SelectRegion.MOSKOWSKAYA_OBLAST).click()
 
 
 class SearchFromMain(BasePage):
@@ -194,15 +186,15 @@ class SearchFromMain(BasePage):
         self.page.locator(Header.GARDEN_TENDER_BUTTON).click()
 
     @allure.title("Сделать поиск по заданному адресу")
-    def search_gorokhovaya(self):
-        with allure.step("Вставить Гороховую улицу"):
+    def search_sharikopodship(self):
+        with allure.step("Вставить Шарикоподшипниковская улицу"):
             time.sleep(5)
-            self.page.locator(Search.STREET_INPUT_UP).fill("Горохов")
+            self.page.locator(Search.STREET_INPUT_UP).fill("Шарикоподшипниковская")
             time.sleep(5)
-            self.page.locator(Search.GOROXOWAYA_STREET).click()
-        with allure.step("Вставить дом 22"):
-            self.page.locator(Search.HOME_INPUT_UP).fill("22")
-            self.page.locator(Search.STREET_TWENTYTWO).click()
+            self.page.locator(Search.SHARIK_STREET).click()
+        with allure.step("Вставить дом 11"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("11")
+            self.page.locator(Search.STREET_ELEVEN).click()
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)

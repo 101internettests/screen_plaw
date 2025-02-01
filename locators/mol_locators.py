@@ -5,7 +5,7 @@ class MainPageLocators:
     PIN_SEARCH_CITY = "xpath=//div[@data-sentry-component='SearchBanner']//a[@href='/select-region'][text()]"
     SEO_HEADER_CITY = "xpath=//div[@class='SeoBlock_header-wrapper__5OALy']//h2"
     FUTER_CITY = "xpath=//div[@class='BottomFooterPart_desktop-bottom-part-1__9fIIN']//span[@data-sentry-source-file='FooterRegionName.tsx']"
-    SERTOLOVO_HEADER = "xpath=//h1[text()='Подключить домашний интернет в г. Сертолово (Ленинградская область)']"
+    MITISHI_HEADER = "xpath=//h1[text()='Подключить интернет в г. Мытищи']"
     WAIT_FOR_CALL_BUTTON_OPEN = "xpath=(//button[@aria-label='Бесплатная консультация'])[1]"
     WAIT_FOR_CALL_BUTTON_OPEN_FOOTER = "xpath=(//button[@aria-label='Бесплатная консультация'])[3]"
     PHONE_NUMBER_INPUT = "xpath=//input[@id='phoneInput']"
@@ -29,8 +29,8 @@ class SelectRegion:
     INPUT_SELECT_REGION = "xpath=//input[@placeholder='Введите город или регион']"
     MAIN_LETTERS_SELECT = "xpath=//span[@class='SelectRegion_letter__7dXQv']"
     CITIES_LOCATOR = "xpath=//li[@class='SelectRegion_region__rRrPG']"
-    LENINGRADSKAYA_OBLAST = "xpath=//span[text()='Ленинградская область']"
-    SERTOLOVO = "xpath=//span[text()='Сертолово']"
+    MOSKOWSKAYA_OBLAST = "xpath=//span[text()='Московская область']"
+    SERTOLOVO = "xpath=//span[text()='Мытищи']"
     CLOSE_BUTTON_ELEMENT = "xpath=//button[@aria-label='Закрыть модальное окно']"
 
 
@@ -53,8 +53,8 @@ class Header:
 class Search:
     STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
-    GOROXOWAYA_STREET = "xpath=//em[text()]"
-    STREET_TWENTYTWO = "xpath=//em[text()='22']"
+    SHARIK_STREET = "xpath=//em[text()]"
+    STREET_ELEVEN = "xpath=(//em[text()='11'])[1]"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
 
 
