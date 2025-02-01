@@ -80,3 +80,12 @@ class ReviewBlock:
     # посчитать эти локаторы
     NUBER_OF_REVIEW = "xpath=(//div[@data-sentry-component='ReviewCard'])"
     BUTTON_MORE_REVIEWS = "xpath=//a[text()='Ещё отзывы']"
+
+
+class ReviewWebSiteCat:
+    CLICK_ON_LOGO = "xpath=//button[@aria-label='Виджет оценки сайта']"
+    # один из пяти котов
+    CLICK_ON_RANDOM_CAT = "xpath=(//label[@for])"
+    TEXTAREA_IN_REVIEW = "xpath=//textarea[@placeholder='Расскажите, если что-то не так - мы постараемся исправить']"
+    BUTTON_SEND = "xpath=//button[text()='Отправить']"
+    TEXT_IN_POPUP = "xpath=//h2[text()='Спасибо, что помогаете нам стать лучше!']"

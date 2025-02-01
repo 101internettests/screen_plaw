@@ -4,7 +4,7 @@ import allure
 import uuid
 from playwright.sync_api import Page, expect, sync_playwright
 from pages.urls_stage_msk import urls, names
-from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection
+from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection, ReviewCatPopup
 from pages.orders_office_page import OfficePage
 from pages.sat_page import SatPage
 from config import mol_url, pol_url
@@ -170,3 +170,14 @@ class TestMolMainWithRegion:
             tariff_page.click_on_more_about_tariff()
             tariff_page.check_modal_window_more_about_tariffs()
             tariff_page.close_more_about_tariff()
+
+    @allure.title("Отправить обратную связь с главной страницы")
+    def test_send_review_cat(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            review_page = ReviewCatPopup(page=page)
+            review_page.open_popup_cat_website()
+            review_page.leave_feedback_cat()

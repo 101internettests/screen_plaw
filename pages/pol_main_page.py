@@ -1,9 +1,9 @@
 import time
-
+import random
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
+from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators, ReviewWebSiteCat
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -220,3 +220,29 @@ class SearchFromMain(BasePage):
     def quiz_send_appl(self):
         self.page.locator(PopUpAfterSearch.INPUT_QUIZ_TEXT).fill("1111111111")
         self.page.locator(PopUpAfterSearch.BUTTON_SHOW_RESULT).click()
+
+
+class ReviewCatPopup(BasePage):
+    @allure.title("Открыт попап Как вам наш сайта?")
+    def open_popup_cat_website(self):
+        self.page.locator(ReviewWebSiteCat.CLICK_ON_LOGO).click()
+
+    @allure.title("Нажать на одного из пяти котиков и оставить отзыв")
+    def leave_feedback_cat(self):
+        with allure.step("Нажать на одного из двух котиков"):
+            cats_empji = self.page.locator(ReviewWebSiteCat.CLICK_ON_RANDOM_CAT)
+            count = cats_empji.count()
+            if count == 0:
+                print("Нет доступных элементов для клика.")
+                return
+            random_index = random.randint(0, count - 1)
+            cats_empji.nth(random_index).click()
+        with allure.step("Вставить тестовый текст"):
+            self.page.locator(ReviewWebSiteCat.TEXTAREA_IN_REVIEW).fill("Тестовая обратная связь")
+        with allure.step("Нажать на кнопку Отправить"):
+            self.page.locator(ReviewWebSiteCat.BUTTON_SEND).click()
+        with allure.step("Проверить окно обратной связи"):
+            expect(self.page.locator(ReviewWebSiteCat.TEXT_IN_POPUP)).to_be_visible()
+        with allure.step("Проверить, что окно обратной связи исчезло"):
+            time.sleep(7)
+            expect(self.page.locator(ReviewWebSiteCat.TEXT_IN_POPUP)).not_to_be_visible()
