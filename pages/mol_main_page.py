@@ -4,7 +4,7 @@ import re
 import random
 from locators.screen_locators import ScreenLocators
 from locators.mol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
-from locators.mol_locators import ReviewWebSiteCat
+from locators.mol_locators import ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -137,9 +137,31 @@ class TariffsSection(BasePage):
             screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
             allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
 
+    @allure.title("Заполнить заявку на первом тарифе")
+    def fill_the_application_with_address(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Гусятников пер")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("1")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
     @allure.title("Закрыть модальное окно Больше о тарифе")
     def close_more_about_tariff(self):
         self.page.locator(TariffsLocators.POPUP_MORE_ABOUT_TARIFF).click()
+
+    @allure.title("Нажать на кнопку Найти все тарифы по адресу")
+    def click_on_button_find_tariffs(self):
+        self.page.locator(TariffsLocators.BUTTON_FIND_TARIFFS).click()
 
 
 class SelectRegionPage(BasePage):
@@ -239,3 +261,31 @@ class ReviewCatPopup(BasePage):
         with allure.step("Проверить, что окно обратной связи исчезло"):
             time.sleep(7)
             expect(self.page.locator(ReviewWebSiteCat.TEXT_IN_POPUP)).not_to_be_visible()
+
+
+class OpenPopUpAddress(BasePage):
+    @allure.title("Проверить, что открылся попап по поиску")
+    def check_popup_window(self):
+        expect(self.page.locator(PopUpFilltheAddress.HEADER_WINDOW)).to_be_visible()
+
+    @allure.title("Выбрать В квартиру")
+    def choose_in_flat(self):
+        self.page.locator(PopUpFilltheAddress.IN_FLAT_BUTTON).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_address(self):
+        with allure.step("Вставить Шарикоподшипниковская улицу"):
+            time.sleep(5)
+            self.page.locator(PopUpFilltheAddress.STREET_INPUT).fill("Арбат")
+            time.sleep(5)
+            self.page.locator(PopUpFilltheAddress.CHOOSE_FIRST).click()
+        with allure.step("Вставить дом 1"):
+            self.page.locator(PopUpFilltheAddress.HOME_INPUT).fill("1")
+            self.page.locator(PopUpFilltheAddress.CHOOSE_FIRST).click()
+        with allure.step("Удалить дом 1, выбрать 10"):
+            self.page.locator(PopUpFilltheAddress.DELETE_HOUSE).click()
+            self.page.locator(PopUpFilltheAddress.HOME_INPUT).fill("10")
+            self.page.locator(PopUpFilltheAddress.CHOOSE_FIRST).click()
+            time.sleep(4)
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()

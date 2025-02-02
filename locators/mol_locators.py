@@ -24,6 +24,13 @@ class TariffsLocators:
     ROUTER_INF0 = "xpath=//p[text()='Роутер']"
     MORE_ABOUT_TARIFF_BUTTON = "xpath=//button[text()='Больше о тарифе']"
     POPUP_MORE_ABOUT_TARIFF = "xpath=//button[text()='Закрыть детали']"
+    PHONE_INPUT = "xpath=//input[@id='phone_input']"
+    INPUT_HOME_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[2]"
+    GUS_STREET = "xpath=(//em[text()])[1]"
+    HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[2]"
+    STREET_FIRST = "xpath=(//div[@aria-selected='false'])[4]"
+    BUTTON_FIND_TARIFFS = "xpath=//button[text()='Найти все тарифы по адресу']"
+
 
 class SelectRegion:
     INPUT_SELECT_REGION = "xpath=//input[@placeholder='Введите город или регион']"
@@ -89,3 +96,30 @@ class ReviewWebSiteCat:
     TEXTAREA_IN_REVIEW = "xpath=//textarea[@placeholder='Расскажите, если что-то не так - мы постараемся исправить']"
     BUTTON_SEND = "xpath=//button[text()='Отправить']"
     TEXT_IN_POPUP = "xpath=//h2[text()='Спасибо, что помогаете нам стать лучше!']"
+
+
+class ProvidersPage:
+    TAG_HOME_INTERNET = "xpath=//span[text()='Домашний интернет']"
+    FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@class='TariffCard_button__ONu3k']//button[@data-sentry-source-file])[1]"
+    TARIFF_NAME = "xpath=//span[@class='SubmitFormContent_provider-name__R1UkL']"
+    TARIFF_NAME2 = "xpath=//span[@class='SubmitFormContent_tariff-name__LCZiq']"
+    TELEPHONE_INPUT = "xpath=//input[@id='ph_input']"
+    SEND_APPLICATION_BUTTON = "xpath=//button[text()='Отправить заявку']"
+
+
+class PopUpFilltheAddress:
+    HEADER_WINDOW = "xpath=//h2[text()='Введите адрес и сравните все доступные тарифы']"
+    IN_FLAT_BUTTON = "xpath=(//span[text()='В квартиру'])[2]"
+    IN_BUSINESS_BUTTON = "xpath=(//span[text()='Для бизнеса'])[2]"
+    IN_SAT_BUTTON = "xpath=(//span[text()='На дачу'])[2]"
+    START_TENDER_BUTTON = "xpath=(//button[text()='Запустить тендер на подключение'])[2]"
+    ALL_TARIFFS_BUTTON = "xpath=(//button[text()='Все тарифы для дачи'])[2]"
+    STREET_INPUT = "xpath=(//input[@placeholder='Введите улицу'])[2]"
+    CHOOSE_FIRST = "xpath=(//em[text()])[1]"
+    HOME_INPUT = "xpath=(//input[@placeholder='Дом'])[2]"
+    FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[2]"
+    DELETE_HOUSE = "xpath=(//div[@data-headlessui-state]//button[@data-sentry-component='IconButton'])[4]"
+
+class ProvidersBlock:
+    PROVIDERS_BLOCK = "xpath=//div[@class='MainPage_provs-reviews-block__QNvrv']"
+    BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[1]"
