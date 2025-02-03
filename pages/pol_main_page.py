@@ -48,6 +48,19 @@ class MainPage(BasePage):
                 # Проверяем, что текст содержит 'Ленинградская область'
                 expect(self.page.locator(locator)).to_have_text(re.compile(r".*Ленинградская область.*"))
 
+    @allure.title("Проверить наличие Кота переносителя наверх")
+    def check_cat_upper(self):
+        expect(self.page.locator(MainPageLocators.HEADER_PAGE_CATBUTTON)).to_be_visible()
+        expect(self.page.locator(MainPageLocators.BUTTON_GO_UP)).to_be_visible()
+        with allure.step("Перенестись наверх"):
+            self.page.locator(MainPageLocators.BUTTON_GO_UP).click()
+            time.sleep(5)
+
+    @allure.title("Сделать скриншот")
+    def make_screenshot(self):
+        screenshot = self.page.locator(MainPageLocators.HEADER).screenshot()
+        allure.attach(screenshot, name="Tariffs Section Screenshot", attachment_type=allure.attachment_type.PNG)
+
     @allure.title("Открыть попап для отправки заявки")
     def open_popup_wait_for_call(self):
         self.page.locator(MainPageLocators.WAIT_FOR_CALL_BUTTON_OPEN).click()

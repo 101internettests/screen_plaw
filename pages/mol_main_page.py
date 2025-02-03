@@ -4,7 +4,7 @@ import re
 import random
 from locators.screen_locators import ScreenLocators
 from locators.mol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
-from locators.mol_locators import ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress
+from locators.mol_locators import ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -95,6 +95,18 @@ class MainPage(BasePage):
             allure.attach(screenshot, name="Скриншот после выбора Сертолово",
                           attachment_type=allure.attachment_type.PNG)
 
+    @allure.title("Проверить наличие Кота переносителя наверх")
+    def check_cat_upper(self):
+        expect(self.page.locator(MainPageLocators.HEADER_PAGE_CATBUTTON)).to_be_visible()
+        expect(self.page.locator(MainPageLocators.BUTTON_GO_UP)).to_be_visible()
+        with allure.step("Перенестись наверх"):
+            self.page.locator(MainPageLocators.BUTTON_GO_UP).click()
+            time.sleep(5)
+
+    @allure.title("Сделать скриншот")
+    def make_screenshot(self):
+        screenshot = self.page.locator(MainPageLocators.HEADER).screenshot()
+        allure.attach(screenshot, name="Tariffs Section Screenshot", attachment_type=allure.attachment_type.PNG)
 
 class TariffsSection(BasePage):
     @allure.title("Проверить наличие блока тарифов")
@@ -127,9 +139,45 @@ class TariffsSection(BasePage):
             screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
             allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
 
-    @allure.title("Нажать на кнопку Больше о тарифе на первом тарифе")
+    @allure.title("Нажать на кнопку 'Больше о тарифе' на первом тарифе")
     def click_on_more_about_tariff(self):
-        self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).click()
+        max_attempts = 6  # Максимальное количество попыток
+        attempt = 0
+
+        while attempt < max_attempts:
+            try:
+                # Проверяем, есть ли локатор MORE_ABOUT_TARIFF_BUTTON
+                if self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).is_visible():
+                    self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).click()
+                    allure.attach("Успешно нажали на кнопку 'Больше о тарифе'", name="Успех")
+                    return  # Выход из функции после успешного клика
+                else:
+                    allure.attach(f"Локатор 'Больше о тарифе' не найден. Попытка {attempt + 1}", name="Попытка")
+            except Exception as e:
+                allure.attach(f"Ошибка при поиске локатора 'Больше о тарифе': {e}", name="Ошибка")
+
+            # Если локатор MORE_ABOUT_TARIFF_BUTTON не найден, перебираем нечётные индексы DETAILS_OF_TARIFF_BUTTON_new
+            for index in range(1, 6, 2):  # Индексы 1, 3, 5 (нечётные)
+                try:
+                    # Формируем локатор с текущим индексом
+                    details_locator = f"{TariffsLocators.DETAILS_OF_TARIFF_BUTTON_new}[{index}]"
+                    if self.page.locator(details_locator).is_visible():
+                        self.page.locator(details_locator).click()
+                        allure.attach(f"Нажали на DETAILS_OF_TARIFF_BUTTON с индексом {index}. Попытка {attempt + 1}",
+                                      name="Нажатие на DETAILS_OF_TARIFF_BUTTON")
+                        # После клика снова проверяем MORE_ABOUT_TARIFF_BUTTON
+                        break  # Выход из цикла for, чтобы вернуться к проверке MORE_ABOUT_TARIFF_BUTTON
+                except Exception as e:
+                    allure.attach(f"Ошибка при нажатии на DETAILS_OF_TARIFF_BUTTON с индексом {index}: {e}",
+                                  name="Ошибка DETAILS_OF_TARIFF_BUTTON")
+
+            attempt += 1
+
+        allure.attach("Не удалось нажать на кнопку 'Больше о тарифе' после 6 попыток", name="Неудача")
+
+    # @allure.title("Нажать на кнопку Больше о тарифе на первом тарифе")
+    # def click_on_more_about_tariff(self):
+    #     self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).click()
 
     @allure.title("Проверить модальное окно больше о тарифе")
     def check_modal_window_more_about_tariffs(self):
@@ -270,7 +318,22 @@ class OpenPopUpAddress(BasePage):
 
     @allure.title("Выбрать В квартиру")
     def choose_in_flat(self):
-        self.page.locator(PopUpFilltheAddress.IN_FLAT_BUTTON).click()
+        with allure.step("Нажать на кнопку В квартиру"):
+            self.page.locator(PopUpFilltheAddress.IN_FLAT_BUTTON).click()
+
+    @allure.title("Выбрать Для бизнеса")
+    def choose_in_business(self):
+        with allure.step("Нажать на кнопку Для бизнеса"):
+            self.page.locator(PopUpFilltheAddress.IN_BUSINESS_BUTTON).click()
+        with allure.step("Проверить кнопку поиска по тендеру"):
+            expect(self.page.locator(PopUpFilltheAddress.START_TENDER_BUTTON)).to_be_visible()
+
+    @allure.title("Выбрать На дачу")
+    def choose_in_sat(self):
+        with allure.step("Нажать на кнопку На дачу"):
+            self.page.locator(PopUpFilltheAddress.IN_SAT_BUTTON).click()
+        with allure.step("Проверить кнопку Все тарифы для дачи"):
+            expect(self.page.locator(PopUpFilltheAddress.ALL_TARIFFS_BUTTON)).to_be_visible()
 
     @allure.title("Сделать поиск по заданному адресу")
     def search_address(self):
@@ -289,3 +352,48 @@ class OpenPopUpAddress(BasePage):
             time.sleep(4)
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Гусятников пер")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("1")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+
+class BlockProviders(BasePage):
+    @allure.title("Проверить блок Топ провайдеров интернета в Москве")
+    def check_providers_block(self):
+        with allure.step("Проверить наличие блока"):
+            expect(self.page.locator(ProvidersBlock.PROVIDERS_BLOCK)).to_be_visible()
+        with allure.step("Сделать скриншот"):
+            screenshot = self.page.locator(ProvidersBlock.PROVIDERS_BLOCK).screenshot()
+            allure.attach(screenshot, name="Providers block  Screenshot",
+                          attachment_type=allure.attachment_type.PNG)
+
+    @allure.title("Открыть попап поиска по адресу с Ринета (первый тариф)")
+    def click_search_rinet(self):
+        self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
+
+
+class ReviewBlockPage(BasePage):
+    @allure.title("Проверить наличие блока отзывов")
+    def check_review_block(self):
+        with allure.step("Проверить, что заголовок есть на странице"):
+            expect(self.page.locator(ReviewBlock.REVIEW_HEADER)).to_be_visible()
+        with allure.step("Проверить, что выведен один отзыв"):
+            review_num = self.page.locator(ReviewBlock.NUBER_OF_REVIEW).count()
+            if review_num == 1:
+                print("Локатор указывает ровно на один элемент.")
+            else:
+                print(f"Локатор указывает на {review_num} элементов.")
+
+    @allure.title("Нажать на кнопку Еще отзывы")
+    def click_button_more_reviews(self):
+        self.page.locator(ReviewBlock.BUTTON_MORE_REVIEWS).click()

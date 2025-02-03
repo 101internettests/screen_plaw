@@ -5,6 +5,8 @@ import uuid
 from playwright.sync_api import Page, expect, sync_playwright
 from pages.urls_stage_msk import urls, names
 from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection, ReviewCatPopup, OpenPopUpAddress
+from pages.mol_main_page import BlockProviders, ReviewBlockPage
+from pages.review_page import ReviewPageFeedback
 from pages.tariff_page import TariffPage
 from pages.orders_office_page import OfficePage
 from pages.sat_page import SatPage
@@ -208,7 +210,8 @@ class TestMolMainWithRegion:
             time.sleep(3)
             tariff_page.click_on_more_about_tariff()
             tariff_page.check_modal_window_more_about_tariffs()
-            tariff_page.close_more_about_tariff()
+            time.sleep(3)
+            # tariff_page.close_more_about_tariff()
 
     @allure.title("Отправить обратную связь с главной страницы")
     def test_send_review_cat(self):
@@ -222,7 +225,7 @@ class TestMolMainWithRegion:
             review_page.leave_feedback_cat()
 
     @allure.title("Заявка через компонент поиска по адресу под блоком тарифы")
-    def test_send_review_cat(self):
+    def test_send_application_from_address(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False)
@@ -245,4 +248,87 @@ class TestMolMainWithRegion:
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
+    @allure.title("Заявка через компонент поиска по адресу в блоке провайдеров (попап, адрес-тариф-подключить)")
+    def test_send_application_from_prov_block(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            blockprov_page = BlockProviders(page=page)
+            blockprov_page.check_providers_block()
+            blockprov_page.click_search_rinet()
+            popup_page = OpenPopUpAddress(page=page)
+            popup_page.check_popup_window()
+            popup_page.choose_in_business()
+            popup_page.choose_in_sat()
+            popup_page.choose_in_flat()
+            tariff_block = TariffsSection(page=page)
+            time.sleep(7)
+            popup_page.fill_the_application_with_address()
+            main_page = MainPage(page=page)
+            time.sleep(2)
+            search_page = SearchFromMain(page=page)
+            search_page.quiz_send_appl()
+            main_page = MainPage(page=page)
+            main_page.check_success_popups()
+            main_page.close_popup_wait_for_call()
+            tariff_page = TariffPage(page=page)
+            tariff_page.check_tag_home_internet()
+            tariff_page.fill_the_application()
+
+    @allure.title("Просмотр всех отзывов по региону")
+    def test_check_all_reviews_in_region(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            review_block_page = ReviewBlockPage(page=page)
+            review_block_page.check_review_block()
+            review_block_page.click_button_more_reviews()
+            expected_url = "https://www.moskvaonline.ru/reviews"
+            page.wait_for_url(expected_url)
+            with allure.step("Проверить, что URL соответствует ожидаемому"):
+                current_url = page.url
+                assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
+                time.sleep(4)
+
+    @allure.title("Написать отзыв")
+    def test_write_review(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            review_block_page = ReviewBlockPage(page=page)
+            review_block_page.check_review_block()
+            review_block_page.click_button_more_reviews()
+            expected_url = "https://www.moskvaonline.ru/reviews"
+            page.wait_for_url(expected_url)
+            with allure.step("Проверить, что URL соответствует ожидаемому"):
+                current_url = page.url
+                assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
+                time.sleep(4)
+            review_feedback = ReviewPageFeedback(page=page)
+            review_feedback.click_on_write_review_button()
+            review_feedback.leave_feedback()
+            review_feedback.go_back()
+            time.sleep(5)
+            expected_second = "https://www.moskvaonline.ru/reviews"
+            page.wait_for_url(expected_url)
+            with allure.step("Проверить, что URL соответствует ожидаемому"):
+                current_url = page.url
+                assert current_url == expected_second, f"Ожидался URL {expected_url}, но получен {current_url}"
+
+    @allure.title("Кнопка подняться наверх работает")
+    def test_catupper_button(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            main_page = MainPage(page=page)
+            main_page.check_cat_upper()
+            main_page.make_screenshot()
 

@@ -13,6 +13,8 @@ class MainPageLocators:
     POPUP_HEADER_LAST = "xpath=//span[text()='Заявка в работе!']"
     POPUP_HEADER_SECOND = "xpath=//span[text()='Заявка отправляется']"
     CLOSE_POPUP_BUTTON = "xpath=//div[@aria-label]//button[@aria-label='Закрыть']"
+    HEADER_PAGE_CATBUTTON = "xpath=//p[text()='Вы долистали до конца!']"
+    BUTTON_GO_UP = "xpath=//button[text()='Подняться наверх ']"
 
 
 class TariffsLocators:
@@ -20,6 +22,7 @@ class TariffsLocators:
     TARIFF_CARD = "xpath=(//div[@data-sentry-component='TariffCard'])"
     PRICE_IN_TARIFFS = "xpath=(//div[@itemprop='offers']//p[text()])"
     DETAILS_OF_TARIFF_BUTTON = "xpath=(//button[text()='Детали тарифа'])[1]"
+    DETAILS_OF_TARIFF_BUTTON_new = "xpath=(//button[text()='Детали тарифа'])"
     CONNECTION_INFO = "xpath=//p[text()='Подключение']"
     ROUTER_INF0 = "xpath=//p[text()='Роутер']"
     MORE_ABOUT_TARIFF_BUTTON = "xpath=//button[text()='Больше о тарифе']"
@@ -83,7 +86,7 @@ class OrdersSatPage:
 
 
 class ReviewBlock:
-    REVIEW_HEADER = "xpath=//h2[text()='Отзывы о провайдерах домашнего интернета в Санкт-Петербурге']"
+    REVIEW_HEADER = "xpath=//h2[text()='Отзывы о провайдерах Москвы']"
     # посчитать эти локаторы
     NUBER_OF_REVIEW = "xpath=(//div[@data-sentry-component='ReviewCard'])"
     BUTTON_MORE_REVIEWS = "xpath=//a[text()='Ещё отзывы']"
@@ -123,3 +126,18 @@ class PopUpFilltheAddress:
 class ProvidersBlock:
     PROVIDERS_BLOCK = "xpath=//div[@class='MainPage_provs-reviews-block__QNvrv']"
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[1]"
+
+
+class ReviewPage:
+    BUTTON_WRITE_REVIEW = "xpath=//a[text()='Напишите отзыв']"
+    CHOSE_IN_FLAT = "xpath=//span[text()='в квартире']"
+    INPUT_PROVIDER = "xpath=//input[@placeholder='Введите название']"
+    CHOOSE_ROSTEL = "xpath=//div[text()='Ростелеком']"
+    FOUR_INTERNET = "xpath=(//div[@class='Rating_star__PqEKQ'])[4]"
+    FOUR_TV = "xpath=(//div[@class='Rating_star__PqEKQ'])[9]"
+    FOUR_MONTAZ = "xpath=(//div[@class='Rating_star__PqEKQ'])[14]"
+    REVIEW_TEXTAREA = "xpath=//textarea[@id='review-feedback-comment']"
+    THREE_MONTH_YEAR = "xpath=//label[@for='three_month_one_year']"
+    NAME_INPUT = "xpath=//input[@id='review-feedback-name']"
+    SEND_REVIEW_BUTTON = "xpath=//button[text()='Отправить отзыв']"
+    CHECK_THANKFORREVIEW = "xpath=//p[text()='Спасибо за отзыв!']"

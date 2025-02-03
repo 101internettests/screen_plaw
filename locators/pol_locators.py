@@ -13,6 +13,8 @@ class MainPageLocators:
     POPUP_HEADER_LAST = "xpath=//span[text()='Заявка в работе!']"
     POPUP_HEADER_SECOND = "xpath=//span[text()='Заявка отправляется']"
     CLOSE_POPUP_BUTTON = "xpath=//div[@aria-label]//button[@aria-label='Закрыть']"
+    HEADER_PAGE_CATBUTTON = "xpath=//p[text()='Вы долистали до конца!']"
+    BUTTON_GO_UP = "xpath=//button[text()='Подняться наверх ']"
 
 
 class TariffsLocators:

@@ -178,3 +178,14 @@ class TestPolMainWithRegion:
             review_page = ReviewCatPopup(page=page)
             review_page.open_popup_cat_website()
             review_page.leave_feedback_cat()
+
+    @allure.title("Кнопка подняться наверх работает")
+    def test_catupper_button(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            main_page = MainPage(page=page)
+            main_page.check_cat_upper()
+            main_page.make_screenshot()
