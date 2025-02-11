@@ -1,9 +1,10 @@
+import os
 import allure
 import uuid
 from playwright.sync_api import sync_playwright
 from urls.url_main import urls, names, urls_prod
 from pages.screen_page import ScreenPage
-HEADLESS = False
+HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
 @allure.title("Скриншоты 101")
