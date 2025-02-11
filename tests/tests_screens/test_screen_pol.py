@@ -28,7 +28,7 @@ class TestSearchChrome:
                     page.wait_for_timeout(2000)
                     page.set_viewport_size({"width": 1920, "height": 8000})
 
-                    screenshot_path = f'C:/Users/Katerina/Desktop/screens/{name}.png'
+                    screenshot_path = f'{os.getenv("BASE_SAVING_PATH")}/screens/pol_prod/{name}.png'
                     page.screenshot(path=screenshot_path)
                     print(f"Скриншот сохранен: {screenshot_path}")
 
@@ -53,7 +53,7 @@ class TestSearchChrome:
                     page.wait_for_timeout(2000)
                     page.set_viewport_size({"width": 1920, "height": 8000})
 
-                    screenshot_path = f'C:/Users/Katerina/Desktop/screens/{name}.png'
+                    screenshot_path = f'{os.getenv("BASE_SAVING_PATH")}/screens/pol_stage/{name}.png'
                     page.screenshot(path=screenshot_path)
                     print(f"Скриншот сохранен: {screenshot_path}")
 
