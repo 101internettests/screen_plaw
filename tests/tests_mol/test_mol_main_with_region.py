@@ -1,9 +1,7 @@
 import time
 
 import allure
-import uuid
-from playwright.sync_api import Page, expect, sync_playwright
-from pages.urls_stage_msk import urls, names
+from playwright.sync_api import sync_playwright
 from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection, ReviewCatPopup, OpenPopUpAddress
 from pages.mol_main_page import BlockProviders, ReviewBlockPage
 from pages.review_page import ReviewPageFeedback
