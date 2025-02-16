@@ -8,7 +8,7 @@ from pages.review_page import ReviewPageFeedback
 from pages.tariff_page import TariffPage
 from pages.orders_office_page import OfficePage
 from pages.sat_page import SatPage
-from config import mol_url, pol_url
+from config import mol_url
 
 
 class TestMolMainWithRegion:
@@ -63,7 +63,7 @@ class TestMolMainWithRegion:
 
     @allure.title("Отправить заявку из попапа жду звонка из хедера")
     def test_send_popup_waitforcall_footer(self):
-        full_url = f"{pol_url}"
+        full_url = f"{mol_url}"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False)
             page = browser.new_page()
@@ -109,6 +109,8 @@ class TestMolMainWithRegion:
             page = browser.new_page()
             page.goto(full_url)
             search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_business()
+            search_page.choose_type_search_garden()
             search_page.choose_type_search_flat()
             search_page.search_sharikopodship()
             search_page.check_quiz()
@@ -116,11 +118,44 @@ class TestMolMainWithRegion:
             time.sleep(5)
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
-            tariff_block = TariffsSection(page=page)
             time.sleep(7)
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
             time.sleep(2)
+            main_page.check_success_popups()
+            main_page.close_popup_wait_for_call()
+
+    @allure.title("Проверить заявку через компонент поиска по адресу (адрес-тариф подключить, фильтрация по провайдеру, скорости и цене)")
+    def test_send_application_address_with_filter(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto(full_url)
+            block_page = BlockProviders(page=page)
+            block_page.check_providers_block()
+            block_page.click_all_providers_button()
+            popup_page = OpenPopUpAddress(page=page)
+            popup_page.check_popup_window()
+            popup_page.choose_in_business()
+            popup_page.choose_in_sat()
+            popup_page.choose_in_flat()
+            popup_page.fill_the_application_with_address_second()
+            search_page = SearchFromMain(page=page)
+            search_page.check_quiz()
+            search_page.close_quiz()
+            time.sleep(5)
+            tariff_page = TariffPage(page=page)
+            tariff_page.check_tag_home_internet()
+            tariff_page.choose_price_before_oneth()
+            tariff_page.choose_filter_all_providers()
+            tariff_page.choose_filter_speed_200()
+            tariff_page.accept_button_show_filters()
+            tariff_page.check_tag_home_internet()
+            tariff_page.click_on_tariff_with_500()
+            main_page = MainPage(page=page)
+            time.sleep(2)
+            tariff_page.send_popup_wait_for_call()
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 

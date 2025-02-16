@@ -59,6 +59,7 @@ class MainPage(BasePage):
 
     @allure.title("Отправить заявку в попап")
     def send_popup_wait_for_call(self):
+        time.sleep(3)
         self.page.locator(MainPageLocators.PHONE_NUMBER_INPUT).fill("1111111111")
         self.page.locator(MainPageLocators.WAIT_FOR_CALL_BUTTON_SEND).click(timeout=5000)
 
@@ -107,6 +108,7 @@ class MainPage(BasePage):
     def make_screenshot(self):
         screenshot = self.page.locator(MainPageLocators.HEADER).screenshot()
         allure.attach(screenshot, name="Tariffs Section Screenshot", attachment_type=allure.attachment_type.PNG)
+
 
 class TariffsSection(BasePage):
     @allure.title("Проверить наличие блока тарифов")
@@ -366,6 +368,19 @@ class OpenPopUpAddress(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
 
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_second(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Сиреневый")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.PURPLE_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("40")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
 
 class BlockProviders(BasePage):
     @allure.title("Проверить блок Топ провайдеров интернета в Москве")
@@ -380,6 +395,10 @@ class BlockProviders(BasePage):
     @allure.title("Открыть попап поиска по адресу с Ринета (первый тариф)")
     def click_search_rinet(self):
         self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
+
+    @allure.title("Нажать на кнопку Все провайдеры по адресу")
+    def click_all_providers_button(self):
+        self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
 
 
 class ReviewBlockPage(BasePage):

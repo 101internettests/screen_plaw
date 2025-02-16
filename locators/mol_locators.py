@@ -30,8 +30,10 @@ class TariffsLocators:
     PHONE_INPUT = "xpath=//input[@id='phone_input']"
     INPUT_HOME_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[2]"
     GUS_STREET = "xpath=(//em[text()])[1]"
+    PURPLE_STREET = "xpath=(//em[text()])[3]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[2]"
     STREET_FIRST = "xpath=(//div[@aria-selected='false'])[4]"
+    STREET_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     BUTTON_FIND_TARIFFS = "xpath=//button[text()='Найти все тарифы по адресу']"
 
 
@@ -115,17 +117,19 @@ class PopUpFilltheAddress:
     IN_FLAT_BUTTON = "xpath=(//span[text()='В квартиру'])[2]"
     IN_BUSINESS_BUTTON = "xpath=(//span[text()='Для бизнеса'])[2]"
     IN_SAT_BUTTON = "xpath=(//span[text()='На дачу'])[2]"
-    START_TENDER_BUTTON = "xpath=(//button[text()='Запустить тендер на подключение'])[2]"
-    ALL_TARIFFS_BUTTON = "xpath=(//button[text()='Все тарифы для дачи'])[2]"
+    START_TENDER_BUTTON = "xpath=(//button[text()='Запустить тендер на подключение'])[1]"
+    ALL_TARIFFS_BUTTON = "xpath=(//button[text()='Все тарифы для дачи'])[1]"
     STREET_INPUT = "xpath=(//input[@placeholder='Введите улицу'])[2]"
     CHOOSE_FIRST = "xpath=(//em[text()])[1]"
     HOME_INPUT = "xpath=(//input[@placeholder='Дом'])[2]"
     FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[2]"
     DELETE_HOUSE = "xpath=(//div[@data-headlessui-state]//button[@data-sentry-component='IconButton'])[4]"
 
+
 class ProvidersBlock:
     PROVIDERS_BLOCK = "xpath=//div[@class='MainPage_provs-reviews-block__QNvrv']"
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[1]"
+    ALL_PROVIDERS_BUTTON = "xpath=//button[text()='Все провайдеры по адресу']"
 
 
 class ReviewPage:
@@ -141,3 +145,18 @@ class ReviewPage:
     NAME_INPUT = "xpath=//input[@id='review-feedback-name']"
     SEND_REVIEW_BUTTON = "xpath=//button[text()='Отправить отзыв']"
     CHECK_THANKFORREVIEW = "xpath=//p[text()='Спасибо за отзыв!']"
+
+
+class Filters:
+    PRICE_BEFORE_ONETH = "xpath=//button[text()='до 1000 ₽/мес']"
+    CHOOSE_ALL_PROVIDERS = "xpath=//button[text()='Выбрать всё']"
+    SPEED_INTERNET_200_500 = "xpath=//button[text()='200-500 Мб/с']"
+    BUTTON_SHOW_ALL_TARIFFS = "xpath=//button[@data-sentry-source-file='TariffFilter.tsx']"
+    CHECK_FILTERS = "xpath=(//div[@class='HouseNZLPage_quick-filters-container__Okssh'])[1]"
+
+
+class TariffsInTariffPage:
+    TARIFF_WITH_SPEED_500 = ("xpath=(//meta[@content='500 Мб/c Домашний интернет']/following::div//button["
+                             "@data-sentry-element='Button'])[1]")
+    PHONE_NUMBER_INPUT = "xpath=//input[@id='ph_input']"
+    BUTTON_SEND = "xpath=//button[text()='Отправить заявку']"

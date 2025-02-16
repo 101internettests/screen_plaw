@@ -3,7 +3,7 @@ import random
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators, ReviewWebSiteCat
+from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators, ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -153,6 +153,28 @@ class TariffsSection(BasePage):
     def close_more_about_tariff(self):
         self.page.locator(TariffsLocators.POPUP_MORE_ABOUT_TARIFF).click()
 
+    @allure.title("Заполнить заявку на первом тарифе")
+    def fill_the_application_with_address(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Энгельса")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("7")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
+    @allure.title("Нажать на кнопку Найти все тарифы по адресу")
+    def click_on_button_find_tariffs(self):
+        self.page.locator(TariffsLocators.BUTTON_FIND_TARIFFS).click()
+
 class SelectRegionPage(BasePage):
     @allure.title("Проверить, что страница Селект регион загрузилась и в ней есть элементы")
     def check_select_region_page(self):
@@ -259,3 +281,108 @@ class ReviewCatPopup(BasePage):
         with allure.step("Проверить, что окно обратной связи исчезло"):
             time.sleep(7)
             expect(self.page.locator(ReviewWebSiteCat.TEXT_IN_POPUP)).not_to_be_visible()
+
+
+class OpenPopUpAddress(BasePage):
+    @allure.title("Проверить, что открылся попап по поиску")
+    def check_popup_window(self):
+        expect(self.page.locator(PopUpFilltheAddress.HEADER_WINDOW)).to_be_visible()
+
+    @allure.title("Выбрать В квартиру")
+    def choose_in_flat(self):
+        with allure.step("Нажать на кнопку В квартиру"):
+            self.page.locator(PopUpFilltheAddress.IN_FLAT_BUTTON).click()
+
+    @allure.title("Выбрать Для бизнеса")
+    def choose_in_business(self):
+        with allure.step("Нажать на кнопку Для бизнеса"):
+            self.page.locator(PopUpFilltheAddress.IN_BUSINESS_BUTTON).click()
+        with allure.step("Проверить кнопку поиска по тендеру"):
+            expect(self.page.locator(PopUpFilltheAddress.START_TENDER_BUTTON)).to_be_visible()
+
+    @allure.title("Выбрать На дачу")
+    def choose_in_sat(self):
+        with allure.step("Нажать на кнопку На дачу"):
+            self.page.locator(PopUpFilltheAddress.IN_SAT_BUTTON).click()
+        with allure.step("Проверить кнопку Все тарифы для дачи"):
+            expect(self.page.locator(PopUpFilltheAddress.ALL_TARIFFS_BUTTON)).to_be_visible()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_address(self):
+        with allure.step("Вставить Весенняя улицу"):
+            time.sleep(5)
+            self.page.locator(PopUpFilltheAddress.STREET_INPUT).fill("Весенняя")
+            time.sleep(5)
+            self.page.locator(PopUpFilltheAddress.CHOOSE_SECOND).click()
+        with allure.step("Вставить дом 12"):
+            self.page.locator(PopUpFilltheAddress.HOME_INPUT).fill("1")
+            self.page.locator(PopUpFilltheAddress.CHOOSE_FOUR).click()
+        with allure.step("Удалить дом 12, выбрать 42"):
+            self.page.locator(PopUpFilltheAddress.DELETE_HOUSE).click()
+            self.page.locator(PopUpFilltheAddress.HOME_INPUT).fill("42")
+            self.page.locator(PopUpFilltheAddress.CHOOSE_FIRST).click()
+            time.sleep(4)
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Английский")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.ENG_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("7")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_second(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Солдата Корзуна")
+            # time.sleep(3)
+            self.page.locator(TariffsLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("17")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+
+class BlockProviders(BasePage):
+    @allure.title("Проверить блок Топ провайдеров интернета в Москве")
+    def check_providers_block(self):
+        with allure.step("Проверить наличие блока"):
+            expect(self.page.locator(ProvidersBlock.PROVIDERS_BLOCK)).to_be_visible()
+        with allure.step("Сделать скриншот"):
+            screenshot = self.page.locator(ProvidersBlock.PROVIDERS_BLOCK).screenshot()
+            allure.attach(screenshot, name="Providers block  Screenshot",
+                          attachment_type=allure.attachment_type.PNG)
+
+    @allure.title("Открыть попап поиска по адресу с СатНет (третий тариф)")
+    def click_search_sat(self):
+        self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
+
+    @allure.title("Нажать на кнопку Все провайдеры по адресу")
+    def click_all_providers_button(self):
+        self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
+
+
+class ReviewBlockPage(BasePage):
+    @allure.title("Проверить наличие блока отзывов")
+    def check_review_block(self):
+        with allure.step("Проверить, что заголовок есть на странице"):
+            expect(self.page.locator(ReviewBlock.REVIEW_HEADER)).to_be_visible()
+        with allure.step("Проверить, что выведен один отзыв"):
+            review_num = self.page.locator(ReviewBlock.NUBER_OF_REVIEW).count()
+            if review_num == 1:
+                print("Локатор указывает ровно на один элемент.")
+            else:
+                print(f"Локатор указывает на {review_num} элементов.")
+
+    @allure.title("Нажать на кнопку Еще отзывы")
+    def click_button_more_reviews(self):
+        self.page.locator(ReviewBlock.BUTTON_MORE_REVIEWS).click()
