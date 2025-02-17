@@ -1,3 +1,4 @@
+import os
 import time
 
 import allure
@@ -9,6 +10,7 @@ from pages.tariff_page import TariffPage
 from pages.orders_office_page import OfficePage
 from pages.sat_page import SatPage
 from config import mol_url
+HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
 class TestMolMainWithRegion:
@@ -16,7 +18,7 @@ class TestMolMainWithRegion:
     def test_choose_region_from_header(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
@@ -32,7 +34,7 @@ class TestMolMainWithRegion:
     def test_choose_district_from_header(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
@@ -51,7 +53,7 @@ class TestMolMainWithRegion:
     def test_send_popup_waitforcall(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
@@ -65,7 +67,7 @@ class TestMolMainWithRegion:
     def test_send_popup_waitforcall_footer(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
@@ -78,7 +80,7 @@ class TestMolMainWithRegion:
     def test_check_catbanner_ai(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
@@ -89,7 +91,7 @@ class TestMolMainWithRegion:
     def test_send_application_quiz(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             search_page = SearchFromMain(page=page)
@@ -105,7 +107,7 @@ class TestMolMainWithRegion:
     def test_send_application_address(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             search_page = SearchFromMain(page=page)
@@ -129,7 +131,7 @@ class TestMolMainWithRegion:
     def test_send_application_address_with_filter(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             block_page = BlockProviders(page=page)
@@ -163,7 +165,7 @@ class TestMolMainWithRegion:
     def test_check_for_business_page(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             search_page = SearchFromMain(page=page)
@@ -190,7 +192,7 @@ class TestMolMainWithRegion:
     def test_check_for_sat_page(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             search_page = SearchFromMain(page=page)
@@ -217,7 +219,7 @@ class TestMolMainWithRegion:
     def test_send_application_from_component_with_tariffs(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             tariff_page = TariffsSection(page=page)
@@ -232,7 +234,7 @@ class TestMolMainWithRegion:
     def test_check_tariff_details(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             tariff_page = TariffsSection(page=page)
@@ -250,7 +252,7 @@ class TestMolMainWithRegion:
     def test_send_review_cat(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             review_page = ReviewCatPopup(page=page)
@@ -261,7 +263,7 @@ class TestMolMainWithRegion:
     def test_send_application_from_address(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             tariff_page = TariffsSection(page=page)
@@ -285,7 +287,7 @@ class TestMolMainWithRegion:
     def test_send_application_from_prov_block(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             blockprov_page = BlockProviders(page=page)
@@ -314,7 +316,7 @@ class TestMolMainWithRegion:
     def test_check_all_reviews_in_region(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             review_block_page = ReviewBlockPage(page=page)
@@ -331,7 +333,7 @@ class TestMolMainWithRegion:
     def test_write_review(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             review_block_page = ReviewBlockPage(page=page)
@@ -358,7 +360,7 @@ class TestMolMainWithRegion:
     def test_catupper_button(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=False)
+            browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = MainPage(page=page)
