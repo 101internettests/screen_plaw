@@ -41,7 +41,7 @@ class SelectRegion:
     INPUT_SELECT_REGION = "xpath=//input[@placeholder='Введите город или регион']"
     MAIN_LETTERS_SELECT = "xpath=//span[@class='SelectRegion_letter__7dXQv']"
     CITIES_LOCATOR = "xpath=//li[@class='SelectRegion_region__rRrPG']"
-    MOSKOWSKAYA_OBLAST = "xpath=//span[text()='Московская область']"
+    MOSKOWSKAYA_OBLAST = "xpath=(//span[text()='Московская область'])[1]"
     SERTOLOVO = "xpath=//span[text()='Мытищи']"
     CLOSE_BUTTON_ELEMENT = "xpath=//button[@aria-label='Закрыть модальное окно']"
 

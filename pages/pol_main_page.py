@@ -100,6 +100,7 @@ class MainPage(BasePage):
             screenshot = self.page.screenshot()
             allure.attach(screenshot, name="Скриншот",
                       attachment_type=allure.attachment_type.PNG)
+
     @allure.title("Выбрать Сертолово в поиске")
     def choose_sertolovo(self):
         with allure.step("Вставить Сер в инпут"):

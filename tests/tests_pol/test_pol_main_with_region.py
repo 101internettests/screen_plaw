@@ -84,6 +84,7 @@ class TestPolMainWithRegion:
             page.goto(full_url)
             main_page = MainPage(page=page)
             main_page.check_cat_ai()
+            time.sleep(2)
             main_page.use_cat_ai_help()
 
     @allure.title("Проверить заявку через компонент поиска по адресу (квиз)")
@@ -333,7 +334,7 @@ class TestPolMainWithRegion:
             review_block_page.click_button_more_reviews()
             time.sleep(2)
             expected_url = "https://piter-online.net/reviews"
-            page.wait_for_url(expected_url)
+            page.wait_for_url("**/reviews")
             with allure.step("Проверить, что URL соответствует ожидаемому"):
                 current_url = page.url
                 assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
@@ -349,9 +350,8 @@ class TestPolMainWithRegion:
             review_block_page = ReviewBlockPage(page=page)
             review_block_page.check_review_block()
             review_block_page.click_button_more_reviews()
-            time.sleep(2)
             expected_url = "https://piter-online.net/reviews"
-            page.wait_for_url(expected_url)
+            page.wait_for_url("**/reviews")
             with allure.step("Проверить, что URL соответствует ожидаемому"):
                 current_url = page.url
                 assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
@@ -360,9 +360,8 @@ class TestPolMainWithRegion:
             review_feedback.click_on_write_review_button()
             review_feedback.leave_feedback()
             review_feedback.go_back()
-            time.sleep(5)
             expected_second = "https://piter-online.net/reviews"
-            page.wait_for_url(expected_url)
+            page.wait_for_url("**/reviews")
             with allure.step("Проверить, что URL соответствует ожидаемому"):
                 current_url = page.url
                 assert current_url == expected_second, f"Ожидался URL {expected_url}, но получен {current_url}"
