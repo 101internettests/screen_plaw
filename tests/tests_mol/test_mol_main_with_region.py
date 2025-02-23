@@ -26,6 +26,7 @@ class TestMolMainWithRegion:
             main_page.open_select_region_window()
             select_page = SelectRegionPage(page=page)
             select_page.check_select_region_page()
+            time.sleep(5)
             select_page.choose_leningrad_region()
             main_page.check_header_city()
             main_page.check_main_page_has_leningrad_region()
@@ -100,6 +101,7 @@ class TestMolMainWithRegion:
             search_page.check_quiz()
             search_page.quiz_send_appl()
             main_page = MainPage(page=page)
+            time.sleep(3)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 

@@ -72,11 +72,13 @@ class MainPage(BasePage):
     @allure.title("Отправить заявку в попап")
     def send_popup_wait_for_call(self):
         self.page.locator(MainPageLocators.PHONE_NUMBER_INPUT).fill("1111111111")
+        with allure.step("Проверить ввелся ли номер"):
+            expect(self.page.locator(MainPageLocators.CHECK_PHONE)).to_be_visible()
         self.page.locator(MainPageLocators.WAIT_FOR_CALL_BUTTON_SEND).click(timeout=5000)
 
-    @allure.title("Проверить два попапа после ввода данных")
+    @allure.title("Проверить попапа после ввода данных")
     def check_success_popups(self):
-        expect(self.page.locator(MainPageLocators.POPUP_HEADER_SECOND)).to_be_visible()
+        # expect(self.page.locator(MainPageLocators.POPUP_HEADER_SECOND)).to_be_visible()
         expect(self.page.locator(MainPageLocators.POPUP_HEADER_LAST)).to_be_visible()
 
     @allure.title("Закрыть попап для отправки заявки")

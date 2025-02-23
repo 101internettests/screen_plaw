@@ -11,6 +11,7 @@ from pages.sat_page import SatPage
 from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
+
 class TestPolMainWithRegion:
     @allure.title("Выбрать регион из хедера")
     def test_choose_region_from_header(self):
@@ -23,6 +24,7 @@ class TestPolMainWithRegion:
             main_page.open_select_region_window()
             select_page = SelectRegionPage(page=page)
             select_page.check_select_region_page()
+            time.sleep(5)
             select_page.choose_leningrad_region()
             main_page.check_header_city()
             main_page.check_main_page_has_leningrad_region()
@@ -55,6 +57,7 @@ class TestPolMainWithRegion:
             main_page = MainPage(page=page)
             main_page.open_popup_wait_for_call()
             main_page.send_popup_wait_for_call()
+            time.sleep(3)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
@@ -67,6 +70,7 @@ class TestPolMainWithRegion:
             page.goto(full_url)
             main_page = MainPage(page=page)
             main_page.open_popup_wait_for_call_footer()
+            time.sleep(4)
             main_page.send_popup_wait_for_call()
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
@@ -276,6 +280,7 @@ class TestPolMainWithRegion:
             search_page = SearchFromMain(page=page)
             search_page.quiz_send_appl()
             main_page = MainPage(page=page)
+            time.sleep(3)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
             tariff_page = TariffPage(page=page)

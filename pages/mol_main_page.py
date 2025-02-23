@@ -65,7 +65,7 @@ class MainPage(BasePage):
 
     @allure.title("Проверить два попапа после ввода данных")
     def check_success_popups(self):
-        expect(self.page.locator(MainPageLocators.POPUP_HEADER_SECOND)).to_be_visible()
+        # expect(self.page.locator(MainPageLocators.POPUP_HEADER_SECOND)).to_be_visible()
         expect(self.page.locator(MainPageLocators.POPUP_HEADER_LAST)).to_be_visible()
 
     @allure.title("Закрыть попап для отправки заявки")

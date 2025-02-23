@@ -9,6 +9,7 @@ class MainPageLocators:
     WAIT_FOR_CALL_BUTTON_OPEN = "xpath=(//button[@aria-label='Бесплатная консультация'])[1]"
     WAIT_FOR_CALL_BUTTON_OPEN_FOOTER = "xpath=(//button[@aria-label='Бесплатная консультация'])[3]"
     PHONE_NUMBER_INPUT = "xpath=//input[@id='phoneInput']"
+    CHECK_PHONE = "xpath=//input[@value='+7 (111) 111-11-11']"
     WAIT_FOR_CALL_BUTTON_SEND = "xpath=//button[text()='Жду звонка']"
     POPUP_HEADER_LAST = "xpath=//span[text()='Заявка в работе!']"
     POPUP_HEADER_SECOND = "xpath=//span[text()='Заявка отправляется']"
