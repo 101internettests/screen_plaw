@@ -279,7 +279,6 @@ class TestPolMainWithRegion:
             time.sleep(2)
             search_page = SearchFromMain(page=page)
             search_page.quiz_send_appl()
-            main_page = MainPage(page=page)
             time.sleep(3)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
@@ -332,6 +331,7 @@ class TestPolMainWithRegion:
             review_block_page = ReviewBlockPage(page=page)
             review_block_page.check_review_block()
             review_block_page.click_button_more_reviews()
+            time.sleep(2)
             expected_url = "https://piter-online.net/reviews"
             page.wait_for_url(expected_url)
             with allure.step("Проверить, что URL соответствует ожидаемому"):
@@ -349,6 +349,7 @@ class TestPolMainWithRegion:
             review_block_page = ReviewBlockPage(page=page)
             review_block_page.check_review_block()
             review_block_page.click_button_more_reviews()
+            time.sleep(2)
             expected_url = "https://piter-online.net/reviews"
             page.wait_for_url(expected_url)
             with allure.step("Проверить, что URL соответствует ожидаемому"):

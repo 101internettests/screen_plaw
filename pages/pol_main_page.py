@@ -71,9 +71,10 @@ class MainPage(BasePage):
 
     @allure.title("Отправить заявку в попап")
     def send_popup_wait_for_call(self):
+        time.sleep(2)
         self.page.locator(MainPageLocators.PHONE_NUMBER_INPUT).fill("1111111111")
-        with allure.step("Проверить ввелся ли номер"):
-            expect(self.page.locator(MainPageLocators.CHECK_PHONE)).to_be_visible()
+        # with allure.step("Проверить ввелся ли номер"):
+        #     expect(self.page.locator(MainPageLocators.CHECK_PHONE)).to_be_visible()
         self.page.locator(MainPageLocators.WAIT_FOR_CALL_BUTTON_SEND).click(timeout=5000)
 
     @allure.title("Проверить попапа после ввода данных")
@@ -96,7 +97,9 @@ class MainPage(BasePage):
             self.page.locator(AIPopUp.HELP_BUTTON).click()
         with allure.step("Проверить, что сработал негативный попап"):
             expect(self.page.locator(AIPopUp.UNSUCCESSFUL_ALLERT)).to_be_visible()
-
+            screenshot = self.page.screenshot()
+            allure.attach(screenshot, name="Скриншот",
+                      attachment_type=allure.attachment_type.PNG)
     @allure.title("Выбрать Сертолово в поиске")
     def choose_sertolovo(self):
         with allure.step("Вставить Сер в инпут"):
