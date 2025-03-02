@@ -351,6 +351,7 @@ class TestMolMainWithRegion:
             #     assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
             #     time.sleep(4)
             review_feedback = ReviewPageFeedback(page=page)
+            time.sleep(3)
             review_feedback.click_on_write_review_button()
             review_feedback.leave_feedback()
             review_feedback.go_back()

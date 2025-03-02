@@ -68,6 +68,13 @@ class Search:
     SHARIK_STREET = "xpath=//em[text()]"
     STREET_ELEVEN = "xpath=(//em[text()='11'])[1]"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+    HEADER_CHOOSE_REGION = "xpath=//h2[text()='Проверка провайдеров по адресу в Москве']"
+    AKADEM_AREA = "xpath=//a[text()='Академический']"
+    AKD_HEADER = "xpath=//h1[text()='Подключить интернет в р. Академический']"
+    AKD_BREADCRUMPS = "xpath=//span[text()='Академический']"
+    GREM_STREET = "xpath=//a[text()='Гримау ул']"
+    GREM_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Гримау, Москва']"
+    GREM_BREADCRUMPS = "xpath=//span[text()='ул Гримау']"
 
 
 class PopUpAfterSearch:

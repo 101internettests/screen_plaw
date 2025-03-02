@@ -286,6 +286,26 @@ class SearchFromMain(BasePage):
         self.page.locator(PopUpAfterSearch.INPUT_QUIZ_TEXT).fill("1111111111")
         self.page.locator(PopUpAfterSearch.BUTTON_SHOW_RESULT).click()
 
+    @allure.title("Проверить, что появился блок Выбрать свой район")
+    def check_if_is_choose_area_block(self):
+        expect(self.page.locator(Search.HEADER_CHOOSE_REGION)).to_be_visible()
+
+    @allure.title("Выбрать Академический район")
+    def choose_akad_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.AKADEM_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.AKD_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.AKD_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Гримау")
+    def choose_grem_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.GREM_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.GREM_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.GREM_BREADCRUMPS)).to_be_visible()
+
 
 class ReviewCatPopup(BasePage):
     @allure.title("Открыт попап Как вам наш сайта?")

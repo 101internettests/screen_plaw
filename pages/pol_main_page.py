@@ -268,11 +268,20 @@ class SearchFromMain(BasePage):
         expect(self.page.locator(Search.HEADER_CHOOSE_REGION)).to_be_visible()
 
     @allure.title("Выбрать Адмиралтейский район")
-    def choode_admir_area(self):
+    def choose_admir_area(self):
         with allure.step("Выбрать район"):
             self.page.locator(Search.ADMIRALTEYSKIE_AREA).click()
         with allure.step("Проверить, что район выбрался"):
-            pass
+            expect(self.page.locator(Search.ADM_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.ADM_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Английский пр-кт")
+    def choose_eng_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.ENGLISH_PROSP_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.ENGLISH_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.ENGLISH_BREADCRUMPS)).to_be_visible()
 
 class ReviewCatPopup(BasePage):
     @allure.title("Открыт попап Как вам наш сайта?")

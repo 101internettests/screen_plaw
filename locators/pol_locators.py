@@ -69,6 +69,11 @@ class Search:
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Выберите свой район']"
     ADMIRALTEYSKIE_AREA = "xpath=//a[text()='Адмиралтейский']"
+    ADM_HEADER = "xpath=//h1[text()='Подключить домашний интернет в р. Адмиралтейский (Санкт-Петербург)']"
+    ADM_BREADCRUMPS = "xpath=//span[text()='Адмиралтейский']"
+    ENGLISH_PROSP_STREET = "xpath=//a[text()='Английский пр-кт']"
+    ENGLISH_HEADER = "xpath=//h1[text()='Интернет-провайдеры на пр-кт Английский, Санкт-Петербург']"
+    ENGLISH_BREADCRUMPS = "xpath=//span[text()='пр-кт Английский']"
 
 
 class PopUpAfterSearch:

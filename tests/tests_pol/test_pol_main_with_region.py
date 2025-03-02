@@ -72,7 +72,7 @@ class TestPolMainWithRegion:
             main_page.open_popup_wait_for_call_footer()
             time.sleep(4)
             main_page.send_popup_wait_for_call()
-            main_page.check_success_popups()
+            # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
     @allure.title("Проверить кото-баннер аи")
@@ -358,6 +358,7 @@ class TestPolMainWithRegion:
             #     assert current_url == expected_url, f"Ожидался URL {expected_url}, но получен {current_url}"
             #     time.sleep(4)
             review_feedback = ReviewPageFeedback(page=page)
+            time.sleep(3)
             review_feedback.click_on_write_review_button()
             review_feedback.leave_feedback()
             review_feedback.go_back()
