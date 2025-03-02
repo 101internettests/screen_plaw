@@ -272,7 +272,7 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать район"):
             self.page.locator(Search.ADMIRALTEYSKIE_AREA).click()
         with allure.step("Проверить, что район выбрался"):
-
+            pass
 
 class ReviewCatPopup(BasePage):
     @allure.title("Открыт попап Как вам наш сайта?")
