@@ -57,7 +57,7 @@ class TestPolMainWithRegion:
             main_page = MainPage(page=page)
             main_page.open_popup_wait_for_call()
             main_page.send_popup_wait_for_call()
-            time.sleep(3)
+            time.sleep(2)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
@@ -100,6 +100,7 @@ class TestPolMainWithRegion:
             search_page.check_quiz()
             search_page.quiz_send_appl()
             main_page = MainPage(page=page)
+            time.sleep(3)
             main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
