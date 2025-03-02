@@ -133,7 +133,7 @@ class ProvidersBlock:
 
 
 class ReviewPage:
-    BUTTON_WRITE_REVIEW = "xpath=//a[text()='Напишите отзыв']"
+    BUTTON_WRITE_REVIEW = "xpath=//a[text()='Написать отзыв']"
     CHOSE_IN_FLAT = "xpath=//span[text()='в квартире']"
     INPUT_PROVIDER = "xpath=//input[@placeholder='Введите название']"
     CHOOSE_ROSTEL = "xpath=//div[text()='Ростелеком']"

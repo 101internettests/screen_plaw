@@ -181,6 +181,7 @@ class TariffsSection(BasePage):
     def click_on_button_find_tariffs(self):
         self.page.locator(TariffsLocators.BUTTON_FIND_TARIFFS).click()
 
+
 class SelectRegionPage(BasePage):
     @allure.title("Проверить, что страница Селект регион загрузилась и в ней есть элементы")
     def check_select_region_page(self):
@@ -261,6 +262,16 @@ class SearchFromMain(BasePage):
     def quiz_send_appl(self):
         self.page.locator(PopUpAfterSearch.INPUT_QUIZ_TEXT).fill("1111111111")
         self.page.locator(PopUpAfterSearch.BUTTON_SHOW_RESULT).click()
+
+    @allure.title("Проверить, что появился блок Выбрать свой район")
+    def check_if_is_choose_area_block(self):
+        expect(self.page.locator(Search.HEADER_CHOOSE_REGION)).to_be_visible()
+
+    @allure.title("Выбрать Адмиралтейский район")
+    def choode_admir_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.ADMIRALTEYSKIE_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
 
 
 class ReviewCatPopup(BasePage):

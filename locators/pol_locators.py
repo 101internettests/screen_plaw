@@ -67,6 +67,8 @@ class Search:
     GOROXOWAYA_STREET = "xpath=//em[text()]"
     STREET_TWENTYTWO = "xpath=//em[text()='22']"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+    HEADER_CHOOSE_REGION = "xpath=//h2[text()='Выберите свой район']"
+    ADMIRALTEYSKIE_AREA = "xpath=//a[text()='Адмиралтейский']"
 
 
 class PopUpAfterSearch:
