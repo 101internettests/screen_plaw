@@ -2,7 +2,7 @@ import os
 import allure
 import uuid
 from playwright.sync_api import sync_playwright
-from urls.urls_msk import urls, names, urls_prod
+from urls.urls_msk import urls, names, urls_prod, names_stage
 from pages.screen_page import ScreenPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
@@ -16,7 +16,7 @@ class TestSearchChrome:
             context = browser.new_context(ignore_https_errors=True)
             page = context.new_page()
 
-            for screen, name in zip(urls, names):
+            for screen, name in zip(urls, names_stage):
                 try:
                     uuid4 = uuid.uuid4()
                     page.goto(screen)
