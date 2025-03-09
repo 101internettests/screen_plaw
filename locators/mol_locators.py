@@ -160,7 +160,16 @@ class Filters:
     SPEED_INTERNET_200_500 = "xpath=//button[text()='200-500 Мб/с']"
     BUTTON_SHOW_ALL_TARIFFS = "xpath=//button[@data-sentry-source-file='TariffFilter.tsx']"
     CHECK_FILTERS = "xpath=(//div[@class='HouseNZLPage_quick-filters-container__Okssh'])[1]"
-
+    BILAIN_PROV = "xpath=//span[text()='билайн']"
+    HOUSE_RU_PROV = "xpath=//span[text()='Дом.ру']"
+    ROSTELEKOM_PROV = "xpath=//span[text()='Ростелеком']"
+    SORTING_BUTTON = "xpath=(//button[text()='Сортировка'])[2]"
+    BUTTON_PRISE_WITHOUT_SALE = "xpath=//span[text()='По цене без учёта акций']"
+    BUTTON_SHOW_MORE = "xpath=//button[text()='Показать ещё 10 тарифов из 28']"
+    BUTTON_SHOW_MORE_EIGHT = "xpath=//button[text()='Показать ещё 8 тарифов из 28']"
+    LAST_LOCATOR = "xpath=(//div[@itemprop='offers'])"
+    QUIZ_INPUT = "xpath=//input[@id='ph_input']"
+    BUTTON_SHOW_RESULT = "xpath=//button[text()='Отправить заявку']"
 
 class TariffsInTariffPage:
     TARIFF_WITH_SPEED_500 = ("xpath=(//meta[@content='500 Мб/c Домашний интернет']/following::div//button["

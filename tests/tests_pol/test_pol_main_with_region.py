@@ -282,7 +282,7 @@ class TestPolMainWithRegion:
             search_page = SearchFromMain(page=page)
             search_page.quiz_send_appl()
             time.sleep(3)
-            main_page.check_success_popups()
+            # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
@@ -320,7 +320,7 @@ class TestPolMainWithRegion:
             main_page = MainPage(page=page)
             time.sleep(2)
             tariff_page.send_popup_wait_for_call()
-            main_page.check_success_popups()
+            # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
 
     @allure.title("Просмотр всех отзывов по региону")

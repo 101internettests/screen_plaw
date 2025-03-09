@@ -32,9 +32,10 @@ class TariffsLocators:
     GUS_STREET = "xpath=(//em[text()])[1]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[2]"
     ENG_STREET = "xpath=(//em[text()])[3]"
-    STREET_FIRST = "xpath=(//div[@aria-selected='false'])[1]"
+    STREET_FIRST = "xpath=(//div[@aria-selected='false'])[2]"
     STREET_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     BUTTON_FIND_TARIFFS = "xpath=//button[text()='Найти все тарифы по адресу']"
+
 
 class SelectRegion:
     INPUT_SELECT_REGION = "xpath=//input[@placeholder='Введите город или регион']"
@@ -69,11 +70,35 @@ class Search:
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Выберите свой район']"
     ADMIRALTEYSKIE_AREA = "xpath=//a[text()='Адмиралтейский']"
+    VASILEOSTRV_AREA = "xpath=//a[text()='Василеостровский']"
+    UGO_ZAPAD_AREA = "xpath=//a[text()='Юго-Запад']"
     ADM_HEADER = "xpath=//h1[text()='Подключить домашний интернет в р. Адмиралтейский (Санкт-Петербург)']"
+    VAS_HEADER = "xpath=//h1[text()='Подключить домашний интернет в р. Василеостровский (Санкт-Петербург)']"
+    UGO_ZAPAD_HEADER = "xpath=//h1[text()='Подключить домашний интернет в р. Юго-Запад (Санкт-Петербург)']"
     ADM_BREADCRUMPS = "xpath=//span[text()='Адмиралтейский']"
+    ADM_BREADCRUMPS_STREET = "xpath=//a[text()='Адмиралтейский']"
+    VAS_BREADCRUMPS = "xpath=//span[text()='Василеостровский']"
     ENGLISH_PROSP_STREET = "xpath=//a[text()='Английский пр-кт']"
+    SHEVCHENKO_STREET = "xpath=//a[text()='Шевченко ул']"
     ENGLISH_HEADER = "xpath=//h1[text()='Интернет-провайдеры на пр-кт Английский, Санкт-Петербург']"
+    SHEV_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Шевченко, Василеостровский, Санкт-Петербург']"
+    YAKU_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Якубовича, Санкт-Петербург']"
+    KRASN_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул 13-я Красноармейская, Санкт-Петербург']"
+    PETER_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ш Петергофское, Юго-Запад, Санкт-Петербург']"
     ENGLISH_BREADCRUMPS = "xpath=//span[text()='пр-кт Английский']"
+    SHEVCHENKO_BREADCRUMPS = "xpath=//span[text()='ул Шевченко']"
+    YAKUBOVICH_BREADCRUMPS = "xpath=//span[text()='ул Якубовича']"
+    SHOW_MORE_BUTTON = "xpath=//button[text()='Показать ещё']"
+    HOUSE_BUTTON = "xpath=//span[text()='24-38']"
+    HOUSE_1978_BUTTON = "xpath=//span[text()='19-78 к5']"
+    THIRTY_THREE_HOUSE = "xpath=//a[@aria-label='33']"
+    FIFTY_FIVE_HOUSE = "xpath=//a[@aria-label='55 к1']"
+    LETTER_YA = "xpath=//span[text()='Я']"
+    LETTER_U = "xpath=//span[text()='Ю']"
+    LETTER_NUMS = "xpath=//span[text()='1-13']"
+    YAKUBOVICH_STREET = "xpath=//a[text()='Якубовича ул']"
+    KRASN_STREET = "xpath=//a[text()='13-я Красноармейская ул']"
+    PETERGOF_STREET = "xpath=//a[text()='Петергофское ш']"
 
 
 class PopUpAfterSearch:
@@ -117,6 +142,7 @@ class ProvidersPage:
     TELEPHONE_INPUT = "xpath=//input[@id='ph_input']"
     SEND_APPLICATION_BUTTON = "xpath=//button[text()='Отправить заявку']"
 
+
 class PopUpFilltheAddress:
     HEADER_WINDOW = "xpath=//h2[text()='Введите адрес и сравните все доступные тарифы']"
     IN_FLAT_BUTTON = "xpath=(//span[text()='В квартиру'])[2]"
@@ -138,4 +164,19 @@ class ProvidersBlock:
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[3]"
     ALL_PROVIDERS_BUTTON = "xpath=//button[text()='Все провайдеры по адресу']"
 
+
+class WindowLocators:
+    HEADER_WINDOW = "xpath=//h2[text()='Введите адрес и сравните все доступные тарифы']"
+    IN_FLAT_BUTTON = "xpath=(//span[text()='В квартиру'])[3]"
+    IN_BUSINESS_BUTTON = "xpath=(//span[text()='Для бизнеса'])[3]"
+    IN_SAT_BUTTON = "xpath=(//span[text()='На дачу'])[3]"
+    START_TENDER_BUTTON = "xpath=(//button[text()='Запустить тендер на подключение'])[1]"
+    ALL_TARIFFS_BUTTON = "xpath=(//button[text()='Все тарифы для дачи'])[1]"
+    STREET_INPUT = "xpath=(//input[@placeholder='Введите улицу'])[2]"
+    INPUT_HOME_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[3]"
+    ENG_STREET = "xpath=(//em[text()])[3]"
+    HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[3]"
+    STREET_SECOND = "xpath=(//div[@aria-selected='false'])[1]"
+    FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[3]"
+    GUS_STREET = "xpath=(//em[text()])[1]"
 

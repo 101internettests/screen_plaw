@@ -177,6 +177,16 @@ class TariffsSection(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
+    @allure.title("Заполнить заявку на первом тарифе")
+    def fill_the_application_with_address_second(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
     @allure.title("Нажать на кнопку Найти все тарифы по адресу")
     def click_on_button_find_tariffs(self):
         self.page.locator(TariffsLocators.BUTTON_FIND_TARIFFS).click()
@@ -275,6 +285,33 @@ class SearchFromMain(BasePage):
             expect(self.page.locator(Search.ADM_HEADER)).to_be_visible()
             expect(self.page.locator(Search.ADM_BREADCRUMPS)).to_be_visible()
 
+    @allure.title("Выбрать Юго-западный район")
+    def choose_ugo_zapad_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.UGO_ZAPAD_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.UGO_ZAPAD_HEADER)).to_be_visible()
+
+    @allure.title("Выбрать Адмиралтейский в хлебных крошках")
+    def choose_admir_breadcrumps(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.ADM_BREADCRUMPS_STREET).click()
+
+    @allure.title("Выбрать название улиц 1-13")
+    def choose_more_streets(self):
+        with allure.step("Выбрать"):
+            self.page.locator(Search.LETTER_NUMS).click()
+        with allure.step("Выбрать еще"):
+            self.page.locator(Search.SHOW_MORE_BUTTON).click()
+
+    @allure.title("Выбрать Василеостровский район")
+    def choose_vasil_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.VASILEOSTRV_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.VAS_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.VAS_BREADCRUMPS)).to_be_visible()
+
     @allure.title("Выбрать улицу Английский пр-кт")
     def choose_eng_street(self):
         with allure.step("Выбрать улицу"):
@@ -282,6 +319,63 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать улицу"):
             expect(self.page.locator(Search.ENGLISH_HEADER)).to_be_visible()
             expect(self.page.locator(Search.ENGLISH_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Щевченко")
+    def choose_shev_street(self):
+        with allure.step("Выбрать Щ"):
+            self.page.locator(Search.SHOW_MORE_BUTTON).click()
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.SHEVCHENKO_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.SHEV_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.SHEVCHENKO_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать букву я")
+    def choose_ya_letter(self):
+        with allure.step("Выбрать букву Я"):
+            self.page.locator(Search.LETTER_YA).click()
+
+    @allure.title("Выбрать букву ю")
+    def choose_u_letter(self):
+        with allure.step("Выбрать букву Я"):
+            self.page.locator(Search.LETTER_U).click()
+
+    @allure.title("Выбрать улицу Якубовича")
+    def choose_ya_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.YAKUBOVICH_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.YAKU_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.YAKUBOVICH_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Петергофское ш")
+    def choose_peter_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.PETERGOF_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.PETER_HEADER)).to_be_visible()
+
+    @allure.title("Выбрать улицу Красноармейская")
+    def choose_krasn_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.KRASN_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.KRASN_HEADER)).to_be_visible()
+
+    @allure.title("Выбрать дом 33")
+    def choose_three_house(self):
+        with allure.step("Выбрать промежуток 24-38"):
+            self.page.locator(Search.HOUSE_BUTTON).click()
+        with allure.step("Выбрать дом 33"):
+            self.page.locator(Search.THIRTY_THREE_HOUSE).click()
+
+    @allure.title("Выбрать дом 55к1")
+    def choose_five_house(self):
+        with allure.step("Выбрать промежуток 19-78к"):
+            self.page.locator(Search.HOUSE_1978_BUTTON).click()
+        with allure.step("Выбрать дом 33"):
+            self.page.locator(Search.FIFTY_FIVE_HOUSE).click()
+
 
 class ReviewCatPopup(BasePage):
     @allure.title("Открыт попап Как вам наш сайта?")
@@ -355,7 +449,7 @@ class OpenPopUpAddress(BasePage):
     def fill_the_application_with_address(self):
         with allure.step("Заполнить адрес"):
             self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Английский")
-            # time.sleep(3)
+            time.sleep(3)
             self.page.locator(TariffsLocators.ENG_STREET).click()
             time.sleep(5)
             self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("7")
@@ -379,7 +473,7 @@ class OpenPopUpAddress(BasePage):
 
 
 class BlockProviders(BasePage):
-    @allure.title("Проверить блок Топ провайдеров интернета в Москве")
+    @allure.title("Проверить блок Топ провайдеров интернета в СПБ")
     def check_providers_block(self):
         with allure.step("Проверить наличие блока"):
             expect(self.page.locator(ProvidersBlock.PROVIDERS_BLOCK)).to_be_visible()
