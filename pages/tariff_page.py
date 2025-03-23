@@ -53,6 +53,10 @@ class TariffPage(BasePage):
     def choose_filter_rostel_providers(self):
         self.page.locator(Filters.ROSTELEKOM_PROV).click()
 
+    @allure.title("Выбрать Мегафон")
+    def choose_filter_megafone_providers(self):
+        self.page.locator(Filters.MEGAFONE_PROV).click()
+
     @allure.title("Выбрать фильтр Скорость интернета 200-500 мб")
     def choose_filter_speed_200(self):
         self.page.locator(Filters.SPEED_INTERNET_200_500).click()
@@ -149,3 +153,17 @@ class WindowPopUp(BasePage):
             self.page.locator(WindowLocators.STREET_SECOND).click()
         with allure.step("Отправить заявку"):
             self.page.locator(WindowLocators.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_shar(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(WindowLocators.INPUT_HOME_ADDRESS).fill("Шарикоподшипниковская")
+            time.sleep(3)
+            self.page.locator(WindowLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(WindowLocators.HOME_INPUT_UP).fill("1")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_REALLY_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(WindowLocators.FIND_TARIFFS).click()
+

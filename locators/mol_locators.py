@@ -66,6 +66,8 @@ class Search:
     STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
     SHARIK_STREET = "xpath=//em[text()]"
+    PURPLE_STREET = "xpath=(//em[text()])[3]"
+    SECOND_STREET = "xpath=(//em[text()])[2]"
     STREET_ELEVEN = "xpath=(//em[text()='11'])[1]"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Проверка провайдеров по адресу в Москве']"
@@ -75,6 +77,11 @@ class Search:
     GREM_STREET = "xpath=//a[text()='Гримау ул']"
     GREM_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Гримау, Москва']"
     GREM_BREADCRUMPS = "xpath=//span[text()='ул Гримау']"
+    FERSM_STREET = "xpath=//a[text()='Ферсмана ул']"
+    FERSM_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Ферсмана, Москва']"
+    FERSM_BREADCRUMPS = "xpath=//span[text()='ул Ферсмана']"
+    HOUSE_BUTTON = "xpath=//span[text()='9-15']"
+    THIRTEEN_HOUSE = "xpath=//a[@aria-label='13']"
 
 
 class PopUpAfterSearch:
@@ -163,6 +170,7 @@ class Filters:
     BILAIN_PROV = "xpath=//span[text()='билайн']"
     HOUSE_RU_PROV = "xpath=//span[text()='Дом.ру']"
     ROSTELEKOM_PROV = "xpath=//span[text()='Ростелеком']"
+    MEGAFONE_PROV = "xpath=//span[text()='МегаФон']"
     SORTING_BUTTON = "xpath=(//button[text()='Сортировка'])[2]"
     BUTTON_PRISE_WITHOUT_SALE = "xpath=//span[text()='По цене без учёта акций']"
     BUTTON_SHOW_MORE = "xpath=//button[text()='Показать ещё 10 тарифов из 28']"

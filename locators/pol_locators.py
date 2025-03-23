@@ -32,6 +32,7 @@ class TariffsLocators:
     GUS_STREET = "xpath=(//em[text()])[1]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[2]"
     ENG_STREET = "xpath=(//em[text()])[3]"
+    SIX_STREET = "xpath=(//em[text()])[6]"
     STREET_FIRST = "xpath=(//div[@aria-selected='false'])[2]"
     STREET_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     BUTTON_FIND_TARIFFS = "xpath=//button[text()='Найти все тарифы по адресу']"
@@ -177,6 +178,19 @@ class WindowLocators:
     ENG_STREET = "xpath=(//em[text()])[3]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[3]"
     STREET_SECOND = "xpath=(//div[@aria-selected='false'])[1]"
+    STREET_REALLY_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[3]"
     GUS_STREET = "xpath=(//em[text()])[1]"
 
+
+class TohomeMiddlePageSearch:
+    PLACEHOLDER_STREET = "xpath=(//input[@placeholder='Введите улицу'])[2]"
+    PLACEHOLDER_HOUSE = "xpath=(//input[@placeholder='Дом'])[2]"
+    BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[2]"
+    VISIBLE_TEXT = "xpath=//h2[text()='Тарифы в Санкт-Петербурге']"
+    VISIBLE_TEXT_MSK = "xpath=//h2[text()='Лучшие интернет тарифы в Москве']"
+    GOROXOWAYA_STREET = "xpath=//div[@role='option']"
+    INPUT_HOME_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[3]"
+    GUS_STREET = "xpath=(//em[text()])[1]"
+    SECOND_STREET = "xpath=(//em[text()])[2]"
+    HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[3]"

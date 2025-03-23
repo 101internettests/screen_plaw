@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 from pages.pol_main_page import MainPage, SelectRegionPage, SearchFromMain, SearchFromMain, TariffsSection, BlockProviders
 from pages.tariff_page import WindowPopUp
 from pages.pol_main_page import OpenPopUpAddress
-from pages.orders_tohome_page import TohomePage
+from pages.orders_tohome_page import TohomePage, TohomePolPage
 from pages.tariff_page import TariffPage
 from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
@@ -200,4 +200,61 @@ class TestPolSearch:
             search_page.close_quiz()
             time.sleep(3)
 
+    @allure.title("Отправить заявку через компонент перелинковки (адрес-тариф-подключить, без фильтрации)")
+    def test_perelinkovka_address_without_filter(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            tohome_page = TohomePage(page=page)
+            tohome_page.search_gorokhovaya()
+            search_page.close_quiz()
+            tariff_page = TariffPage(page=page)
+            tariff_page.fill_the_application()
 
+    @allure.title("Отправить заявку через компонент с тарифами")
+    def test_send_application_from_tariff_component(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            tohome_pol = TohomePolPage(page=page)
+            tohome_pol.check_header_pol()
+            tariff_page = TariffsSection(page=page)
+            tohome_pol.fill_the_application_with_address_vesn_second()
+            time.sleep(4)
+
+    @allure.title("Посмотреть детали тарифа")
+    def test_check_tariff_details(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            tariff_page = TariffsSection(page=page)
+            tariff_page.click_on_tariff_details()
+
+    @allure.title("Отправить заявку через компонент поиска по адресу под блоком тарифы (адрес-тариф-подключить, без фильтрации)")
+    def test_application_search_tariffs_without_filters(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            tariff_page = TariffsSection(page=page)
+            tariff_page.click_on_button_find_tariffs()
+            tohome_pol = TohomePolPage(page=page)
+            tohome_pol.fill_the_application_with_address_vesn()
+            search_page.close_quiz()
+            tariff_page.fill_the_application_with_address_second()
+            time.sleep(5)

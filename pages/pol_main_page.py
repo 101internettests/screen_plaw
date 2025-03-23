@@ -3,7 +3,7 @@ import random
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators, ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
+from locators.pol_locators import TariffsLocators, MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, ProvidersPage, ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -160,7 +160,7 @@ class TariffsSection(BasePage):
         self.page.locator(TariffsLocators.POPUP_MORE_ABOUT_TARIFF).click()
 
     @allure.title("Заполнить заявку на первом тарифе")
-    def fill_the_application_with_address(self):
+    def fill_the_application_with_address_first_tariff(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
@@ -168,7 +168,7 @@ class TariffsSection(BasePage):
             self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
         with allure.step("Заполнить адрес"):
             self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Энгельса")
-            # time.sleep(3)
+            time.sleep(3)
             self.page.locator(TariffsLocators.GUS_STREET).click()
             time.sleep(5)
             self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("7")
