@@ -173,3 +173,75 @@ class TestMolSearch:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+
+    @allure.title(
+        "Отправить заявку через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка по цене без учёта акций)")
+    def test_perelinkovka_second_quiz(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            search_page.check_if_is_choose_area_block()
+            search_page.choose_akad_area()
+            search_page.choose_fersm_street()
+            search_page.choose_three_house()
+            search_page.check_quiz()
+            search_page.close_quiz()
+            tariff_page = TariffPage(page=page)
+            tariff_page.choose_filter_almatel_providers()
+            tariff_page.choose_filter_mts_providers()
+            tariff_page.choose_filter_megafone_providers()
+            tariff_page.accept_button_show_filters()
+            tariff_page.check_accepted_filters()
+            tariff_page.use_sorting_button()
+            tariff_page.show_more10_button()
+            tariff_page.show_more2_button()
+            time.sleep(4)
+            tariff_page.click_on_lat_prov()
+            tariff_page.quiz_send_appl()
+            time.sleep(4)
+            search_page.close_quiz()
+
+    @allure.title("Проверить переход по разным районам и улицам в перелинковке (без заявок)")
+    def test_check_transfer(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            search_page.check_if_is_choose_area_block()
+            search_page.choose_aero_area()
+            search_page.choose_u_letter()
+            search_page.choose_eldore_street()
+            search_page.choose_aero_breadcrumps()
+            search_page.choose_eight_letter()
+            search_page.choose_type_search_flat()
+            search_page.choose_uu_letter()
+            search_page.choose_butovo_area()
+            search_page.choose_brusilov_street()
+            search_page.choose_fifteen_house()
+            search_page.close_quiz()
+            time.sleep(3)
+
+    @allure.title(
+        "Отправить заявку через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации)")
+    def test_application_in_the_middle_page(self):
+        full_url = f"{mol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            search_page.check_if_is_choose_area_block()
+            search_page = SearchFromMain(page=page)
+            search_page.search_purple()
+            search_page.check_quiz()
+            search_page.quiz_send_appl()
+            search_page.close_quiz()
+            time.sleep(3)

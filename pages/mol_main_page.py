@@ -308,6 +308,22 @@ class SearchFromMain(BasePage):
             expect(self.page.locator(Search.AKD_HEADER)).to_be_visible()
             expect(self.page.locator(Search.AKD_BREADCRUMPS)).to_be_visible()
 
+    @allure.title("Выбрать Аэропорт район")
+    def choose_aero_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.AIRPORT_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.AIRPORT_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.AIRPORT_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать Южное бутово район")
+    def choose_butovo_area(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.BUTOVO_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.BUTOVO_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.BUTOVO_BREADCRUMPS)).to_be_visible()
+
     @allure.title("Выбрать улицу Гримау")
     def choose_grem_street(self):
         with allure.step("Выбрать улицу"):
@@ -331,6 +347,13 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать дом 13"):
             self.page.locator(Search.THIRTEEN_HOUSE).click()
 
+    @allure.title("Выбрать дом 15к1")
+    def choose_fifteen_house(self):
+        with allure.step("Выбрать промежуток 1-17 к1"):
+            self.page.locator(Search.HOUSE29_BUTTON).click()
+        with allure.step("Выбрать дом 15к1"):
+            self.page.locator(Search.FIFTEEN_HOUSE).click()
+
     @allure.title("Сделать поиск по заданному адресу")
     def search_purple(self):
         with allure.step("Вставить Cиреневая улицу"):
@@ -344,6 +367,40 @@ class SearchFromMain(BasePage):
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
+
+    @allure.title("Выбрать букву Э")
+    def choose_u_letter(self):
+        with allure.step("Выбрать букву Э"):
+            self.page.locator(Search.LETTER_A).click()
+
+    @allure.title("Выбрать букву Ю")
+    def choose_uu_letter(self):
+        with allure.step("Выбрать букву Ю"):
+            self.page.locator(Search.LETTER_U).click()
+
+    @allure.title("Выбрать букву 8-8")
+    def choose_eight_letter(self):
+        with allure.step("Выбрать букву 8-8"):
+            self.page.locator(Search.LETTER_EIGHT).click()
+        with allure.step("Проверить что улицы с 8 вывелись"):
+            expect(self.page.locator(Search.MART1_STREET)).to_be_visible()
+            expect(self.page.locator(Search.MART2_STREET)).to_be_visible()
+
+    @allure.title("Выбрать улицу Эльдорадовский пер.")
+    def choose_eldore_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.ELDOR_STREET).click()
+
+    @allure.title("Выбрать Аэропорт в хлебных крошках")
+    def choose_aero_breadcrumps(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.AIRPORT_BREADCRUMPS).click()
+
+    @allure.title("Выбрать улицу Брусилова ул")
+    def choose_brusilov_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.BRUSILOV_STREET).click()
+
 
 
 class ReviewCatPopup(BasePage):

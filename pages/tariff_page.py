@@ -41,6 +41,14 @@ class TariffPage(BasePage):
     def choose_filter_all_providers(self):
         self.page.locator(Filters.CHOOSE_ALL_PROVIDERS).click()
 
+    @allure.title("Выбрать Алмател")
+    def choose_filter_almatel_providers(self):
+        self.page.locator(Filters.ALMATEL_PROV).click()
+
+    @allure.title("Выбрать МТС")
+    def choose_filter_mts_providers(self):
+        self.page.locator(Filters.MTS_PROV).click()
+
     @allure.title("Выбрать билайн")
     def choose_filter_bilain_providers(self):
         self.page.locator(Filters.BILAIN_PROV).click()
@@ -93,6 +101,14 @@ class TariffPage(BasePage):
     @allure.title("Нажать на кнопку Показать еще 8 ")
     def show_more8_button(self):
         self.page.locator(Filters.BUTTON_SHOW_MORE_EIGHT).click()
+
+    @allure.title("Нажать на кнопку Показать 10 из 22")
+    def show_more10_button(self):
+        self.page.locator(Filters.BUTTON_SHOW_MORE_MOL).click()
+
+    @allure.title("Нажать на кнопку Показать 2 из 22")
+    def show_more2_button(self):
+        self.page.locator(Filters.BUTTON_SHOW_MORE_MOL2).click()
 
     @allure.title("Кликнуть на кнопку на последнем тарифе")
     def click_on_lat_prov(self):
