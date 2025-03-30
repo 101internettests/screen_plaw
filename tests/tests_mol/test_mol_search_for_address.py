@@ -2,7 +2,7 @@ import os
 import time
 import allure
 from playwright.sync_api import sync_playwright
-from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, BlockProviders, OpenPopUpAddress, TariffsSection
+from pages.mol_main_page import SearchFromMain, BlockProviders, OpenPopUpAddress, TariffsSection
 from pages.tariff_page import WindowPopUp, TariffPage
 from pages.orders_tohome_page import TohomePage, TohomeMol
 from config import mol_url
@@ -33,7 +33,6 @@ class TestMolSearch:
             tohome_page = TohomePage(page=page)
             tohome_page.click_on_not_address_block()
             tohome_page.check_address_page_mol()
-            time.sleep(3)
 
     @allure.title("Отправить заявку через компонент перелинковки (квиз)")
     def test_perelinkovka_quiz(self):
@@ -79,7 +78,6 @@ class TestMolSearch:
             tariff_page = TariffsSection(page=page)
             tariff_page.fill_the_application_with_address_second()
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title(
         "Отправить заявку через компонент поиска по адресу под блоком провайдеров (адрес-фильтр-подключить, фильтрация по провайдеру, скорости и цене)")
@@ -114,7 +112,6 @@ class TestMolSearch:
             tariff_page.quiz_send_appl()
             time.sleep(4)
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
@@ -156,9 +153,7 @@ class TestMolSearch:
             search_page.choose_type_search_flat()
             tohome_mol = TohomeMol(page=page)
             tohome_mol.check_header_mol()
-            tariff_page = TariffsSection(page=page)
             tohome_mol.fill_the_application_with_address_vesn_second()
-            time.sleep(4)
 
     @allure.title("Отправить заявку через компонент поиска по адресу (квиз)")
     def test_perelinkovka_quiz(self):
@@ -226,7 +221,6 @@ class TestMolSearch:
             search_page.choose_brusilov_street()
             search_page.choose_fifteen_house()
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title(
         "Отправить заявку через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации)")
@@ -244,4 +238,3 @@ class TestMolSearch:
             search_page.check_quiz()
             search_page.quiz_send_appl()
             search_page.close_quiz()
-            time.sleep(3)

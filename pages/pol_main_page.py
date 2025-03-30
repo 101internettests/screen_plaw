@@ -229,6 +229,10 @@ class SearchFromMain(BasePage):
     def choose_type_search_flat(self):
         self.page.locator(Header.IN_FLAT_BUTTON).click()
 
+    @allure.title("Выбрать тип поиска В квартиру - Карта покрытия")
+    def choose_coverage_map(self):
+        self.page.locator(Header.COVERAGE_MAP).click()
+
     @allure.title("Выбрать тип поиска Для бизнеса")
     def choose_type_search_business(self):
         self.page.locator(Header.IN_BUSINESS_BUTTON).click()
@@ -297,6 +301,13 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать район"):
             self.page.locator(Search.ADM_BREADCRUMPS_STREET).click()
 
+    @allure.title("Выбрать район Гатчина")
+    def choose_gatchina(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.GATCHINA_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.GATCHINA_HEADER)).to_be_visible()
+
     @allure.title("Выбрать название улиц 1-13")
     def choose_more_streets(self):
         with allure.step("Выбрать"):
@@ -319,6 +330,22 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать улицу"):
             expect(self.page.locator(Search.ENGLISH_HEADER)).to_be_visible()
             expect(self.page.locator(Search.ENGLISH_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Гороховая")
+    def choose_gorox_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.GOROX_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.GOROX_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.GOROX_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу К.Маркса")
+    def choose_marks_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.KARL_MARKS_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.MARKS_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.MARKS_BREADCRUMPS)).to_be_visible()
 
     @allure.title("Выбрать улицу Щевченко")
     def choose_shev_street(self):
@@ -375,6 +402,10 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.HOUSE_1978_BUTTON).click()
         with allure.step("Выбрать дом 33"):
             self.page.locator(Search.FIFTY_FIVE_HOUSE).click()
+
+    @allure.title("Выбрать дом 1")
+    def choose_first_house(self):
+        self.page.locator(Search.FIRST_HOUSE_BUTTON).click()
 
 
 class ReviewCatPopup(BasePage):

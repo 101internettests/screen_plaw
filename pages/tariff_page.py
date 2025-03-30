@@ -33,6 +33,16 @@ class TariffPage(BasePage):
             self.page.locator(ProvidersPage.TELEPHONE_INPUT).type("1111111111")
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
+    @allure.title("Заполнить заявку на первом тарифе")
+    def fill_the_application_with_address_second(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsInTariffPage.PHONE_NUMBER_INPUT).type("1111111111")
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
     @allure.title("Выбрать фильтр Цена до 1000 руб.")
     def choose_price_before_oneth(self):
         self.page.locator(Filters.PRICE_BEFORE_ONETH).click()
@@ -88,6 +98,10 @@ class TariffPage(BasePage):
     def click_on_tariff_with_500(self):
         self.page.locator(TariffsInTariffPage.TARIFF_WITH_SPEED_500).click()
 
+    @allure.title("Клинкуть по тарифу со скоростью 200 мб\с")
+    def click_on_tariff_with_200(self):
+        self.page.locator(TariffsInTariffPage.TARIFF_WITH_SPEED_200).click()
+
     @allure.title("Отправить заявку в попап")
     def send_popup_wait_for_call(self):
         time.sleep(3)
@@ -109,6 +123,10 @@ class TariffPage(BasePage):
     @allure.title("Нажать на кнопку Показать 2 из 22")
     def show_more2_button(self):
         self.page.locator(Filters.BUTTON_SHOW_MORE_MOL2).click()
+
+    @allure.title("Нажать на кнопку Показать 10 из 30")
+    def show_more10_from30_button(self):
+        self.page.locator(Filters.BUTTON_SHOW_TEN_FROM_THIRTEEN).click()
 
     @allure.title("Кликнуть на кнопку на последнем тарифе")
     def click_on_lat_prov(self):

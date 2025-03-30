@@ -2,7 +2,7 @@ import os
 import time
 import allure
 from playwright.sync_api import sync_playwright
-from pages.pol_main_page import MainPage, SelectRegionPage, SearchFromMain, SearchFromMain, TariffsSection, BlockProviders
+from pages.pol_main_page import SearchFromMain, TariffsSection, BlockProviders
 from pages.tariff_page import WindowPopUp
 from pages.pol_main_page import OpenPopUpAddress
 from pages.orders_tohome_page import TohomePage, TohomePolPage
@@ -47,7 +47,6 @@ class TestPolSearch:
             tohome_page = TohomePage(page=page)
             tohome_page.click_on_not_address_block()
             tohome_page.check_address_page_pol()
-            time.sleep(3)
 
     @allure.title("Отправить заявку через компонент перелинковки (квиз)")
     def test_perelinkovka_quiz(self):
@@ -121,7 +120,6 @@ class TestPolSearch:
             search_page.choose_peter_street()
             search_page.choose_five_house()
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title("Отправить заявку через компонент поиска по адресу в блоке провайдеров (адрес-тариф-подключить, без фильтрации)")
     def test_application_in_prov_block(self):
@@ -147,7 +145,6 @@ class TestPolSearch:
             tariff_page = TariffsSection(page=page)
             tariff_page.fill_the_application_with_address_second()
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title(
         "Отправить заявку через компонент поиска по адресу под блоком провайдеров (адрес-фильтр-подключить, фильтрация по провайдеру, скорости и цене)")
@@ -181,7 +178,6 @@ class TestPolSearch:
             tariff_page.quiz_send_appl()
             time.sleep(4)
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title("Отправить заявку через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации)")
     def test_application_in_the_middle_page(self):
@@ -198,7 +194,6 @@ class TestPolSearch:
             search_page.check_quiz()
             search_page.quiz_send_appl()
             search_page.close_quiz()
-            time.sleep(3)
 
     @allure.title("Отправить заявку через компонент перелинковки (адрес-тариф-подключить, без фильтрации)")
     def test_perelinkovka_address_without_filter(self):
@@ -226,9 +221,7 @@ class TestPolSearch:
             search_page.choose_type_search_flat()
             tohome_pol = TohomePolPage(page=page)
             tohome_pol.check_header_pol()
-            tariff_page = TariffsSection(page=page)
             tohome_pol.fill_the_application_with_address_vesn_second()
-            time.sleep(4)
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
@@ -257,4 +250,3 @@ class TestPolSearch:
             tohome_pol.fill_the_application_with_address_vesn()
             search_page.close_quiz()
             tariff_page.fill_the_application_with_address_second()
-            time.sleep(5)

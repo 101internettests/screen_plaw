@@ -252,6 +252,10 @@ class SearchFromMain(BasePage):
     def choose_type_search_flat(self):
         self.page.locator(Header.IN_FLAT_BUTTON).click()
 
+    @allure.title("Выбрать тип поиска В квартиру - Карта покрытия")
+    def choose_coverage_map(self):
+        self.page.locator(Header.COVERAGE_MAP).click()
+
     @allure.title("Выбрать тип поиска Для бизнеса")
     def choose_type_search_business(self):
         self.page.locator(Header.IN_BUSINESS_BUTTON).click()
@@ -308,6 +312,14 @@ class SearchFromMain(BasePage):
             expect(self.page.locator(Search.AKD_HEADER)).to_be_visible()
             expect(self.page.locator(Search.AKD_BREADCRUMPS)).to_be_visible()
 
+    @allure.title("Выбрать Алтуфьевский район")
+    def choose_altuf(self):
+        with allure.step("Выбрать район"):
+            self.page.locator(Search.ALTUF_AREA).click()
+        with allure.step("Проверить, что район выбрался"):
+            expect(self.page.locator(Search.ALTUF_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.ALTUF_BREADCRUMPS)).to_be_visible()
+
     @allure.title("Выбрать Аэропорт район")
     def choose_aero_area(self):
         with allure.step("Выбрать район"):
@@ -332,6 +344,14 @@ class SearchFromMain(BasePage):
             expect(self.page.locator(Search.GREM_HEADER)).to_be_visible()
             expect(self.page.locator(Search.GREM_BREADCRUMPS)).to_be_visible()
 
+    @allure.title("Выбрать улицу Стандартная")
+    def choose_standart_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.STANDART_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.STANDART_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.STANDART_BREADCRUMPS)).to_be_visible()
+
     @allure.title("Выбрать улицу Ферсмана")
     def choose_fersm_street(self):
         with allure.step("Выбрать улицу"):
@@ -340,9 +360,13 @@ class SearchFromMain(BasePage):
             expect(self.page.locator(Search.FERSM_HEADER)).to_be_visible()
             expect(self.page.locator(Search.FERSM_BREADCRUMPS)).to_be_visible()
 
+    @allure.title("Выбрать дом 1")
+    def choose_first_house(self):
+        self.page.locator(Search.FIRST_HOUSE_BUTTON).click()
+
     @allure.title("Выбрать дом 13")
     def choose_three_house(self):
-        with allure.step("Выбрать промежуток 24-38"):
+        with allure.step("Выбрать промежуток 9-15"):
             self.page.locator(Search.HOUSE_BUTTON).click()
         with allure.step("Выбрать дом 13"):
             self.page.locator(Search.THIRTEEN_HOUSE).click()
@@ -455,7 +479,7 @@ class OpenPopUpAddress(BasePage):
 
     @allure.title("Сделать поиск по заданному адресу")
     def search_address(self):
-        with allure.step("Вставить Шарикоподшипниковская улицу"):
+        with allure.step("Вставить Арбат улицу"):
             time.sleep(5)
             self.page.locator(PopUpFilltheAddress.STREET_INPUT).fill("Арбат")
             time.sleep(5)

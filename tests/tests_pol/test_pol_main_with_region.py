@@ -190,7 +190,7 @@ class TestPolMainWithRegion:
             page.goto(full_url)
             tariff_page = TariffsSection(page=page)
             tariff_page.check_tariffs_section()
-            tariff_page.fill_the_application_with_address()
+            tariff_page.fill_the_application_with_address_first_tariff()
             main_page = MainPage(page=page)
             time.sleep(2)
             main_page.check_success_popups()

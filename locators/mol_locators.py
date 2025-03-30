@@ -56,6 +56,7 @@ class AIPopUp:
 
 class Header:
     IN_FLAT_BUTTON = "xpath=//a[text()='В квартиру']"
+    COVERAGE_MAP = "xpath=(//a[@aria-label='Карта покрытия'])[2]"
     IN_BUSINESS_BUTTON = "xpath=//span[text()='Для бизнеса']"
     START_TENDER_BUTTON = "xpath=//button[text()='Запустить тендер на подключение']"
     IN_GARDEN_BUTTON = "xpath=//span[text()='На дачу']"
@@ -72,20 +73,27 @@ class Search:
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Проверка провайдеров по адресу в Москве']"
     AKADEM_AREA = "xpath=//a[text()='Академический']"
+    ALTUF_AREA = "xpath=//a[text()='Алтуфьевский']"
     AIRPORT_AREA = "xpath=//a[text()='Аэропорт']"
     BUTOVO_AREA = "xpath=//a[text()='Южное Бутово']"
     AKD_HEADER = "xpath=//h1[text()='Подключить интернет в р. Академический']"
+    ALTUF_HEADER = "xpath=//h1[text()='Подключить интернет в р. Алтуфьевский']"
     AIRPORT_HEADER = "xpath=//h1[text()='Подключить интернет в р. Аэропорт']"
     BUTOVO_HEADER = "xpath=//h1[text()='Подключить интернет в р. Южное Бутово']"
     AKD_BREADCRUMPS = "xpath=//span[text()='Академический']"
+    ALTUF_BREADCRUMPS = "xpath=//span[text()='Алтуфьевский']"
     AIRPORT_BREADCRUMPS = "xpath=//span[text()='Аэропорт']"
     BUTOVO_BREADCRUMPS = "xpath=//span[text()='Южное Бутово']"
+    STANDART_STREET = "xpath=//a[text()='Стандартная ул']"
+    STANDART_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Стандартная, Москва']"
+    STANDART_BREADCRUMPS = "xpath=//span[text()='ул Стандартная']"
     GREM_STREET = "xpath=//a[text()='Гримау ул']"
     GREM_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Гримау, Москва']"
     GREM_BREADCRUMPS = "xpath=//span[text()='ул Гримау']"
     FERSM_STREET = "xpath=//a[text()='Ферсмана ул']"
     FERSM_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Ферсмана, Москва']"
     FERSM_BREADCRUMPS = "xpath=//span[text()='ул Ферсмана']"
+    FIRST_HOUSE_BUTTON = "xpath=//a[text()='1']"
     HOUSE_BUTTON = "xpath=//span[text()='9-15']"
     HOUSE29_BUTTON = "xpath=//span[text()='1-17 к1']"
     THIRTEEN_HOUSE = "xpath=//a[@aria-label='13']"
@@ -150,6 +158,9 @@ class PopUpFilltheAddress:
     ALL_TARIFFS_BUTTON = "xpath=(//button[text()='Все тарифы для дачи'])[1]"
     STREET_INPUT = "xpath=(//input[@placeholder='Введите улицу'])[2]"
     CHOOSE_FIRST = "xpath=(//em[text()])[1]"
+    CHOOSE_NEGATIVE_HOUSE = "xpath=//div[text()='111']"
+    CHOOSE_NEGATIVE_HOUSE_SECOND = "xpath=//div[text()='222']"
+    CHOOSE_SECOND = "xpath=(//em[text()])[2]"
     HOME_INPUT = "xpath=(//input[@placeholder='Дом'])[2]"
     FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[2]"
     DELETE_HOUSE = "xpath=(//div[@data-headlessui-state]//button[@data-sentry-component='IconButton'])[4]"
@@ -194,12 +205,23 @@ class Filters:
     BUTTON_SHOW_MORE_MOL = "xpath=//button[text()='Показать ещё 10 тарифов из 22']"
     BUTTON_SHOW_MORE_MOL2 = "xpath=//button[text()='Показать ещё 2 тарифа из 22']"
     BUTTON_SHOW_MORE_EIGHT = "xpath=//button[text()='Показать ещё 8 тарифов из 28']"
+    BUTTON_SHOW_TEN_FROM_THIRTEEN = "xpath=//button[text()='Показать ещё 10 тарифов из 30']"
     LAST_LOCATOR = "xpath=(//div[@itemprop='offers'])"
     QUIZ_INPUT = "xpath=//input[@id='ph_input']"
     BUTTON_SHOW_RESULT = "xpath=//button[text()='Отправить заявку']"
 
+
 class TariffsInTariffPage:
     TARIFF_WITH_SPEED_500 = ("xpath=(//meta[@content='500 Мб/c Домашний интернет']/following::div//button["
                              "@data-sentry-element='Button'])[1]")
+    TARIFF_WITH_SPEED_200 = ("xpath=(//meta[@content='200 Мб/c Домашний интернет']/following::div//button["
+                             "@data-sentry-element='Button'])[1]")
     PHONE_NUMBER_INPUT = "xpath=//input[@id='ph_input']"
     BUTTON_SEND = "xpath=//button[text()='Отправить заявку']"
+
+
+class MapCoverage:
+    STREET_INPUT = "xpath=//input[@placeholder='Введите улицу']"
+    SEARCH_BUTTON = "xpath=//a[text()='Искать']"
+    HOME_INPUT = "xpath=//input[@placeholder='Дом']"
+    FIND_TARIFFS = "xpath=//button[text()='Найти тарифы']"

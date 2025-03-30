@@ -18,7 +18,7 @@ class TohomePage(BasePage):
     def check_address_page_pol(self):
         expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE)).to_be_visible()
 
-    @allure.title("Пол проверить переход на выбор адреса")
+    @allure.title("Мол проверить переход на выбор адреса")
     def check_address_page_mol(self):
         expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE_MOL)).to_be_visible()
 
