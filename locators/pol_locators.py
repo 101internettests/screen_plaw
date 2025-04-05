@@ -20,6 +20,7 @@ class MainPageLocators:
 
 class TariffsLocators:
     TARIFF_LIST = "xpath=//section[@data-sentry-component='TariffList']"
+    DETAILS_OF_TARIFF_BUTTON_new = "xpath=(//button[text()='Детали тарифа'])"
     TARIFF_CARD = "xpath=(//div[@data-sentry-component='TariffCard'])"
     PRICE_IN_TARIFFS = "xpath=(//div[@itemprop='offers']//p[text()])"
     DETAILS_OF_TARIFF_BUTTON = "xpath=(//button[text()='Детали тарифа'])[1]"
@@ -36,6 +37,9 @@ class TariffsLocators:
     STREET_FIRST = "xpath=(//div[@aria-selected='false'])[2]"
     STREET_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     BUTTON_FIND_TARIFFS = "xpath=//button[text()='Найти все тарифы по адресу']"
+    INPUT_HOME_IN_TARIFF_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[3]"
+    HOME_IN_TARIFF_INPUT = "xpath=(//input[@placeholder='Дом'])[3]"
+    STREET_TEN = "xpath=(//div[@aria-selected='false'])[1]"
 
 
 class SelectRegion:
@@ -66,11 +70,17 @@ class Header:
 
 class Search:
     STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
+    STREET_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Введите улицу'])[3]"
     FIRST_HOUSE_BUTTON = "xpath=//a[text()='1']"
+    TWENTY_SEVEN_HOUSE_BUTTON = "xpath=//a[text()='27']"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
+    HOME_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Дом'])[3]"
     GOROXOWAYA_STREET = "xpath=//em[text()]"
+    FIRST_STREET = "xpath=(//em[text()])[1]"
+    SECOND_STREET = "xpath=(//em[text()])[2]"
     STREET_TWENTYTWO = "xpath=//em[text()='22']"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+    BUTTON_FIND_TARIFFS_UP_THIRD = "xpath=(//button[text()='Найти тарифы'])[3]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Выберите свой район']"
     ADMIRALTEYSKIE_AREA = "xpath=//a[text()='Адмиралтейский']"
     VASILEOSTRV_AREA = "xpath=//a[text()='Василеостровский']"
@@ -85,10 +95,12 @@ class Search:
     VAS_BREADCRUMPS = "xpath=//span[text()='Василеостровский']"
     ENGLISH_PROSP_STREET = "xpath=//a[text()='Английский пр-кт']"
     GOROX_STREET = "xpath=//a[text()='Гороховая ул']"
+    REPINA_STREET = "xpath=//a[text()='Репина ул']"
     KARL_MARKS_STREET = "xpath=//a[text()='К.Маркса ул']"
     SHEVCHENKO_STREET = "xpath=//a[text()='Шевченко ул']"
     ENGLISH_HEADER = "xpath=//h1[text()='Интернет-провайдеры на пр-кт Английский, Санкт-Петербург']"
     GOROX_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Гороховая, Санкт-Петербург']"
+    REPINA_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Репина, Василеостровский, Санкт-Петербург']"
     MARKS_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул К.Маркса, Санкт-Петербург']"
     SHEV_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Шевченко, Василеостровский, Санкт-Петербург']"
     YAKU_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ул Якубовича, Санкт-Петербург']"
@@ -96,6 +108,7 @@ class Search:
     PETER_HEADER = "xpath=//h1[text()='Интернет-провайдеры на ш Петергофское, Юго-Запад, Санкт-Петербург']"
     ENGLISH_BREADCRUMPS = "xpath=//span[text()='пр-кт Английский']"
     GOROX_BREADCRUMPS = "xpath=//span[text()='ул Гороховая']"
+    REPINA_BREADCRUMPS = "xpath=//span[text()='ул Репина']"
     MARKS_BREADCRUMPS = "xpath=//span[text()='ул К.Маркса']"
     SHEVCHENKO_BREADCRUMPS = "xpath=//span[text()='ул Шевченко']"
     YAKUBOVICH_BREADCRUMPS = "xpath=//span[text()='ул Якубовича']"
@@ -106,7 +119,9 @@ class Search:
     FIFTY_FIVE_HOUSE = "xpath=//a[@aria-label='55 к1']"
     LETTER_YA = "xpath=//span[text()='Я']"
     LETTER_U = "xpath=//span[text()='Ю']"
+    LETTER_R = "xpath=//span[text()='Р']"
     LETTER_NUMS = "xpath=//span[text()='1-13']"
+    LETTER_NEW_NUMS = "xpath=//span[text()='1-27']"
     YAKUBOVICH_STREET = "xpath=//a[text()='Якубовича ул']"
     KRASN_STREET = "xpath=//a[text()='13-я Красноармейская ул']"
     PETERGOF_STREET = "xpath=//a[text()='Петергофское ш']"
@@ -191,6 +206,7 @@ class WindowLocators:
     STREET_REALLY_SECOND = "xpath=(//div[@aria-selected='false'])[2]"
     FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[3]"
     GUS_STREET = "xpath=(//em[text()])[1]"
+    XLEB_STREET = "xpath=(//em[text()])[2]"
 
 
 class TohomeMiddlePageSearch:

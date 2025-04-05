@@ -2,7 +2,7 @@ import time
 import allure
 import re
 import random
-from locators.mol_locators import ProvidersPage, Filters, TariffsInTariffPage
+from locators.mol_locators import ProvidersPage, Filters, TariffsInTariffPage, MiddlePageLocators
 from locators.pol_locators import WindowLocators
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
@@ -29,6 +29,15 @@ class TariffPage(BasePage):
             tariff_name = self.page.locator(ProvidersPage.TARIFF_NAME2)
             tariff_text = tariff_name.inner_text()
             print(tariff_text)
+        with allure.step("Вставить номер и отправить"):
+            self.page.locator(ProvidersPage.TELEPHONE_INPUT).type("1111111111")
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
+    @allure.title("Заполнить заявку на втором тарифе на странице Тарифов")
+    def fill_the_application_second_tariff(self):
+        with allure.step("Кликнуть на кнопку с ценой на втором тарифе"):
+            self.page.locator(ProvidersPage.SECOND_BUTTON_WITH_PRICE).click()
+            time.sleep(4)
         with allure.step("Вставить номер и отправить"):
             self.page.locator(ProvidersPage.TELEPHONE_INPUT).type("1111111111")
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
@@ -141,6 +150,22 @@ class TariffPage(BasePage):
         self.page.locator(Filters.QUIZ_INPUT).fill("1111111111")
         self.page.locator(Filters.BUTTON_SHOW_RESULT).click()
 
+    # @allure.title("Заполнить заявку на первом тарифе на странице Тарифов c адресом")
+    # def fill_the_application(self):
+    #     with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+    #         self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+    #     with allure.step("Проверить наличие названий тарифа"):
+    #         tariff_name = self.page.locator(ProvidersPage.TARIFF_NAME)
+    #         tariff_text = tariff_name.inner_text()
+    #         print(tariff_text)
+    #     with allure.step("Проверить наличие названий тарифа из второй строки"):
+    #         tariff_name = self.page.locator(ProvidersPage.TARIFF_NAME2)
+    #         tariff_text = tariff_name.inner_text()
+    #         print(tariff_text)
+    #     with allure.step("Вставить номер, адрес и отправить"):
+    #         self.page.locator(ProvidersPage.TELEPHONE_INPUT).type("1111111111")
+    #         self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
 
 class WindowPopUp(BasePage):
     @allure.title("Выбрать В квартиру")
@@ -201,3 +226,69 @@ class WindowPopUp(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(WindowLocators.FIND_TARIFFS).click()
 
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_arbat38(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(WindowLocators.INPUT_HOME_ADDRESS).fill("Арбат")
+            time.sleep(3)
+            self.page.locator(WindowLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(WindowLocators.HOME_INPUT_UP).fill("38")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_REALLY_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(WindowLocators.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_hleb(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(WindowLocators.INPUT_HOME_ADDRESS).fill("Хлебный")
+            time.sleep(3)
+            self.page.locator(WindowLocators.XLEB_STREET).click()
+            time.sleep(5)
+            self.page.locator(WindowLocators.HOME_INPUT_UP).fill("14")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(WindowLocators.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_vasil(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(WindowLocators.INPUT_HOME_ADDRESS).fill("3-я В.О")
+            time.sleep(3)
+            self.page.locator(WindowLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(WindowLocators.HOME_INPUT_UP).fill("26")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(WindowLocators.FIND_TARIFFS).click()
+
+
+class MiddlePage(BasePage):
+    @allure.title("Сделать поиск по заданному адресу Новый Арбат")
+    def fill_the_application_with_address_new_arbat(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(MiddlePageLocators.STREET_INPUT).fill("Новый Арбат")
+            time.sleep(3)
+            self.page.locator(MiddlePageLocators.THIRD_HOUSE).click()
+            time.sleep(5)
+            self.page.locator(MiddlePageLocators.HOME_INPUT).fill("6")
+            time.sleep(3)
+            self.page.locator(MiddlePageLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(MiddlePageLocators.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу Гороховая 22")
+    def fill_the_application_with_address_new_gorox(self):
+        with allure.step("Заполнить адрес"):
+            self.page.locator(MiddlePageLocators.STREET_INPUT).fill("Гороховая")
+            time.sleep(3)
+            self.page.locator(MiddlePageLocators.FIRST_HOUSE).click()
+            time.sleep(5)
+            self.page.locator(MiddlePageLocators.HOME_INPUT).fill("22")
+            time.sleep(3)
+            self.page.locator(MiddlePageLocators.STREET_FIRST).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(MiddlePageLocators.FIND_TARIFFS).click()

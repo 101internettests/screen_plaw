@@ -205,6 +205,25 @@ class TariffsSection(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
+    @allure.title("Заполнить заявку на первом тарифе Новый Арбат 10")
+    def fill_the_application_with_address_new_arb(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            time.sleep(3)
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_IN_TARIFF_ADDRESS).fill("Новый Арбат")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.NEW_ARBAT_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_IN_TARIFF_INPUT).fill("10")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_TEN).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
     @allure.title("Заполнить заявку на первом тарифе")
     def fill_the_application_with_address_second(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
@@ -281,10 +300,24 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.SHARIK_STREET).click()
         with allure.step("Вставить дом 11"):
             self.page.locator(Search.HOME_INPUT_UP).fill("11")
-            self.page.locator(Search.STREET_ELEVEN).click()
+            self.page.locator(Search.PURPLE_STREET).click()
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_gagarina(self):
+        with allure.step("Вставить Гагарина улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP_THIRD).fill("Гагарина")
+            time.sleep(5)
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Вставить дом 9"):
+            self.page.locator(Search.HOME_INPUT_UP_THIRD).fill("9")
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP_SECOND).dblclick()
+            time.sleep(3)
 
     @allure.title("Проверить, что появился квиз")
     def check_quiz(self):
@@ -378,6 +411,13 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать дом 15к1"):
             self.page.locator(Search.FIFTEEN_HOUSE).click()
 
+    @allure.title("Выбрать дом 15c3")
+    def choose_fifteensi_house(self):
+        with allure.step("Выбрать промежуток 15 c2-23"):
+            self.page.locator(Search.HOUSE15_BUTTON).click()
+        with allure.step("Выбрать дом 15с3"):
+            self.page.locator(Search.FIFTEENC_HOUSE).click()
+
     @allure.title("Сделать поиск по заданному адресу")
     def search_purple(self):
         with allure.step("Вставить Cиреневая улицу"):
@@ -391,6 +431,15 @@ class SearchFromMain(BasePage):
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
+
+    @allure.title("Выбрать промежуток 1-5253")
+    def choose_numbers_in_streets(self):
+        self.page.locator(Search.LETTERS_HOUSE).click()
+
+    @allure.title("Выбрать букву Б")
+    def choose_b_letter(self):
+        with allure.step("Выбрать букву Б"):
+            self.page.locator(Search.LETTER_B).click()
 
     @allure.title("Выбрать букву Э")
     def choose_u_letter(self):
@@ -425,6 +474,14 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать улицу"):
             self.page.locator(Search.BRUSILOV_STREET).click()
 
+    @allure.title("Выбрать улицу  Борисоглебский пер.")
+    def choose_borisov_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.BORISOGL_STREET).click()
+
+    @allure.title("Нажать на кнопку Показать еще")
+    def press_button_show_more(self):
+        self.page.locator(Search.BUTTON_SHOW_MORE).click()
 
 
 class ReviewCatPopup(BasePage):
@@ -532,7 +589,7 @@ class BlockProviders(BasePage):
             allure.attach(screenshot, name="Providers block  Screenshot",
                           attachment_type=allure.attachment_type.PNG)
 
-    @allure.title("Открыть попап поиска по адресу с Ринета (первый тариф)")
+    @allure.title("Открыть попап поиска по адресу с Дом ру (первый тариф)")
     def click_search_rinet(self):
         self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
 
@@ -543,10 +600,6 @@ class BlockProviders(BasePage):
     @allure.title("Открыть попап поиска по адресу с СатНет (третий тариф)")
     def click_search_sat(self):
         self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
-
-    @allure.title("Нажать на кнопку Все провайдеры по адресу")
-    def click_all_providers_button(self):
-        self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
 
 
 class ReviewBlockPage(BasePage):

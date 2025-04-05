@@ -149,6 +149,43 @@ class TariffsSection(BasePage):
     def click_on_more_about_tariff(self):
         self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).click()
 
+    @allure.title("Нажать на кнопку 'Больше о тарифе' на первом тарифе")
+    def click_on_more_about_tariff_second(self):
+        max_attempts = 6  # Максимальное количество попыток
+        attempt = 0
+
+        while attempt < max_attempts:
+            try:
+                # Проверяем, есть ли локатор MORE_ABOUT_TARIFF_BUTTON
+                if self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).is_visible():
+                    self.page.locator(TariffsLocators.MORE_ABOUT_TARIFF_BUTTON).click()
+                    allure.attach("Успешно нажали на кнопку 'Больше о тарифе'", name="Успех")
+                    return  # Выход из функции после успешного клика
+                else:
+                    allure.attach(f"Локатор 'Больше о тарифе' не найден. Попытка {attempt + 1}", name="Попытка")
+            except Exception as e:
+                allure.attach(f"Ошибка при поиске локатора 'Больше о тарифе': {e}", name="Ошибка")
+
+            # Если локатор MORE_ABOUT_TARIFF_BUTTON не найден, перебираем нечётные индексы DETAILS_OF_TARIFF_BUTTON_new
+            for index in range(1, 6, 2):  # Индексы 1, 3, 5 (нечётные)
+                try:
+                    # Формируем локатор с текущим индексом
+                    details_locator = f"{TariffsLocators.DETAILS_OF_TARIFF_BUTTON_new}[{index}]"
+                    if self.page.locator(details_locator).is_visible():
+                        self.page.locator(details_locator).click()
+                        allure.attach(f"Нажали на DETAILS_OF_TARIFF_BUTTON с индексом {index}. Попытка {attempt + 1}",
+                                      name="Нажатие на DETAILS_OF_TARIFF_BUTTON")
+                        # После клика снова проверяем MORE_ABOUT_TARIFF_BUTTON
+                        break  # Выход из цикла for, чтобы вернуться к проверке MORE_ABOUT_TARIFF_BUTTON
+                except Exception as e:
+                    allure.attach(f"Ошибка при нажатии на DETAILS_OF_TARIFF_BUTTON с индексом {index}: {e}",
+                                  name="Ошибка DETAILS_OF_TARIFF_BUTTON")
+
+            attempt += 1
+
+        allure.attach("Не удалось нажать на кнопку 'Больше о тарифе' после 6 попыток", name="Неудача")
+
+
     @allure.title("Проверить модальное окно больше о тарифе")
     def check_modal_window_more_about_tariffs(self):
         with allure.step("Сделать скриншот"):
@@ -190,6 +227,25 @@ class TariffsSection(BasePage):
     @allure.title("Нажать на кнопку Найти все тарифы по адресу")
     def click_on_button_find_tariffs(self):
         self.page.locator(TariffsLocators.BUTTON_FIND_TARIFFS).click()
+
+    @allure.title("Заполнить заявку на первом тарифе Гагарина 10")
+    def fill_the_application_with_address_gagarina(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            time.sleep(3)
+        with allure.step("Заполнить адрес"):
+            self.page.locator(TariffsLocators.INPUT_HOME_IN_TARIFF_ADDRESS).fill("Гагарина")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.GUS_STREET).click()
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_IN_TARIFF_INPUT).fill("10")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_TEN).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
 
 class SelectRegionPage(BasePage):
@@ -263,6 +319,20 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
 
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_vesennya(self):
+        with allure.step("Вставить Весеннюю улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP_THIRD).fill("Весенняя")
+            time.sleep(5)
+            self.page.locator(Search.SECOND_STREET).click()
+        with allure.step("Вставить дом 42"):
+            self.page.locator(Search.HOME_INPUT_UP_THIRD).fill("42")
+            self.page.locator(Search.FIRST_STREET).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP_THIRD).click()
+            time.sleep(4)
+
     @allure.title("Проверить, что появился квиз")
     def check_quiz(self):
         with allure.step("Проверить наличие текста"):
@@ -315,6 +385,13 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать еще"):
             self.page.locator(Search.SHOW_MORE_BUTTON).click()
 
+    @allure.title("Выбрать название улиц 1-27")
+    def choose_more_27streets(self):
+        with allure.step("Выбрать"):
+            self.page.locator(Search.LETTER_NEW_NUMS).click()
+        with allure.step("Выбрать еще"):
+            self.page.locator(Search.SHOW_MORE_BUTTON).click()
+
     @allure.title("Выбрать Василеостровский район")
     def choose_vasil_area(self):
         with allure.step("Выбрать район"):
@@ -338,6 +415,14 @@ class SearchFromMain(BasePage):
         with allure.step("Выбрать улицу"):
             expect(self.page.locator(Search.GOROX_HEADER)).to_be_visible()
             expect(self.page.locator(Search.GOROX_BREADCRUMPS)).to_be_visible()
+
+    @allure.title("Выбрать улицу Репина")
+    def choose_repina_street(self):
+        with allure.step("Выбрать улицу"):
+            self.page.locator(Search.REPINA_STREET).click()
+        with allure.step("Выбрать улицу"):
+            expect(self.page.locator(Search.REPINA_HEADER)).to_be_visible()
+            expect(self.page.locator(Search.REPINA_BREADCRUMPS)).to_be_visible()
 
     @allure.title("Выбрать улицу К.Маркса")
     def choose_marks_street(self):
@@ -366,6 +451,11 @@ class SearchFromMain(BasePage):
     def choose_u_letter(self):
         with allure.step("Выбрать букву Я"):
             self.page.locator(Search.LETTER_U).click()
+
+    @allure.title("Выбрать букву Р")
+    def choose_r_letter(self):
+        with allure.step("Выбрать букву Я"):
+            self.page.locator(Search.LETTER_R).click()
 
     @allure.title("Выбрать улицу Якубовича")
     def choose_ya_street(self):
@@ -406,6 +496,10 @@ class SearchFromMain(BasePage):
     @allure.title("Выбрать дом 1")
     def choose_first_house(self):
         self.page.locator(Search.FIRST_HOUSE_BUTTON).click()
+
+    @allure.title("Выбрать дом 27")
+    def choose_twenty_seven_house(self):
+        self.page.locator(Search.TWENTY_SEVEN_HOUSE_BUTTON).click()
 
 
 class ReviewCatPopup(BasePage):
@@ -520,6 +614,10 @@ class BlockProviders(BasePage):
     @allure.title("Нажать на кнопку Все провайдеры по адресу")
     def click_all_providers_button(self):
         self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
+
+    @allure.title("Открыть попап поиска по адресу с Дом ру (Третий тариф)")
+    def click_search_domru(self):
+        self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
 
 
 class ReviewBlockPage(BasePage):
