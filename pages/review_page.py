@@ -16,6 +16,10 @@ class ReviewPageFeedback(BasePage):
     def click_on_write_review_button(self):
         self.page.locator(ReviewPage.BUTTON_WRITE_REVIEW).click()
 
+    @allure.title("Кликнуть на кнопку написать отзыв на страницу улицы")
+    def click_on_write_review_street(self):
+        self.page.locator(ReviewPage.BUTTON_WRITE).click()
+
     @allure.title("Заполнить отзыв")
     def leave_feedback(self):
         with allure.step("Выбрать в квартире"):

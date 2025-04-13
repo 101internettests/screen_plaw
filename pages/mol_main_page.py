@@ -4,7 +4,7 @@ import re
 import random
 from locators.screen_locators import ScreenLocators
 from locators.mol_locators import MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, TariffsLocators
-from locators.mol_locators import ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
+from locators.mol_locators import ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock, PerelikovkaLocators
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -224,6 +224,22 @@ class TariffsSection(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
+    @allure.title("Заполнить заявку на первом тарифе только с домом 19")
+    def fill_the_application_with_address_home(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_TARIFF).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            time.sleep(3)
+        with allure.step("Заполнить адрес"):
+            time.sleep(5)
+            self.page.locator(PopUpFilltheAddress.HOME_INPUT).fill("19")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_TEN).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
     @allure.title("Заполнить заявку на первом тарифе")
     def fill_the_application_with_address_second(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
@@ -318,6 +334,16 @@ class SearchFromMain(BasePage):
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP_SECOND).dblclick()
             time.sleep(3)
+
+    @allure.title("Сделать поиск по адресу только с улицей 9")
+    def search_house_nine(self):
+        with allure.step("Вставить дом 9"):
+            self.page.locator(Search.HOME_INPUT_SECOND).fill("9")
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_SECOND).dblclick()
+            time.sleep(3)
+
 
     @allure.title("Проверить, что появился квиз")
     def check_quiz(self):
@@ -432,9 +458,27 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
 
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_forty_year(self):
+        with allure.step("Вставить 40 лет"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP).fill("40 лет")
+            time.sleep(5)
+            self.page.locator(Search.SECOND_STREET).click()
+        with allure.step("Вставить дом 18"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("18")
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
     @allure.title("Выбрать промежуток 1-5253")
     def choose_numbers_in_streets(self):
         self.page.locator(Search.LETTERS_HOUSE).click()
+
+    @allure.title("Выбрать дом 19")
+    def choose_house_nineteen(self):
+        self.page.locator(Search.LETTER_NINETEEN).click()
 
     @allure.title("Выбрать букву Б")
     def choose_b_letter(self):
@@ -593,6 +637,10 @@ class BlockProviders(BasePage):
     def click_search_rinet(self):
         self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
 
+    @allure.title("Открыть попап поиска по адресу с Кверти (второй тариф)")
+    def click_search_querti(self):
+        self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS_SECOND).click()
+
     @allure.title("Нажать на кнопку Все провайдеры по адресу")
     def click_all_providers_button(self):
         self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
@@ -614,6 +662,35 @@ class ReviewBlockPage(BasePage):
             else:
                 print(f"Локатор указывает на {review_num} элементов.")
 
+    @allure.title("Проверить наличие блока отзывов на страницу улицы")
+    def check_review_block_street_page(self):
+        with allure.step("Проверить, что заголовок есть на странице"):
+            expect(self.page.locator(ReviewBlock.REVIEW_HEADER_STREET)).to_be_visible()
+        with allure.step("Проверить, что выведен один отзыв"):
+            review_num = self.page.locator(ReviewBlock.NUBER_OF_REVIEW).count()
+            if review_num == 1:
+                print("Локатор указывает ровно на один элемент.")
+            else:
+                print(f"Локатор указывает на {review_num} элементов.")
+
     @allure.title("Нажать на кнопку Еще отзывы")
     def click_button_more_reviews(self):
         self.page.locator(ReviewBlock.BUTTON_MORE_REVIEWS).click()
+
+
+class PerelinkovkaCheck(BasePage):
+    @allure.title("Нажать на стрелочку-раскрывашку в Другие подключенные улицы в Балашихе")
+    def click_other_streets(self):
+        self.page.locator(PerelikovkaLocators.OPEN_OTHER_STREETS_IN_BALASHIXA).click()
+
+    @allure.title("Нажать на улицу Граничная")
+    def click_granichnaya_street(self):
+        self.page.locator(PerelikovkaLocators.GRANICHNAYA_STREET).click()
+
+    @allure.title("Нажать на улицу  Энергетическая (Русавкино-Романово)")
+    def click_energetich_street(self):
+        self.page.locator(PerelikovkaLocators.ENERGITICH_STREET).click()
+
+    @allure.title("Нажать на  улицу ш Носовихинское")
+    def click_nosobich_street(self):
+        self.page.locator(PerelikovkaLocators.NOSOVOXH_STREET).click()

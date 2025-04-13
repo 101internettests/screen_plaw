@@ -71,6 +71,7 @@ class Search:
     STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
     STREET_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Введите улицу'])[3]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
+    HOME_INPUT_SECOND = "xpath=(//input[@placeholder='Дом'])[2]"
     HOME_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Дом'])[3]"
     SHARIK_STREET = "xpath=//em[text()]"
     STREET_FIRST = "xpath=(//em[text()])[1]"
@@ -78,6 +79,7 @@ class Search:
     SECOND_STREET = "xpath=(//em[text()])[2]"
     STREET_ELEVEN = "xpath=(//em[text()='11'])[1]"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+    BUTTON_FIND_TARIFFS_SECOND = "xpath=(//button[text()='Найти тарифы'])[2]"
     BUTTON_FIND_TARIFFS_UP_SECOND = "xpath=(//button[text()='Найти тарифы'])[3]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Проверка провайдеров по адресу в Москве']"
     AKADEM_AREA = "xpath=//a[text()='Академический']"
@@ -109,6 +111,7 @@ class Search:
     FIFTEEN_HOUSE = "xpath=//a[@aria-label='15 к1']"
     FIFTEENC_HOUSE = "xpath=//a[@aria-label='15 с3']"
     LETTERS_HOUSE = "xpath=//span[text()='1-5253']"
+    LETTER_NINETEEN = "xpath=//a[text()='19']"
     LETTER_B = "xpath=//span[text()='Б']"
     LETTER_A = "xpath=//span[text()='Э']"
     LETTER_U = "xpath=//span[text()='Ю']"
@@ -140,6 +143,7 @@ class OrdersSatPage:
 
 class ReviewBlock:
     REVIEW_HEADER = "xpath=//h2[text()='Отзывы о провайдерах Москвы']"
+    REVIEW_HEADER_STREET = "xpath=//h2[text()='Отзывы жителей мкр Гагарина']"
     # посчитать эти локаторы
     NUBER_OF_REVIEW = "xpath=(//div[@data-sentry-component='ReviewCard'])"
     BUTTON_MORE_REVIEWS = "xpath=//a[text()='Ещё отзывы']"
@@ -156,6 +160,8 @@ class ReviewWebSiteCat:
 
 class ProvidersPage:
     TAG_HOME_INTERNET = "xpath=//span[text()='Домашний интернет']"
+    FIRST_BUTTON = "xpath=(//div[@itemprop='offers'])[1]"
+    FIRST_BUTTON_TARIFF = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[1]"
     FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@class='TariffCard_button__ONu3k']//button[@data-sentry-source-file])[1]"
     SECOND_BUTTON_WITH_PRICE = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[3]"
     TARIFF_NAME = "xpath=//span[@class='SubmitFormContent_provider-name__R1UkL']"
@@ -185,11 +191,13 @@ class PopUpFilltheAddress:
 class ProvidersBlock:
     PROVIDERS_BLOCK = "xpath=//div[@class='MainPage_provs-reviews-block__QNvrv']"
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[1]"
+    BUTTON_TARIFFS_ADDRESS_SECOND = "xpath=(//button[text()='Тарифы по вашему адресу'])[2]"
     ALL_PROVIDERS_BUTTON = "xpath=//button[text()='Все провайдеры по адресу']"
 
 
 class ReviewPage:
     BUTTON_WRITE_REVIEW = "xpath=//a[text()='Написать отзыв']"
+    BUTTON_WRITE = "xpath=//a[text()='Написать']"
     CHOSE_IN_FLAT = "xpath=//span[text()='в квартире']"
     INPUT_PROVIDER = "xpath=//input[@placeholder='Введите название']"
     CHOOSE_ROSTEL = "xpath=//div[text()='Ростелеком']"
@@ -250,3 +258,10 @@ class MiddlePageLocators:
     HOME_INPUT = "xpath=(//input[@placeholder='Дом'])[2]"
     STREET_FIRST = "xpath=(//div[@aria-selected='false'])[1]"
     FIND_TARIFFS = "xpath=(//button[text()='Найти тарифы'])[2]"
+
+
+class PerelikovkaLocators:
+    OPEN_OTHER_STREETS_IN_BALASHIXA = "xpath=//p[text()='Другие подключенные улицы в Балашихе']"
+    GRANICHNAYA_STREET = "xpath=//a[text()='ул Граничная']"
+    ENERGITICH_STREET = "xpath=//a[text()='ул Энергетическая (Русавкино-Романово)']"
+    NOSOVOXH_STREET = "xpath=//a[text()='ш Носовихинское']"

@@ -18,9 +18,17 @@ class TohomePage(BasePage):
     def check_address_page_pol(self):
         expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE)).to_be_visible()
 
-    @allure.title("Мол проверить переход на выбор адреса")
+    @allure.title("Мол проверить переход на выбор адреса Москва")
     def check_address_page_mol(self):
         expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE_MOL)).to_be_visible()
+
+    @allure.title("Мол проверить переход на выбор адреса Балашиха")
+    def check_address_page_mol_bal(self):
+        expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE_MOL_BAL)).to_be_visible()
+
+    @allure.title("Мол проверить переход на выбор адреса Колпино")
+    def check_address_page_pol_kolpino(self):
+        expect(self.page.locator(OrdersTohomeLocators.ADDRESS_NOT_IN_BASE_POL_KOLPINO)).to_be_visible()
 
     @allure.title("Сделать поиск по заданному адресу")
     def search_gorokhovaya(self):

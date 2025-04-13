@@ -3,7 +3,7 @@ import allure
 import re
 import random
 from locators.mol_locators import ProvidersPage, Filters, TariffsInTariffPage, MiddlePageLocators
-from locators.pol_locators import WindowLocators
+from locators.pol_locators import WindowLocators, TohomeMiddlePageSearch, PopUpFilltheAddress
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -46,6 +46,26 @@ class TariffPage(BasePage):
     def fill_the_application_with_address_second(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsInTariffPage.PHONE_NUMBER_INPUT).type("1111111111")
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
+    @allure.title("Заполнить заявку на первом тарифе")
+    def fill_the_application_with_address_third(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON_TARIFF).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsInTariffPage.PHONE_NUMBER_INPUT).type("1111111111")
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
+    @allure.title("Заполнить заявку на первом тарифе для ПОЛ")
+    def fill_the_application_with_address_pol(self):
+        with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
+            self.page.locator(ProvidersPage.FIRST_BUTTON).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
             self.page.locator(TariffsInTariffPage.PHONE_NUMBER_INPUT).type("1111111111")
@@ -238,6 +258,24 @@ class WindowPopUp(BasePage):
             self.page.locator(WindowLocators.STREET_REALLY_SECOND).click()
         with allure.step("Отправить заявку"):
             self.page.locator(WindowLocators.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_only_house(self):
+        with allure.step("Заполнить 19 дом"):
+            self.page.locator(TohomeMiddlePageSearch.PLACEHOLDER_HOUSE).fill("19")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def fill_the_application_with_address_only_house_forty_eight(self):
+        with allure.step("Заполнить 48 дом"):
+            self.page.locator(TohomeMiddlePageSearch.PLACEHOLDER_HOUSE).fill("48")
+            time.sleep(3)
+            self.page.locator(WindowLocators.STREET_SECOND).click()
+        with allure.step("Отправить заявку"):
+            self.page.locator(PopUpFilltheAddress.FIND_TARIFFS).click()
 
     @allure.title("Сделать поиск по заданному адресу")
     def fill_the_application_with_address_hleb(self):

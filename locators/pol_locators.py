@@ -70,16 +70,20 @@ class Header:
 
 class Search:
     STREET_INPUT_UP = "xpath=(//input[@placeholder='Введите улицу'])[1]"
+    STREET_INPUT_SECOND = "xpath=(//input[@placeholder='Введите улицу'])[2]"
     STREET_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Введите улицу'])[3]"
     FIRST_HOUSE_BUTTON = "xpath=//a[text()='1']"
     TWENTY_SEVEN_HOUSE_BUTTON = "xpath=//a[text()='27']"
+    FIFTY_FOUR_HOUSE_BUTTON = "xpath=//a[text()='54']"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[1]"
+    HOME_INPUT_SECOND = "xpath=(//input[@placeholder='Дом'])[2]"
     HOME_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Дом'])[3]"
     GOROXOWAYA_STREET = "xpath=//em[text()]"
     FIRST_STREET = "xpath=(//em[text()])[1]"
     SECOND_STREET = "xpath=(//em[text()])[2]"
     STREET_TWENTYTWO = "xpath=//em[text()='22']"
     BUTTON_FIND_TARIFFS_UP = "xpath=(//button[text()='Найти тарифы'])[1]"
+    BUTTON_FIND_TARIFFS_SECOND = "xpath=(//button[text()='Найти тарифы'])[2]"
     BUTTON_FIND_TARIFFS_UP_THIRD = "xpath=(//button[text()='Найти тарифы'])[3]"
     HEADER_CHOOSE_REGION = "xpath=//h2[text()='Выберите свой район']"
     ADMIRALTEYSKIE_AREA = "xpath=//a[text()='Адмиралтейский']"
@@ -146,6 +150,7 @@ class OrdersSatPage:
 
 class ReviewBlock:
     REVIEW_HEADER = "xpath=//h2[text()='Отзывы о провайдерах домашнего интернета в Санкт-Петербурге']"
+    REVIEW_HEADER_STREET = "xpath=//h2[text()='Отзывы жителей ул Братьев Радченко']"
     # посчитать эти локаторы
     NUBER_OF_REVIEW = "xpath=(//div[@data-sentry-component='ReviewCard'])"
     BUTTON_MORE_REVIEWS = "xpath=//a[text()='Ещё отзывы']"
@@ -162,6 +167,7 @@ class ReviewWebSiteCat:
 
 class ProvidersPage:
     TAG_HOME_INTERNET = "xpath=//span[text()='Домашний интернет']"
+    THIRD_TARIFF_BUTTON = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[5]"
     FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@class='TariffCard_button__ONu3k']//button[@data-sentry-source-file])[1]"
     TARIFF_NAME = "xpath=//span[@class='SubmitFormContent_provider-name__R1UkL']"
     TARIFF_NAME2 = "xpath=//span[@class='SubmitFormContent_tariff-name__LCZiq']"
@@ -188,6 +194,7 @@ class PopUpFilltheAddress:
 class ProvidersBlock:
     PROVIDERS_BLOCK = "xpath=//div[@class='MainPage_provs-reviews-block__QNvrv']"
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[3]"
+    BUTTON_TARIFFS_ADDRESS_SECOND = "xpath=(//button[text()='Тарифы по вашему адресу'])[2]"
     ALL_PROVIDERS_BUTTON = "xpath=//button[text()='Все провайдеры по адресу']"
 
 
@@ -220,3 +227,10 @@ class TohomeMiddlePageSearch:
     GUS_STREET = "xpath=(//em[text()])[1]"
     SECOND_STREET = "xpath=(//em[text()])[2]"
     HOME_INPUT_UP = "xpath=(//input[@placeholder='Дом'])[3]"
+
+
+class PerelikovkaLocators:
+    OPEN_OTHER_STREETS_IN_KOLPINO = "xpath=//p[text()='Другие подключенные улицы в Колпино']"
+    KARL_MARKS_STREET = "xpath=//a[text()='ул Карла Маркса']"
+    MASHINOSTROI_STREET = "xpath=//a[text()='ул Машиностроителей']"
+    OKTIABRSKAYA_STREET = "xpath=//a[text()='ул Октябрьская']"

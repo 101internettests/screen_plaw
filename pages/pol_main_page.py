@@ -3,7 +3,7 @@ import random
 import allure
 import re
 from locators.screen_locators import ScreenLocators
-from locators.pol_locators import TariffsLocators, MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, ProvidersPage, ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock
+from locators.pol_locators import TariffsLocators, MainPageLocators, SelectRegion, AIPopUp, Header, Search, PopUpAfterSearch, ProvidersPage, ReviewWebSiteCat, ProvidersPage, PopUpFilltheAddress, ProvidersBlock, ReviewBlock, PerelikovkaLocators
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
 
@@ -185,7 +185,6 @@ class TariffsSection(BasePage):
 
         allure.attach("Не удалось нажать на кнопку 'Больше о тарифе' после 6 попыток", name="Неудача")
 
-
     @allure.title("Проверить модальное окно больше о тарифе")
     def check_modal_window_more_about_tariffs(self):
         with allure.step("Сделать скриншот"):
@@ -221,6 +220,20 @@ class TariffsSection(BasePage):
             time.sleep(6)
         with allure.step("Вставить номер"):
             self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+        with allure.step("Отправить заявку"):
+            self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
+
+    @allure.title("Заполнить заявку на третьем тарифе СкайНет")
+    def fill_the_application_with_address_third(self):
+        with allure.step("Кликнуть на кнопку с ценой на третьем тарифе"):
+            self.page.locator(ProvidersPage.THIRD_TARIFF_BUTTON).click()
+            time.sleep(6)
+        with allure.step("Вставить номер"):
+            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            time.sleep(5)
+            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("48")
+            time.sleep(3)
+            self.page.locator(TariffsLocators.STREET_TEN).click()
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
@@ -331,6 +344,34 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.FIRST_STREET).click()
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP_THIRD).click()
+            time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_radchenko(self):
+        with allure.step("Вставить улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP).fill("Радченко")
+            time.sleep(5)
+            self.page.locator(Search.FIRST_STREET).click()
+        with allure.step("Вставить дом 10"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("10")
+            self.page.locator(Search.FIRST_STREET).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_working(self):
+        with allure.step("Вставить Трудящихся улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_SECOND).fill("Трудящихся")
+            time.sleep(5)
+            self.page.locator(Search.FIRST_STREET).click()
+        with allure.step("Вставить дом 11/17"):
+            self.page.locator(Search.HOME_INPUT_SECOND).fill("11/17")
+            self.page.locator(Search.FIRST_STREET).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_SECOND).click()
             time.sleep(4)
 
     @allure.title("Проверить, что появился квиз")
@@ -501,6 +542,10 @@ class SearchFromMain(BasePage):
     def choose_twenty_seven_house(self):
         self.page.locator(Search.TWENTY_SEVEN_HOUSE_BUTTON).click()
 
+    @allure.title("Выбрать дом 54")
+    def choose_fifty_four_house(self):
+        self.page.locator(Search.FIFTY_FOUR_HOUSE_BUTTON).click()
+
 
 class ReviewCatPopup(BasePage):
     @allure.title("Открыт попап Как вам наш сайта?")
@@ -615,6 +660,10 @@ class BlockProviders(BasePage):
     def click_all_providers_button(self):
         self.page.locator(ProvidersBlock.ALL_PROVIDERS_BUTTON).click()
 
+    @allure.title("Открыть попап поиска по адресу с Дом ру (Второй тариф)")
+    def click_search_bilain(self):
+        self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS_SECOND).click()
+
     @allure.title("Открыть попап поиска по адресу с Дом ру (Третий тариф)")
     def click_search_domru(self):
         self.page.locator(ProvidersBlock.BUTTON_TARIFFS_ADDRESS).click()
@@ -635,3 +684,30 @@ class ReviewBlockPage(BasePage):
     @allure.title("Нажать на кнопку Еще отзывы")
     def click_button_more_reviews(self):
         self.page.locator(ReviewBlock.BUTTON_MORE_REVIEWS).click()
+
+    @allure.title("Проверить наличие блока отзывов на страницу улицы")
+    def check_review_block_street_page(self):
+        with allure.step("Проверить, что заголовок есть на странице"):
+            expect(self.page.locator(ReviewBlock.REVIEW_HEADER_STREET)).to_be_visible()
+        with allure.step("Проверить, что выведен один отзыв"):
+            review_num = self.page.locator(ReviewBlock.NUBER_OF_REVIEW).count()
+            if review_num == 1:
+                print("Локатор указывает ровно на один элемент.")
+            else:
+                print(f"Локатор указывает на {review_num} элементов.")
+class PerelinkovkaCheck(BasePage):
+    @allure.title("Нажать на стрелочку-раскрывашку в Другие подключенные улицы в Колпино")
+    def click_other_streets(self):
+        self.page.locator(PerelikovkaLocators.OPEN_OTHER_STREETS_IN_KOLPINO).click()
+
+    @allure.title("Нажать на улицу Карла Маркса")
+    def click_marks_street(self):
+        self.page.locator(PerelikovkaLocators.KARL_MARKS_STREET).click()
+
+    @allure.title("Нажать на улицу Машиностроителей")
+    def click_mashinostroy_street(self):
+        self.page.locator(PerelikovkaLocators.MASHINOSTROI_STREET).click()
+
+    @allure.title("Нажать на  улицу Октябрьская")
+    def click_oktiabiriskaya_street(self):
+        self.page.locator(PerelikovkaLocators.OKTIABRSKAYA_STREET).click()
