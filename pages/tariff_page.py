@@ -2,7 +2,7 @@ import time
 import allure
 import re
 import random
-from locators.mol_locators import ProvidersPage, Filters, TariffsInTariffPage, MiddlePageLocators
+from locators.mol_locators import ProvidersPage, Filters, TariffsInTariffPage, MiddlePageLocators, ProvidersBlock
 from locators.pol_locators import WindowLocators, TohomeMiddlePageSearch, PopUpFilltheAddress
 from playwright.sync_api import expect, Request, Page
 from pages.base_page import BasePage
@@ -72,6 +72,14 @@ class TariffPage(BasePage):
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
+    @allure.title("Выбрать тег Инернет и ТВ")
+    def choose_tag_internet_tv(self):
+        self.page.locator(Filters.TAG_INTERNET_TV).click()
+
+    @allure.title("Выбрать фильтр Цена до 700 руб.")
+    def choose_price_before_seven(self):
+        self.page.locator(Filters.PRICE_BEFORE_SEVEN).click()
+
     @allure.title("Выбрать фильтр Цена до 1000 руб.")
     def choose_price_before_oneth(self):
         self.page.locator(Filters.PRICE_BEFORE_ONETH).click()
@@ -104,6 +112,10 @@ class TariffPage(BasePage):
     def choose_filter_megafone_providers(self):
         self.page.locator(Filters.MEGAFONE_PROV).click()
 
+    @allure.title("Выбрать фильтр Скорость интернета 100-200 мб")
+    def choose_filter_speed_100(self):
+        self.page.locator(Filters.SPEED_INTERNET_100_200).click()
+
     @allure.title("Выбрать фильтр Скорость интернета 200-500 мб")
     def choose_filter_speed_200(self):
         self.page.locator(Filters.SPEED_INTERNET_200_500).click()
@@ -118,6 +130,31 @@ class TariffPage(BasePage):
             self.page.locator(Filters.SORTING_BUTTON).click()
         with allure.step("Выбрать По цене без учёта акций"):
             self.page.locator(Filters.BUTTON_PRISE_WITHOUT_SALE).click()
+
+    @allure.title("Нажать на кнопку Сортировка")
+    def use_sorting_button_speed(self):
+        with allure.step("Открыть окно сортировки"):
+            self.page.locator(Filters.SORTING_BUTTON).click()
+        with allure.step("Выбрать По скорости"):
+            self.page.locator(Filters.BUTTON_SPEED_BUTTON).click()
+
+    @allure.title("Нажать на Детали тарифа на первом тарифе")
+    def click_tariff_details_first_tariff(self):
+        with allure.step("Нажать на кнопку Детали тарифа"):
+            self.page.locator(Filters.TARIFF_DETAILS_BUTTON).click()
+        with allure.step("Нажать на кнопку Больше о тарифе"):
+            self.page.locator(Filters.MORE_ABOUT_TARIFF_BUTTON).click()
+        with allure.step("Сделать скриншот"):
+            screenshot = self.page.locator(ProvidersBlock.PLACE_FOR_SCREEN).screenshot()
+            allure.attach(screenshot, name="Providers block  Screenshot",
+                          attachment_type=allure.attachment_type.PNG)
+        with allure.step("Нажать на кнопку Закрыть детали"):
+            self.page.locator(Filters.CLOSE_DETAILS_BUTTON).click()
+
+    @allure.title("Нажать на Детали тарифа на третьем тарифе")
+    def click_tariff_details_four_tariff(self):
+        with allure.step("Нажать на кнопку Детали тарифа"):
+            self.page.locator(Filters.TARIFF_DETAILS_BUTTON_FOUR).click()
 
     @allure.title("Проверить, что фильтры применились")
     def check_accepted_filters(self):
@@ -164,6 +201,14 @@ class TariffPage(BasePage):
             raise Exception(f"Элементы с локатором не найдены")
         last_element = elements[-1]
         last_element.click()
+
+    @allure.title("Кликнуть на кнопку на первом тарифе")
+    def click_on_first_prov(self):
+        self.page.locator(Filters.FIRST_LOCATOR).click()
+
+    @allure.title("Кликнуть на кнопку на четвертом тарифе")
+    def click_on_four_prov(self):
+        self.page.locator(Filters.FOUR_LOCATOR).click()
 
     @allure.title("Отправить заявку в квиз")
     def quiz_send_appl(self):

@@ -322,6 +322,20 @@ class SearchFromMain(BasePage):
             time.sleep(4)
 
     @allure.title("Сделать поиск по заданному адресу")
+    def search_babyshkina(self):
+        with allure.step("Вставить Ивана Бабушкина улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP).fill("Ивана Бабушкина")
+            time.sleep(5)
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Вставить дом 3"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("3")
+            self.page.locator(Search.STREET_FIRST).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
     def search_gagarina(self):
         with allure.step("Вставить Гагарина улицу"):
             time.sleep(5)
@@ -334,6 +348,7 @@ class SearchFromMain(BasePage):
         with allure.step("Нажать на кнопку Найти тарифы"):
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP_SECOND).dblclick()
             time.sleep(3)
+
 
     @allure.title("Сделать поиск по адресу только с улицей 9")
     def search_house_nine(self):

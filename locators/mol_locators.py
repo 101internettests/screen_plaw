@@ -193,6 +193,7 @@ class ProvidersBlock:
     BUTTON_TARIFFS_ADDRESS = "xpath=(//button[text()='Тарифы по вашему адресу'])[1]"
     BUTTON_TARIFFS_ADDRESS_SECOND = "xpath=(//button[text()='Тарифы по вашему адресу'])[2]"
     ALL_PROVIDERS_BUTTON = "xpath=//button[text()='Все провайдеры по адресу']"
+    PLACE_FOR_SCREEN = "xpath=//div[@data-sentry-element='DialogPanel']"
 
 
 class ReviewPage:
@@ -212,8 +213,10 @@ class ReviewPage:
 
 
 class Filters:
+    PRICE_BEFORE_SEVEN = "xpath=//button[text()='до 700 ₽/мес']"
     PRICE_BEFORE_ONETH = "xpath=//button[text()='до 1000 ₽/мес']"
     CHOOSE_ALL_PROVIDERS = "xpath=//button[text()='Выбрать всё']"
+    SPEED_INTERNET_100_200 = "xpath=//button[text()='100-200 Мб/с']"
     SPEED_INTERNET_200_500 = "xpath=//button[text()='200-500 Мб/с']"
     BUTTON_SHOW_ALL_TARIFFS = "xpath=//button[@data-sentry-source-file='TariffFilter.tsx']"
     CHECK_FILTERS = "xpath=(//div[@class='HouseNZLPage_quick-filters-container__Okssh'])[1]"
@@ -225,14 +228,22 @@ class Filters:
     MEGAFONE_PROV = "xpath=//span[text()='МегаФон']"
     SORTING_BUTTON = "xpath=(//button[text()='Сортировка'])[2]"
     BUTTON_PRISE_WITHOUT_SALE = "xpath=//span[text()='По цене без учёта акций']"
+    BUTTON_SPEED_BUTTON = "xpath=//span[text()='По скорости']"
     BUTTON_SHOW_MORE = "xpath=//button[text()='Показать ещё 10 тарифов из 28']"
     BUTTON_SHOW_MORE_MOL = "xpath=//button[text()='Показать ещё 10 тарифов из 22']"
     BUTTON_SHOW_MORE_MOL2 = "xpath=//button[text()='Показать ещё 2 тарифа из 22']"
     BUTTON_SHOW_MORE_EIGHT = "xpath=//button[text()='Показать ещё 8 тарифов из 28']"
     BUTTON_SHOW_TEN_FROM_THIRTEEN = "xpath=//button[text()='Показать ещё 10 тарифов из 30']"
     LAST_LOCATOR = "xpath=(//div[@itemprop='offers'])"
+    FIRST_LOCATOR = "xpath=(//div[@itemprop='offers'])[1]"
+    FOUR_LOCATOR = "xpath=(//div[@itemprop='offers'])[4]"
     QUIZ_INPUT = "xpath=//input[@id='ph_input']"
     BUTTON_SHOW_RESULT = "xpath=//button[text()='Отправить заявку']"
+    TARIFF_DETAILS_BUTTON = "xpath=(//button[text()='Детали тарифа'])[1]"
+    TARIFF_DETAILS_BUTTON_FOUR = "xpath=(//button[text()='Детали тарифа'])[4]"
+    MORE_ABOUT_TARIFF_BUTTON = "xpath=(//button[text()='Больше о тарифе'])[1]"
+    CLOSE_DETAILS_BUTTON = "xpath=(//button[text()='Закрыть детали'])[1]"
+    TAG_INTERNET_TV = "xpath=//span[text()='Интернет+ТВ']"
 
 
 class TariffsInTariffPage:
