@@ -13,7 +13,7 @@ from pages.sat_page import SatPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
-class TestMolMainRegionPage:
+class TestPolMainRegionPage:
     @allure.title("Заявка через компонент поиска по адресу (квиз)")
     def test_application_search_for_address_quiz(self):
         full_url = "https://piter-online.net/vasileostrovskii-id1193"
