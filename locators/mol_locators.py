@@ -162,7 +162,7 @@ class ProvidersPage:
     TAG_HOME_INTERNET = "xpath=//span[text()='Домашний интернет']"
     FIRST_BUTTON = "xpath=(//div[@itemprop='offers'])[1]"
     FIRST_BUTTON_TARIFF = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[1]"
-    FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@class='TariffCard_button__ONu3k']//button[@data-sentry-source-file])[1]"
+    FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@itemprop='offers'])[1]"
     SECOND_BUTTON_WITH_PRICE = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[3]"
     TARIFF_NAME = "xpath=//span[@class='SubmitFormContent_provider-name__R1UkL']"
     TARIFF_NAME2 = "xpath=//span[@class='SubmitFormContent_tariff-name__LCZiq']"

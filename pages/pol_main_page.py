@@ -141,9 +141,9 @@ class TariffsSection(BasePage):
         with allure.step("Проверить, что заголовки есть в деталях"):
             expect(self.page.locator(TariffsLocators.CONNECTION_INFO)).to_be_visible()
             expect(self.page.locator(TariffsLocators.ROUTER_INF0)).to_be_visible()
-        with allure.step("Сделать скриншот"):
-            screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
-            allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
+        # with allure.step("Сделать скриншот"):
+        #     screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
+        #     allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
 
     @allure.title("Нажать на кнопку Больше о тарифе на первом тарифе")
     def click_on_more_about_tariff(self):
@@ -226,10 +226,10 @@ class TariffsSection(BasePage):
     @allure.title("Заполнить заявку на третьем тарифе СкайНет")
     def fill_the_application_with_address_third(self):
         with allure.step("Кликнуть на кнопку с ценой на третьем тарифе"):
-            self.page.locator(ProvidersPage.THIRD_TARIFF_BUTTON).click()
+            self.page.locator(ProvidersPage.THIRD_BUTTON).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.PHONE_INPUT_SECOND).type("1111111111")
             time.sleep(5)
             self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("48")
             time.sleep(3)

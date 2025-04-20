@@ -162,7 +162,7 @@ class TariffPage(BasePage):
 
     @allure.title("Клинкуть по тарифу со скоростью 500 мб\с")
     def click_on_tariff_with_500(self):
-        self.page.locator(TariffsInTariffPage.TARIFF_WITH_SPEED_500).click()
+        self.page.locator(Filters.FIRST_LOCATOR).click()
 
     @allure.title("Клинкуть по тарифу со скоростью 200 мб\с")
     def click_on_tariff_with_200(self):

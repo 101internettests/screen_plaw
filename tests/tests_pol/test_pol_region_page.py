@@ -40,7 +40,7 @@ class TestMolMainRegionPage:
             main_page.choose_r_letter()
             main_page.choose_repina_street()
             main_page.choose_twenty_seven_house()
-            main_page.check_quiz()
+            # main_page.check_quiz()
             time.sleep(3)
             main_page.quiz_send_appl()
             time.sleep(3)

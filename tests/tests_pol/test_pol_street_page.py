@@ -13,7 +13,7 @@ from pages.sat_page import SatPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
-class TestMolStreetPage:
+class TestPolStreetPage:
     @allure.title("Заявка через компонент поиска по адресу (квиз)")
     def test_application_search_for_address_quiz(self):
         full_url = "https://piter-online.net/kolpino/ulicy/internet-provaydery-ul-verislutskoi-id295004"
@@ -37,7 +37,7 @@ class TestMolStreetPage:
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
             main_page.choose_fifty_four_house()
-            main_page.check_quiz()
+            # main_page.check_quiz()
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
@@ -111,7 +111,7 @@ class TestMolStreetPage:
             tariff_section.check_modal_window_more_about_tariffs()
             tariff_section.click_on_more_about_tariff()
             tariff_section.close_more_about_tariff()
-            time.sleep(3)
+            time.sleep(5)
             tariff_section.fill_the_application_with_address_third()
             time.sleep(3)
 

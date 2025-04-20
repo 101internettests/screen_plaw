@@ -70,7 +70,7 @@ class TohomePolPage(BasePage):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.PHONE_INPUT_SECOND).type("1111111111")
             self.page.locator(TohomeMiddlePageSearch.INPUT_HOME_ADDRESS).fill("Весенняя")
             time.sleep(3)
             self.page.locator(TohomeMiddlePageSearch.SECOND_STREET).click()

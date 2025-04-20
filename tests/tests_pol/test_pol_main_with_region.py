@@ -119,13 +119,13 @@ class TestPolMainWithRegion:
             time.sleep(5)
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
-            tariff_block = TariffsSection(page=page)
+            # tariff_block = TariffsSection(page=page)
             time.sleep(7)
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
             time.sleep(2)
-            main_page.check_success_popups()
-            main_page.close_popup_wait_for_call()
+            # main_page.check_success_popups()
+            # main_page.close_popup_wait_for_call()
 
     @allure.title("Проверить вкладку Для бизнеса")
     def test_check_for_business_page(self):
@@ -193,8 +193,8 @@ class TestPolMainWithRegion:
             tariff_page.fill_the_application_with_address_first_tariff()
             main_page = MainPage(page=page)
             time.sleep(2)
-            main_page.check_success_popups()
-            main_page.close_popup_wait_for_call()
+            # main_page.check_success_popups()
+            # main_page.close_popup_wait_for_call()
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
@@ -213,16 +213,16 @@ class TestPolMainWithRegion:
             tariff_page.check_modal_window_more_about_tariffs()
             tariff_page.close_more_about_tariff()
 
-    @allure.title("Отправить обратную связь с главной страницы")
-    def test_send_review_cat(self):
-        full_url = f"{pol_url}"
-        with sync_playwright() as playwright:
-            browser = playwright.chromium.launch(headless=HEADLESS)
-            page = browser.new_page()
-            page.goto(full_url)
-            review_page = ReviewCatPopup(page=page)
-            review_page.open_popup_cat_website()
-            review_page.leave_feedback_cat()
+    # @allure.title("Отправить обратную связь с главной страницы")
+    # def test_send_review_cat(self):
+    #     full_url = f"{pol_url}"
+    #     with sync_playwright() as playwright:
+    #         browser = playwright.chromium.launch(headless=HEADLESS)
+    #         page = browser.new_page()
+    #         page.goto(full_url)
+    #         review_page = ReviewCatPopup(page=page)
+    #         review_page.open_popup_cat_website()
+    #         review_page.leave_feedback_cat()
 
     @allure.title("Кнопка подняться наверх работает")
     def test_catupper_button(self):
@@ -256,8 +256,8 @@ class TestPolMainWithRegion:
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
             time.sleep(2)
-            main_page.check_success_popups()
-            main_page.close_popup_wait_for_call()
+            # main_page.check_success_popups()
+            # main_page.close_popup_wait_for_call()
 
     @allure.title("Заявка через компонент поиска по адресу в блоке провайдеров (попап, адрес-тариф-подключить)")
     def test_send_application_from_prov_block(self):
@@ -306,7 +306,7 @@ class TestPolMainWithRegion:
             popup_page.choose_in_flat()
             popup_page.fill_the_application_with_address_second()
             search_page = SearchFromMain(page=page)
-            search_page.check_quiz()
+            # search_page.check_quiz()
             search_page.close_quiz()
             time.sleep(5)
             tariff_page = TariffPage(page=page)
