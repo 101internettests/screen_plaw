@@ -107,7 +107,7 @@ class TohomeMol(BasePage):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.PHONE_INPUT_S).type("1111111111")
             self.page.locator(TohomeMiddlePageSearch.INPUT_HOME_ADDRESS).fill("Текстильщиков")
             time.sleep(3)
             self.page.locator(TariffsLocators.ENG_STREET).click()

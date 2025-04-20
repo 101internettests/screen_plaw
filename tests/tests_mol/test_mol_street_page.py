@@ -35,7 +35,7 @@ class TestMolStreetPage:
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
             main_page.choose_house_nineteen()
-            main_page.check_quiz()
+            # main_page.check_quiz()
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()

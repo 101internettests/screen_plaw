@@ -137,9 +137,9 @@ class TariffsSection(BasePage):
         with allure.step("Проверить, что заголовки есть в деталях"):
             expect(self.page.locator(TariffsLocators.CONNECTION_INFO)).to_be_visible()
             expect(self.page.locator(TariffsLocators.ROUTER_INF0)).to_be_visible()
-        with allure.step("Сделать скриншот"):
-            screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
-            allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
+        # with allure.step("Сделать скриншот"):
+        #     screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
+        #     allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
 
     @allure.title("Нажать на кнопку 'Больше о тарифе' на первом тарифе")
     def click_on_more_about_tariff(self):
@@ -199,7 +199,7 @@ class TariffsSection(BasePage):
             # time.sleep(3)
             self.page.locator(TariffsLocators.GUS_STREET).click()
             time.sleep(5)
-            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("1")
+            self.page.locator(TariffsLocators.HOME_IN_TARIFF_SECOND).fill("1")
             time.sleep(3)
             self.page.locator(TariffsLocators.STREET_FIRST).click()
         with allure.step("Отправить заявку"):
@@ -227,7 +227,7 @@ class TariffsSection(BasePage):
     @allure.title("Заполнить заявку на первом тарифе только с домом 19")
     def fill_the_application_with_address_home(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
-            self.page.locator(ProvidersPage.FIRST_BUTTON_TARIFF).click()
+            self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
             self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
@@ -246,7 +246,7 @@ class TariffsSection(BasePage):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.SECOND_INPUT).type("1111111111")
         with allure.step("Отправить заявку"):
             self.page.locator(ProvidersPage.SEND_APPLICATION_BUTTON).click()
 
@@ -526,7 +526,7 @@ class SearchFromMain(BasePage):
     @allure.title("Выбрать Аэропорт в хлебных крошках")
     def choose_aero_breadcrumps(self):
         with allure.step("Выбрать район"):
-            self.page.locator(Search.AIRPORT_BREADCRUMPS).click()
+            self.page.locator(Search.AIRPORT_BREADCRUMPS_SECOND).click()
 
     @allure.title("Выбрать улицу Брусилова ул")
     def choose_brusilov_street(self):
@@ -618,7 +618,7 @@ class OpenPopUpAddress(BasePage):
             # time.sleep(3)
             self.page.locator(TariffsLocators.GUS_STREET).click()
             time.sleep(5)
-            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("1")
+            self.page.locator(TariffsLocators.HOME_IN_TARIFF_SECOND).fill("1")
             time.sleep(3)
             self.page.locator(TariffsLocators.STREET_FIRST).click()
         with allure.step("Отправить заявку"):
@@ -631,7 +631,7 @@ class OpenPopUpAddress(BasePage):
             # time.sleep(3)
             self.page.locator(TariffsLocators.PURPLE_STREET).click()
             time.sleep(5)
-            self.page.locator(TariffsLocators.HOME_INPUT_UP).fill("40")
+            self.page.locator(TariffsLocators.HOME_IN_TARIFF_SECOND).fill("40")
             time.sleep(3)
             self.page.locator(TariffsLocators.STREET_SECOND).click()
         with allure.step("Отправить заявку"):

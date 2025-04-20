@@ -29,6 +29,7 @@ class TariffsLocators:
     MORE_ABOUT_TARIFF_BUTTON = "xpath=//button[text()='Больше о тарифе']"
     POPUP_MORE_ABOUT_TARIFF = "xpath=//button[text()='Закрыть детали']"
     PHONE_INPUT = "xpath=//input[@id='ph_input']"
+    PHONE_INPUT_S = "xpath=//input[@id='phone_input']"
     PHONE_INPUT_SECOND = "xpath=//input[@id='phone_input']"
     INPUT_HOME_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[2]"
     GUS_STREET = "xpath=(//em[text()])[1]"

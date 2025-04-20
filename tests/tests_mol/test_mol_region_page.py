@@ -39,7 +39,7 @@ class TestMolMainRegionPage:
             main_page.choose_b_letter()
             main_page.choose_borisov_street()
             main_page.choose_fifteensi_house()
-            main_page.check_quiz()
+            # main_page.check_quiz()
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()

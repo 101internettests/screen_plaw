@@ -111,7 +111,7 @@ class TestMolSearch:
             time.sleep(4)
             tariff_page.quiz_send_appl()
             time.sleep(4)
-            search_page.close_quiz()
+            # search_page.close_quiz()
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
