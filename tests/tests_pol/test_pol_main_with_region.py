@@ -12,7 +12,7 @@ from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
-class TestPolMainWithRegion:
+class TestPolWithRegion:
     @allure.title("Выбрать регион из хедера")
     def test_choose_region_from_header(self):
         full_url = f"{pol_url}"

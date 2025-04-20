@@ -14,7 +14,7 @@ from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
-class TestPolMainWithRegion:
+class TestPolCoverageMap:
     @allure.title("Выбор района из блока перелинковки")
     def test_choose_region_perelinkovka(self):
         full_url = f"{pol_url}"
