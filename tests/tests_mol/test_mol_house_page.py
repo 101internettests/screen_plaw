@@ -31,8 +31,6 @@ class TestMolHousePage:
             tariff_page.accept_button_show_filters()
             tariff_page.use_sorting_button_speed()
             time.sleep(4)
-            tariff_page.show_more10_button()
-            tariff_page.show_more2_button()
             tariff_page.click_tariff_details_first_tariff()
             tariff_page.click_on_first_prov()
             time.sleep(3)
