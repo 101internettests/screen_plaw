@@ -1,14 +1,11 @@
 import os
 import time
-
 import allure
 from playwright.sync_api import sync_playwright
 from pages.mol_pages.map_coverage_page import MapCoveragePage
-from pages.mol_main_page import SearchFromMain, TariffsSection, OpenPopUpAddress
+from pages.mol_main_page import SearchFromMain, OpenPopUpAddress
 from pages.mol_main_page import BlockProviders
 from pages.orders_tohome_page import TohomePage
-from pages.select_region_page import SelectRegionPage
-from pages.tariff_page import WindowPopUp
 from pages.tariff_page import TariffPage
 from config import mol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
@@ -67,14 +64,11 @@ class TestMolMainWithRegion:
             tariff_page.choose_filter_megafone_providers()
             tariff_page.use_sorting_button()
             tariff_page.accept_button_show_filters()
-            # tariff_page.show_more10_button()
-            # tariff_page.show_more2_button()
             time.sleep(4)
             tariff_page.click_on_lat_prov()
             time.sleep(4)
             tariff_page.quiz_send_appl()
-            time.sleep(4)
-            search_page.close_quiz()
+            time.sleep(5)
 
     @allure.title("Переход по разным районам и улицам в перелинковке + дом (без заявок)")
     def test_perelinkovka_without_application(self):

@@ -1,15 +1,11 @@
 import os
 import time
-
 import allure
 from playwright.sync_api import sync_playwright
 from pages.orders_tohome_page import TohomePage
-from pages.mol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection, ReviewCatPopup, OpenPopUpAddress
-from pages.mol_main_page import BlockProviders, ReviewBlockPage
-from pages.review_page import ReviewPageFeedback
+from pages.mol_main_page import MainPage, SearchFromMain, TariffsSection
+from pages.mol_main_page import BlockProviders
 from pages.tariff_page import WindowPopUp, TariffPage, MiddlePage
-from pages.orders_office_page import OfficePage
-from pages.sat_page import SatPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
@@ -37,9 +33,9 @@ class TestMolMainRegionPage:
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
             main_page.choose_b_letter()
+            time.sleep(3)
             main_page.choose_borisov_street()
             main_page.choose_fifteensi_house()
-            # main_page.check_quiz()
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
@@ -64,6 +60,7 @@ class TestMolMainRegionPage:
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
             main_page.choose_numbers_in_streets()
+            time.sleep(3)
             main_page.press_button_show_more()
             main_page_screen = MainPage(page=page)
             main_page_screen.make_screenshot()
