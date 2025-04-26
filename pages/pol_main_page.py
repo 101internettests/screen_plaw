@@ -201,7 +201,7 @@ class TariffsSection(BasePage):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.PHONE_INPUT_S).type("1111111111")
         with allure.step("Заполнить адрес"):
             self.page.locator(TariffsLocators.INPUT_HOME_ADDRESS).fill("Энгельса")
             time.sleep(3)
@@ -247,7 +247,7 @@ class TariffsSection(BasePage):
             self.page.locator(ProvidersPage.FIRST_BUTTON_WITH_PRICE).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
-            self.page.locator(TariffsLocators.PHONE_INPUT).type("1111111111")
+            self.page.locator(TariffsLocators.PHONE_INPUT_S).type("1111111111")
             time.sleep(3)
         with allure.step("Заполнить адрес"):
             self.page.locator(TariffsLocators.INPUT_HOME_IN_TARIFF_ADDRESS).fill("Гагарина")
@@ -647,10 +647,10 @@ class BlockProviders(BasePage):
     def check_providers_block(self):
         with allure.step("Проверить наличие блока"):
             expect(self.page.locator(ProvidersBlock.PROVIDERS_BLOCK)).to_be_visible()
-        with allure.step("Сделать скриншот"):
-            screenshot = self.page.locator(ProvidersBlock.PROVIDERS_BLOCK).screenshot()
-            allure.attach(screenshot, name="Providers block  Screenshot",
-                          attachment_type=allure.attachment_type.PNG)
+        # with allure.step("Сделать скриншот"):
+        #     screenshot = self.page.locator(ProvidersBlock.PROVIDERS_BLOCK).screenshot()
+        #     allure.attach(screenshot, name="Providers block  Screenshot",
+        #                   attachment_type=allure.attachment_type.PNG)
 
     @allure.title("Открыть попап поиска по адресу с СатНет (третий тариф)")
     def click_search_sat(self):

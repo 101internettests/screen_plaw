@@ -55,7 +55,7 @@ class TariffPage(BasePage):
     @allure.title("Заполнить заявку на первом тарифе")
     def fill_the_application_with_address_third(self):
         with allure.step("Кликнуть на кнопку с ценой на первом тарифе"):
-            self.page.locator(ProvidersPage.FIRST_BUTTON_TARIFF).click()
+            self.page.locator(ProvidersPage.FIRST_BUTTON).click()
             time.sleep(6)
         with allure.step("Вставить номер"):
             self.page.locator(TariffsInTariffPage.PHONE_NUMBER_INPUT).type("1111111111")

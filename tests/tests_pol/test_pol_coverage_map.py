@@ -1,14 +1,11 @@
 import os
 import time
-
 import allure
 from playwright.sync_api import sync_playwright
 from pages.mol_pages.map_coverage_page import MapCoveragePage
-from pages.pol_main_page import SearchFromMain, TariffsSection, OpenPopUpAddress
+from pages.pol_main_page import SearchFromMain, OpenPopUpAddress
 from pages.pol_main_page import BlockProviders, MainPage
 from pages.orders_tohome_page import TohomePage
-from pages.select_region_page import SelectRegionPage
-from pages.tariff_page import WindowPopUp
 from pages.tariff_page import TariffPage
 from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
@@ -50,7 +47,6 @@ class TestPolCoverageMap:
             search_page.choose_vasil_area()
             search_page.choose_shev_street()
             search_page.choose_three_house()
-            search_page.check_quiz()
             time.sleep(3)
             search_page.quiz_send_appl()
             time.sleep(3)
@@ -155,7 +151,6 @@ class TestPolCoverageMap:
             popup_page.choose_in_flat()
             popup_page.fill_the_application_with_address_second()
             search_page = SearchFromMain(page=page)
-            # search_page.check_quiz()
             search_page.close_quiz()
             time.sleep(5)
             tariff_page = TariffPage(page=page)

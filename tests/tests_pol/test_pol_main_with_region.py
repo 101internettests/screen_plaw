@@ -57,9 +57,7 @@ class TestPolWithRegion:
             main_page = MainPage(page=page)
             main_page.open_popup_wait_for_call()
             main_page.send_popup_wait_for_call()
-            time.sleep(2)
-            # main_page.check_success_popups()
-            main_page.close_popup_wait_for_call()
+            time.sleep(5)
 
     @allure.title("Отправить заявку из попапа жду звонка из хедера")
     def test_send_popup_waitforcall_footer(self):
@@ -193,8 +191,6 @@ class TestPolWithRegion:
             tariff_page.fill_the_application_with_address_first_tariff()
             main_page = MainPage(page=page)
             time.sleep(2)
-            # main_page.check_success_popups()
-            # main_page.close_popup_wait_for_call()
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
