@@ -8,6 +8,7 @@ from pages.orders_office_page import OfficePage
 from pages.review_page import ReviewPageFeedback
 from pages.tariff_page import TariffPage
 from pages.sat_page import SatPage
+from pages.nalichie_prov_po_adresy_page import UnsuccessfulPage
 from config import pol_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
@@ -57,6 +58,7 @@ class TestPolWithRegion:
             main_page = MainPage(page=page)
             main_page.open_popup_wait_for_call()
             main_page.send_popup_wait_for_call()
+            main_page.open_main_website()
             time.sleep(5)
 
     @allure.title("Отправить заявку из попапа жду звонка из хедера")
@@ -72,6 +74,8 @@ class TestPolWithRegion:
             main_page.send_popup_wait_for_call()
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            main_page.open_main_website()
+            time.sleep(5)
 
     @allure.title("Проверить кото-баннер аи")
     def test_check_catbanner_ai(self):
@@ -117,13 +121,11 @@ class TestPolWithRegion:
             time.sleep(5)
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
-            # tariff_block = TariffsSection(page=page)
             time.sleep(7)
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
+            main_page.open_main_website()
             time.sleep(2)
-            # main_page.check_success_popups()
-            # main_page.close_popup_wait_for_call()
 
     @allure.title("Проверить вкладку Для бизнеса")
     def test_check_for_business_page(self):
@@ -190,6 +192,7 @@ class TestPolWithRegion:
             tariff_page.check_tariffs_section()
             tariff_page.fill_the_application_with_address_first_tariff()
             main_page = MainPage(page=page)
+            main_page.open_main_website()
             time.sleep(2)
 
     @allure.title("Посмотреть детали тарифа")
@@ -251,7 +254,8 @@ class TestPolWithRegion:
             time.sleep(3)
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
-            time.sleep(2)
+            main_page.open_main_website()
+            time.sleep(5)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -318,6 +322,8 @@ class TestPolWithRegion:
             tariff_page.send_popup_wait_for_call()
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            main_page.open_main_website()
+            time.sleep(5)
 
     @allure.title("Просмотр всех отзывов по региону")
     def test_check_all_reviews_in_region(self):
@@ -363,3 +369,39 @@ class TestPolWithRegion:
             # with allure.step("Проверить, что URL соответствует ожидаемому"):
             #     current_url = page.url
             #     assert current_url == expected_second, f"Ожидался URL {expected_url}, но получен {current_url}"
+
+    @allure.title("Отправка обратной связи О провайдере")
+    def test_send_feedback_about_prov(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            tariff_page = TariffsSection(page=page)
+            tariff_page.click_on_tariff_details()
+            tariff_page.click_button_about_prov()
+            time.sleep(4)
+            tariff_page.choose_all_variants()
+            tariff_page.click_button_answer()
+            main_page = MainPage(page=page)
+            main_page.close_popup_wait_for_call()
+
+    @allure.title("Заявка через компонент поиска по адресу - неудачный поиск (квиз)")
+    def test_send_feedback_about_prov(self):
+        full_url = f"{pol_url}"
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=HEADLESS)
+            page = browser.new_page()
+            page.goto(full_url)
+            search_page = SearchFromMain(page=page)
+            search_page.choose_type_search_flat()
+            search_page.search_gorokhovaya222()
+            time.sleep(4)
+            failed_page = UnsuccessfulPage(page=page)
+            failed_page.click_button_repeat_search()
+            search_page.search_house34()
+            time.sleep(6)
+            search_page = SearchFromMain(page=page)
+            search_page.quiz_send_appl()
+            main_page = MainPage(page=page)
+            main_page.close_popup_wait_for_call()

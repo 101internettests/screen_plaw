@@ -87,7 +87,6 @@ class TohomeMol(BasePage):
     def check_header_mol(self):
         expect(self.page.locator(TohomeMiddlePageSearch.VISIBLE_TEXT_MSK)).to_be_visible()
 
-
     @allure.title("Заполнить заявку на первом тарифе")
     def fill_the_application_with_address_gag(self):
         with allure.step("Заполнить адрес"):

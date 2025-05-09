@@ -16,6 +16,7 @@ class MainPageLocators:
     CLOSE_POPUP_BUTTON = "xpath=//div[@aria-label]//button[@aria-label='Закрыть']"
     HEADER_PAGE_CATBUTTON = "xpath=//p[text()='Вы долистали до конца!']"
     BUTTON_GO_UP = "xpath=//button[text()='Подняться наверх ']"
+    LOGO_MAIN_PAGE = "xpath=(//a[@aria-label='Главная'])[1]"
 
 
 class TariffsLocators:
@@ -42,6 +43,9 @@ class TariffsLocators:
     INPUT_HOME_IN_TARIFF_ADDRESS = "xpath=(//input[@placeholder='Введите улицу'])[3]"
     HOME_IN_TARIFF_INPUT = "xpath=(//input[@placeholder='Дом'])[3]"
     STREET_TEN = "xpath=(//div[@aria-selected='false'])[1]"
+    CHECK_BUTTON_ABOUT_PROV = "xpath=//button[text()='О провайдере']"
+    CHECKBOX_WINDOW_PROV = "xpath=//div[@class='Checkbox_checkbox-control__Ll3m0']"
+    BUTTON_ANSWER = "xpath=//button[text()='Ответить']"
 
 
 class SelectRegion:
@@ -81,6 +85,7 @@ class Search:
     HOME_INPUT_SECOND = "xpath=(//input[@placeholder='Дом'])[2]"
     HOME_INPUT_UP_THIRD = "xpath=(//input[@placeholder='Дом'])[3]"
     GOROXOWAYA_STREET = "xpath=//em[text()]"
+    FIRST_HOUSE = "xpath=//div[@data-sentry-element='HeadlessComboboxOptions']"
     FIRST_STREET = "xpath=(//em[text()])[1]"
     SECOND_STREET = "xpath=(//em[text()])[2]"
     STREET_TWENTYTWO = "xpath=//em[text()='22']"

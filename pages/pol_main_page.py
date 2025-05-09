@@ -9,6 +9,10 @@ from pages.base_page import BasePage
 
 
 class MainPage(BasePage):
+    @allure.title("Открыть главную страницу")
+    def open_main_website(self):
+        self.page.locator(MainPageLocators.LOGO_MAIN_PAGE).click()
+
     @allure.title("Открыть окошко Селект региона")
     def open_select_region_window(self):
         with allure.step("Проверить, что кнопка есть на странице и в ней есть текст"):
@@ -144,6 +148,20 @@ class TariffsSection(BasePage):
         # with allure.step("Сделать скриншот"):
         #     screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
         #     allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
+
+    @allure.title("Нажать на кнопку О провайдере")
+    def click_button_about_prov(self):
+        self.page.locator(TariffsLocators.CHECK_BUTTON_ABOUT_PROV).click()
+
+    @allure.title("Выбрать все варианты в открытом окне")
+    def choose_all_variants(self):
+        checkboxes = self.page.locator("div.Checkbox_checkbox-control__Ll3m0")
+        for i in range(checkboxes.count()):
+            checkboxes.nth(i).click()
+
+    @allure.title("Нажать на кнопку ответить")
+    def click_button_answer(self):
+        self.page.locator(TariffsLocators.BUTTON_ANSWER).click()
 
     @allure.title("Нажать на кнопку Больше о тарифе на первом тарифе")
     def click_on_more_about_tariff(self):
@@ -329,6 +347,32 @@ class SearchFromMain(BasePage):
             self.page.locator(Search.HOME_INPUT_UP).fill("22")
             self.page.locator(Search.STREET_TWENTYTWO).click()
         with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_gorokhovaya222(self):
+        with allure.step("Вставить Гороховую улицу"):
+            time.sleep(5)
+            self.page.locator(Search.STREET_INPUT_UP).fill("Горохов")
+            time.sleep(5)
+            self.page.locator(Search.GOROXOWAYA_STREET).click()
+        with allure.step("Вставить дом 222"):
+            self.page.locator(Search.HOME_INPUT_UP).fill("222")
+            self.page.locator(Search.FIRST_HOUSE).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
+            time.sleep(4)
+
+    @allure.title("Сделать поиск по заданному адресу")
+    def search_house34(self):
+        with allure.step("Вставить дом 34"):
+            self.page.locator(Search.HOME_INPUT_UP).clear()
+            time.sleep(4)
+            self.page.locator(Search.HOME_INPUT_UP).fill("34")
+            self.page.locator(Search.FIRST_HOUSE).click()
+        with allure.step("Нажать на кнопку Найти тарифы"):
+            time.sleep(4)
             self.page.locator(Search.BUTTON_FIND_TARIFFS_UP).click()
             time.sleep(4)
 
