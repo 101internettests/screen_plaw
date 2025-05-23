@@ -1,10 +1,10 @@
 class MainPageLocators:
-    RegionConfirmPopup = "xpath=//div[@data-sentry-element='RegionConfirmPopup']"
+    RegionConfirmPopup = "xpath=//div[@data-sentry-element='RegionSelector']"
     # RegionConfirnPopupText = "xpath=//div[@data-sentry-element='RegionConfirmPopup']//a//span"
     HEADER = "xpath=//h1"
-    PIN_SEARCH_CITY = "xpath=//div[@data-sentry-component='SearchBanner']//a[@href='/select-region'][text()]"
+    PIN_SEARCH_CITY = "xpath=(//a[@href='/select-region'][text()])[1]"
     SEO_HEADER_CITY = "xpath=//div[@class='SeoBlock_header-wrapper__5OALy']//h2"
-    FUTER_CITY = "xpath=//div[@class='BottomFooterPart_desktop-bottom-part-1__9fIIN']//span[@data-sentry-source-file='FooterRegionName.tsx']"
+    FUTER_CITY = "xpath=(//span[@data-sentry-source-file='FooterRegionName.tsx'][text()])[2]"
     SERTOLOVO_HEADER = "xpath=//h1[text()='Подключить домашний интернет в г. Сертолово (Ленинградская область)']"
     WAIT_FOR_CALL_BUTTON_OPEN = "xpath=(//button[@aria-label='Бесплатная консультация'])[1]"
     WAIT_FOR_CALL_BUTTON_OPEN_FOOTER = "xpath=(//button[@aria-label='Бесплатная консультация'])[3]"
