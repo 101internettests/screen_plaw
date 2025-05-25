@@ -352,6 +352,7 @@ class TestMolMainWithRegion:
             review_feedback = ReviewPageFeedback(page=page)
             time.sleep(3)
             review_feedback.click_on_write_review_button()
+            time.sleep(3)
             review_feedback.leave_feedback()
             review_feedback.go_back()
             # expected_second = "https://www.moskvaonline.ru/reviews"
