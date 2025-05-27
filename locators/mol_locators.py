@@ -166,7 +166,7 @@ class ProvidersPage:
     FIRST_BUTTON = "xpath=(//div[@itemprop='offers'])[1]"
     FIRST_BUTTON_TARIFF = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[1]"
     FIRST_BUTTON_WITH_PRICE = "xpath=(//div[@itemprop='offers'])[1]"
-    SECOND_BUTTON_WITH_PRICE = "xpath=(//button[@data-sentry-source-file='TariffCard.tsx'])[3]"
+    SECOND_BUTTON_WITH_PRICE = "xpath=(//button[@data-sentry-source-file='TariffCardVariantB.tsx'])[3]"
     TARIFF_NAME = "xpath=//span[@class='SubmitFormContent_provider-name__R1UkL']"
     TARIFF_NAME2 = "xpath=//span[@class='SubmitFormContent_tariff-name__LCZiq']"
     TELEPHONE_INPUT = "xpath=//input[@id='ph_input']"

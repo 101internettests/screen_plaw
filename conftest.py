@@ -24,17 +24,22 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     result = outcome.get_result()
 
+    # Проверяем, завершился ли тест вызовом и он провалился
     if result.when == "call" and result.failed:
-        # Ищем объект страницы Playwright
+        # Получаем объект страницы Playwright
         page = item.funcargs.get("page", None)
         if page:
-            # Имя файла по времени (можно не сохранять, а только в память)
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-            screenshot_bytes = page.screenshot()
+            try:
+                # Имя файла по текущему времени
+                timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                # Делаем скриншот (sync)
+                screenshot_bytes = page.screenshot()
 
-            # Прикрепляем скриншот в Allure
-            allure.attach(
-                screenshot_bytes,
-                name=f"screenshot_{timestamp}",
-                attachment_type=allure.attachment_type.PNG
-            )
+                # Прикрепляем скриншот к отчету Allure
+                allure.attach(
+                    screenshot_bytes,
+                    name=f"screenshot_{timestamp}",
+                    attachment_type=allure.attachment_type.PNG
+                )
+            except Exception as e:
+                print(f"Ошибка при создании скриншота: {e}")

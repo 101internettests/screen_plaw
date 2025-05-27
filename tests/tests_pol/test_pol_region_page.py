@@ -38,6 +38,7 @@ class TestPolRegionPage:
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
             main_page.choose_r_letter()
+            time.sleep(3)
             main_page.choose_repina_street()
             main_page.choose_twenty_seven_house()
             # main_page.check_quiz()
