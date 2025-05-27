@@ -24,20 +24,14 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     result = outcome.get_result()
 
-    # Проверяем, завершился ли тест вызовом и он провалился
     if result.when == "call" and result.failed:
-        # Получаем объект страницы Playwright
         page = item.funcargs.get("page", None)
         if page:
             try:
-                # Имя файла по текущему времени
                 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                # Делаем скриншот (sync)
-                screenshot_bytes = page.screenshot()
-
-                # Прикрепляем скриншот к отчету Allure
+                screenshot = page.screenshot()
                 allure.attach(
-                    screenshot_bytes,
+                    screenshot,
                     name=f"screenshot_{timestamp}",
                     attachment_type=allure.attachment_type.PNG
                 )
