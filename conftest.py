@@ -18,14 +18,14 @@ def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope="function", autouse=True)
-def screenshot_failure(request, page):
-    yield
-    if request.node.rep_setup.failed:
-        (allure.attach(page.screenshot, name=f"screenshots/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.png"))
-    elif request.node.rep_setup.passed:
-        if request.node.rep_call.failed:
-            (allure.attach(page.screenshot, name=f"screenshots/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.png"))
+# @pytest.fixture(scope="function", autouse=True)
+# def screenshot_failure(request, page):
+#     yield
+#     if request.node.rep_setup.failed:
+#         (allure.attach(page.screenshot, name=f"screenshots/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.png"))
+#     elif request.node.rep_setup.passed:
+#         if request.node.rep_call.failed:
+#             (allure.attach(self.screenshot, name=f"screenshots/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.png"))
 
 
 # @pytest.hookimpl(hookwrapper=True)
