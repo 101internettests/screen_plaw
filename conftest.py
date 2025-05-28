@@ -24,7 +24,8 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     result = outcome.get_result()
 
-    if result.when == "call" and result.failed:
+    # Скриншоты при падении или пропуске (failed или skipped)
+    if result.when == "call" and (result.failed or result.skipped):
         page = item.funcargs.get("page", None)
         if page:
             try:
