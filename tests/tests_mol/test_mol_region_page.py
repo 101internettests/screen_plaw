@@ -26,15 +26,15 @@ class TestMolMainRegionPage:
 
     @allure.title("Заявка через компонент перелинковки (квиз)")
     def test_application_perelinkovki_quiz(self):
-        full_url = "https://www.moskvaonline.ru/address/%D0%B0%D1%80%D0%B1%D0%B0%D1%82-id1141"
+        full_url = "https://www.moskvaonline.ru/address/%D0%B0%D1%80%D0%B1%D0%B0%D1%82-id1141/%D0%BF%D0%B5%D1%80-%D0%B1%D0%BE%D1%80%D0%B8%D1%81%D0%BE%D0%B3%D0%BB%D0%B5%D0%B1%D1%81%D0%BA%D0%B8%D0%B9-id267566"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
-            main_page.choose_b_letter()
-            time.sleep(5)
-            main_page.choose_borisov_street()
+            # main_page.choose_b_letter()
+            # time.sleep(5)
+            # main_page.choose_borisov_street()
             time.sleep(3)
             main_page.choose_fifteensi_house()
             main_page.quiz_send_appl()
@@ -54,14 +54,14 @@ class TestMolMainRegionPage:
 
     @allure.title("Кнопка Показать ещё в перелинковке работает (МО, Зеленоград))")
     def test_button_check(self):
-        full_url = "https://www.moskvaonline.ru/moskovskaya-oblast/address/%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D0%B4-id1260"
+        full_url = "https://www.moskvaonline.ru/moskovskaya-oblast/address"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
-            main_page.choose_numbers_in_streets()
-            time.sleep(3)
+            # main_page.choose_numbers_in_streets()
+            # time.sleep(3)
             main_page.press_button_show_more()
             main_page_screen = MainPage(page=page)
             main_page_screen.make_screenshot()

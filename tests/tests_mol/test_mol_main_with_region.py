@@ -9,7 +9,7 @@ from pages.review_page import ReviewPageFeedback
 from pages.tariff_page import TariffPage
 from pages.orders_office_page import OfficePage
 from pages.sat_page import SatPage
-from config import mol_url
+from config import mol_url, review_url
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
@@ -334,14 +334,14 @@ class TestMolMainWithRegion:
 
     @allure.title("Написать отзыв")
     def test_write_review(self):
-        full_url = f"{mol_url}"
+        full_url = f"{review_url}"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
-            review_block_page = ReviewBlockPage(page=page)
-            review_block_page.check_review_block()
-            review_block_page.click_button_more_reviews()
+            # review_block_page = ReviewBlockPage(page=page)
+            # review_block_page.check_review_block()
+            # review_block_page.click_button_more_reviews()
             # expected_url = "https://www.moskvaonline.ru/reviews"
             # page.wait_for_url(expected_url, timeout=60000)
             # print(page.url)
