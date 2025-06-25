@@ -145,9 +145,13 @@ class TariffsSection(BasePage):
         with allure.step("Проверить, что заголовки есть в деталях"):
             expect(self.page.locator(TariffsLocators.CONNECTION_INFO)).to_be_visible()
             expect(self.page.locator(TariffsLocators.ROUTER_INF0)).to_be_visible()
-        # with allure.step("Сделать скриншот"):
-        #     screenshot = self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON).screenshot()
-        #     allure.attach(screenshot, name="Tariff details Section Screenshot", attachment_type=allure.attachment_type.PNG)
+
+    @allure.title("Нажать Детали тарифа на втором тарифе")
+    def click_on_tariff_details_second(self):
+        self.page.locator(TariffsLocators.DETAILS_OF_TARIFF_BUTTON_SECOND).click()
+        with allure.step("Проверить, что заголовки есть в деталях"):
+            expect(self.page.locator(TariffsLocators.CONNECTION_INFO)).to_be_visible()
+            expect(self.page.locator(TariffsLocators.ROUTER_INF0)).to_be_visible()
 
     @allure.title("Нажать на кнопку О провайдере")
     def click_button_about_prov(self):

@@ -67,6 +67,7 @@ class TestPolSearch:
             time.sleep(3)
             search_page.close_quiz()
 
+
     @allure.title("Отправить заявку через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка по цене без учёта акций)")
     def test_perelinkovka_second_quiz(self):
         full_url = f"{pol_url}"
@@ -122,6 +123,7 @@ class TestPolSearch:
             search_page.choose_five_house()
             search_page.close_quiz()
 
+
     @allure.title("Отправить заявку через компонент поиска по адресу в блоке провайдеров (адрес-тариф-подключить, без фильтрации)")
     def test_application_in_prov_block(self):
         full_url = f"{pol_url}"
@@ -147,6 +149,7 @@ class TestPolSearch:
             tariff_page.fill_the_application_with_address_second()
             time.sleep(4)
             # search_page.close_quiz()
+
 
     @allure.title(
         "Отправить заявку через компонент поиска по адресу под блоком провайдеров (адрес-фильтр-подключить, фильтрация по провайдеру, скорости и цене)")
@@ -177,9 +180,8 @@ class TestPolSearch:
             tariff_page.accept_button_show_filters()
             time.sleep(4)
             tariff_page.click_on_lat_prov()
-            tariff_page.quiz_send_appl()
             time.sleep(4)
-            search_page.close_quiz()
+            tariff_page.quiz_send_appl()
 
     @allure.title("Отправить заявку через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации)")
     def test_application_in_the_middle_page(self):

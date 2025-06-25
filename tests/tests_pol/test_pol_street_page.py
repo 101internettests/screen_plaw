@@ -107,7 +107,7 @@ class TestPolStreet:
             page = browser.new_page()
             page.goto(full_url)
             tariff_section = TariffsSection(page=page)
-            tariff_section.click_on_tariff_details()
+            tariff_section.click_on_tariff_details_second()
             tariff_section.check_modal_window_more_about_tariffs()
             tariff_section.click_on_more_about_tariff()
             tariff_section.close_more_about_tariff()

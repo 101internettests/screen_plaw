@@ -25,6 +25,7 @@ class TariffsLocators:
     TARIFF_CARD = "xpath=(//div[@data-sentry-component='TariffCard'])"
     PRICE_IN_TARIFFS = "xpath=(//div[@itemprop='offers']//p[text()])"
     DETAILS_OF_TARIFF_BUTTON = "xpath=(//button[text()='Детали тарифа'])[1]"
+    DETAILS_OF_TARIFF_BUTTON_SECOND = "xpath=(//button[text()='Детали тарифа'])[2]"
     CONNECTION_INFO = "xpath=//p[text()='Подключение']"
     ROUTER_INF0 = "xpath=//p[text()='Роутер']"
     MORE_ABOUT_TARIFF_BUTTON = "xpath=//button[text()='Больше о тарифе']"

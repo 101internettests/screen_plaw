@@ -31,15 +31,15 @@ class TestPolRegionPage:
 
     @allure.title("Заявка через компонент перелинковки (квиз)")
     def test_application_perelinkovki_quiz(self):
-        full_url = "https://piter-online.net/vasileostrovskii-id1193"
+        full_url = "https://piter-online.net/ulicy/internet-provaydery-ul-repina-id272648"
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=HEADLESS)
             page = browser.new_page()
             page.goto(full_url)
             main_page = SearchFromMain(page=page)
-            main_page.choose_r_letter()
-            time.sleep(3)
-            main_page.choose_repina_street()
+            # main_page.choose_r_letter()
+            # time.sleep(3)
+            # main_page.choose_repina_street()
             main_page.choose_twenty_seven_house()
             # main_page.check_quiz()
             time.sleep(3)
