@@ -4,7 +4,6 @@ import uuid
 from playwright.sync_api import sync_playwright
 from urls.url_main import urls, names, urls_prod, names_stage
 from pages.screen_page import ScreenPage
-from jenkins_config import get_browser_args, get_timeout, get_viewport, is_jenkins_environment
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
@@ -13,46 +12,23 @@ class TestSearchChrome:
     @allure.title("Скриншоты 101 стэйдж")
     def test_screenshot_stage_main(self):
         with sync_playwright() as p:
-            # Улучшенные настройки браузера для Jenkins
-            browser_args = get_browser_args()
             browser = p.chromium.launch(
                 headless=HEADLESS,
-                args=browser_args
+                args=['--no-sandbox', '--disable-dev-shm-usage']
             )
-            viewport = get_viewport()
-            context = browser.new_context(
-                ignore_https_errors=True,
-                viewport=viewport
-            )
+            context = browser.new_context(ignore_https_errors=True)
             page = context.new_page()
 
             for screen, name in zip(urls, names_stage):
                 try:
                     uuid4 = uuid.uuid4()
-                    print(f"Обрабатываю страницу: {screen}")
-                    
-                    # Увеличенный таймаут для загрузки страницы
-                    page_load_timeout = get_timeout('page_load')
-                    page.goto(screen, wait_until='networkidle', timeout=page_load_timeout)
-                    
-                    # Ждем полной загрузки DOM
-                    page.wait_for_load_state('domcontentloaded', timeout=page_load_timeout)
-                    page.wait_for_load_state('networkidle', timeout=page_load_timeout)
-                    
-                    # Дополнительная проверка готовности страницы
-                    page.wait_for_timeout(get_timeout('screenshot_wait'))
-                    
+                    page.goto(screen, wait_until='networkidle', timeout=15000)
                     screen_obj = ScreenPage(page=page)
                     screen_obj.open_read_more_buttons()
                     screen_obj.open_read_full_buttons()
                     screen_obj.click_all_faq_buttons()
-                    
-                    # Увеличенное время ожидания после кликов
-                    page.wait_for_timeout(get_timeout('action_wait'))
-                    
-                    # Устанавливаем размер viewport перед скриншотом
+                    page.wait_for_timeout(2000)
                     page.set_viewport_size({"width": 1920, "height": 8000})
-                    page.wait_for_timeout(2000)  # Ждем перерисовки
 
                     screenshot_path = f'{os.getenv("BASE_SAVING_PATH")}/screens/main_stage/{name}.png'
                     page.screenshot(path=screenshot_path, full_page=True)
@@ -60,52 +36,27 @@ class TestSearchChrome:
 
                 except Exception as e:
                     print(f"Ошибка при работе с {screen}: {e}")
-                    # Продолжаем с следующей страницей
-                    continue
 
     @allure.title("Скриншоты 101 прод")
     def test_screenshot_prod_main(self):
         with sync_playwright() as p:
-            # Улучшенные настройки браузера для Jenkins
-            browser_args = get_browser_args()
             browser = p.chromium.launch(
                 headless=HEADLESS,
-                args=browser_args
+                args=['--no-sandbox', '--disable-dev-shm-usage']
             )
-            viewport = get_viewport()
-            context = browser.new_context(
-                ignore_https_errors=True,
-                viewport=viewport
-            )
+            context = browser.new_context(ignore_https_errors=True)
             page = context.new_page()
 
             for screen, name in zip(urls_prod, names):
                 try:
                     uuid4 = uuid.uuid4()
-                    print(f"Обрабатываю страницу: {screen}")
-                    
-                    # Увеличенный таймаут для загрузки страницы
-                    page_load_timeout = get_timeout('page_load')
-                    page.goto(screen, wait_until='networkidle', timeout=page_load_timeout)
-                    
-                    # Ждем полной загрузки DOM
-                    page.wait_for_load_state('domcontentloaded', timeout=page_load_timeout)
-                    page.wait_for_load_state('networkidle', timeout=page_load_timeout)
-                    
-                    # Дополнительная проверка готовности страницы
-                    page.wait_for_timeout(get_timeout('screenshot_wait'))
-                    
+                    page.goto(screen, wait_until='networkidle', timeout=15000)
                     screen_obj = ScreenPage(page=page)
                     screen_obj.open_read_more_buttons()
                     screen_obj.open_read_full_buttons()
                     screen_obj.click_all_faq_buttons()
-                    
-                    # Увеличенное время ожидания после кликов
-                    page.wait_for_timeout(get_timeout('action_wait'))
-                    
-                    # Устанавливаем размер viewport перед скриншотом
+                    page.wait_for_timeout(2000)
                     page.set_viewport_size({"width": 1920, "height": 8000})
-                    page.wait_for_timeout(2000)  # Ждем перерисовки
 
                     screenshot_path = f'{os.getenv("BASE_SAVING_PATH")}/screens/main_prod/{name}.png'
                     page.screenshot(path=screenshot_path, full_page=True)
@@ -113,5 +64,3 @@ class TestSearchChrome:
 
                 except Exception as e:
                     print(f"Ошибка при работе с {screen}: {e}")
-                    # Продолжаем с следующей страницей
-                    continue
