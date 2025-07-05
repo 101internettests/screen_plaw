@@ -21,7 +21,7 @@ JENKINS_BROWSER_ARGS = [
 
 # Увеличенные таймауты для Jenkins
 JENKINS_TIMEOUTS = {
-    'page_load': 30000,
+    'page_load': 15000,  # Уменьшено с 30000 до 15000
     'element_wait': 10000,
     'action_wait': 5000,
     'screenshot_wait': 3000
