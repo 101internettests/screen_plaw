@@ -25,6 +25,7 @@ class TestMolStreetPage:
             main_page.quiz_send_appl()
             time.sleep(4)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент перелинковки (квиз)")
     def test_application_perelinkovki_quiz(self):
@@ -39,6 +40,7 @@ class TestMolStreetPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Переход на страницу поиска без адреса через перелинковку улиц")
     def test_transition_search_page_from_perelinkovka(self):
@@ -73,9 +75,11 @@ class TestMolStreetPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title(
-        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, без фильтрации и сортировки)")
+        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, без фильтрации и "
+        "сортировки)")
     def test_application_search_providers_withoutfilters(self):
         full_url = "https://www.moskvaonline.ru/balashiha/address/%D0%B1%D0%B0%D0%BB%D0%B0%D1%88%D0%B8%D1%85%D0%B0-id422/%D0%BC%D0%BA%D1%80-%D0%B3%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD%D0%B0-id294535"
         with sync_playwright() as playwright:
@@ -95,7 +99,7 @@ class TestMolStreetPage:
             time.sleep(3)
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application_with_address_third()
-            time.sleep(2)
+            time.sleep(59)
 
     @allure.title("Заявка через компонент с тарифами (с просмотром деталей тарифа)")
     def test_application_tariff_with_details(self):
@@ -110,6 +114,7 @@ class TestMolStreetPage:
             tariff_section.close_more_about_tariff()
             time.sleep(3)
             tariff_section.fill_the_application_with_address_home()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент поиска по адресу под блоком тарифы (адрес-тариф-подключить, без фильтрации)")
     def test_application_search_from_tariffs_without_filters(self):
@@ -125,6 +130,7 @@ class TestMolStreetPage:
             main_page.close_quiz()
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application_with_address_third()
+            time.sleep(59)
 
     @allure.title("Написать отзыв со страницы улицы")
     def test_write_review(self):

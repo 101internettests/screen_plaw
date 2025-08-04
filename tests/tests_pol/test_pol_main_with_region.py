@@ -59,7 +59,7 @@ class TestPolWithRegion:
             main_page.open_popup_wait_for_call()
             main_page.send_popup_wait_for_call()
             main_page.open_main_website()
-            time.sleep(5)
+            time.sleep(59)
 
     @allure.title("Отправить заявку из попапа жду звонка из хедера")
     def test_send_popup_waitforcall_footer(self):
@@ -75,7 +75,7 @@ class TestPolWithRegion:
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
             main_page.open_main_website()
-            time.sleep(5)
+            time.sleep(59)
 
     @allure.title("Проверить кото-баннер аи")
     def test_check_catbanner_ai(self):
@@ -105,6 +105,7 @@ class TestPolWithRegion:
             time.sleep(3)
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            time.sleep(59)
 
     @allure.title("Проверить заявку через компонент поиска по адресу (адрес-тариф подключить, без фильтрации)")
     def test_send_application_address(self):
@@ -125,7 +126,7 @@ class TestPolWithRegion:
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
             main_page.open_main_website()
-            time.sleep(2)
+            time.sleep(59)
 
     @allure.title("Проверить вкладку Для бизнеса")
     def test_check_for_business_page(self):
@@ -193,7 +194,7 @@ class TestPolWithRegion:
             tariff_page.fill_the_application_with_address_first_tariff()
             main_page = MainPage(page=page)
             main_page.open_main_website()
-            time.sleep(2)
+            time.sleep(59)
 
     @allure.title("Посмотреть детали тарифа")
     def test_check_tariff_details(self):
@@ -255,7 +256,7 @@ class TestPolWithRegion:
             tariff_page.fill_the_application()
             main_page = MainPage(page=page)
             main_page.open_main_website()
-            time.sleep(5)
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -287,9 +288,11 @@ class TestPolWithRegion:
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
             tariff_page.fill_the_application()
+            time.sleep(59)
 
     @allure.title(
-        "Проверить заявку через компонент поиска по адресу (адрес-тариф подключить, фильтрация по провайдеру, скорости и цене)")
+        "Проверить заявку через компонент поиска по адресу (адрес-тариф подключить, фильтрация по провайдеру, "
+        "скорости и цене)")
     def test_send_application_address_with_filter(self):
         full_url = f"{pol_url}"
         with sync_playwright() as playwright:
@@ -323,7 +326,7 @@ class TestPolWithRegion:
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
             main_page.open_main_website()
-            time.sleep(5)
+            time.sleep(59)
 
     @allure.title("Просмотр всех отзывов по региону")
     def test_check_all_reviews_in_region(self):
@@ -405,3 +408,4 @@ class TestPolWithRegion:
             search_page.quiz_send_appl()
             main_page = MainPage(page=page)
             main_page.close_popup_wait_for_call()
+            time.sleep(59)

@@ -61,6 +61,7 @@ class TestMolMainWithRegion:
             main_page.open_popup_wait_for_call()
             time.sleep(5)
             main_page.send_popup_wait_for_call()
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -76,6 +77,7 @@ class TestMolMainWithRegion:
             main_page.send_popup_wait_for_call()
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            time.sleep(59)
 
     @allure.title("Проверить кото-баннер аи")
     def test_check_catbanner_ai(self):
@@ -106,6 +108,7 @@ class TestMolMainWithRegion:
             time.sleep(3)
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            time.sleep(59)
 
     @allure.title("Проверить заявку через компонент поиска по адресу (адрес-тариф подключить, без фильтрации)")
     def test_send_application_address(self):
@@ -126,8 +129,8 @@ class TestMolMainWithRegion:
             tariff_page.check_tag_home_internet()
             time.sleep(7)
             tariff_page.fill_the_application()
-            main_page = MainPage(page=page)
-            time.sleep(2)
+            # main_page = MainPage(page=page)
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -159,10 +162,10 @@ class TestMolMainWithRegion:
             tariff_page.accept_button_show_filters()
             tariff_page.check_tag_home_internet()
             tariff_page.click_on_tariff_with_500()
-            main_page = MainPage(page=page)
+            # main_page = MainPage(page=page)
             time.sleep(2)
             tariff_page.send_popup_wait_for_call()
-            time.sleep(2)
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -230,8 +233,8 @@ class TestMolMainWithRegion:
             tariff_page = TariffsSection(page=page)
             tariff_page.check_tariffs_section()
             tariff_page.fill_the_application_with_address()
-            main_page = MainPage(page=page)
-            time.sleep(2)
+            # main_page = MainPage(page=page)
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -283,8 +286,8 @@ class TestMolMainWithRegion:
             tariff_page.check_tag_home_internet()
             time.sleep(3)
             tariff_page.fill_the_application()
-            main_page = MainPage(page=page)
-            time.sleep(2)
+            # main_page = MainPage(page=page)
+            time.sleep(59)
             # main_page.check_success_popups()
             # main_page.close_popup_wait_for_call()
 
@@ -314,6 +317,7 @@ class TestMolMainWithRegion:
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
             tariff_page.fill_the_application()
+            time.sleep(59)
 
     @allure.title("Просмотр всех отзывов по региону")
     def test_check_all_reviews_in_region(self):

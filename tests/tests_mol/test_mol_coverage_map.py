@@ -43,6 +43,7 @@ class TestMolMainWithRegion:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(55)
 
     @allure.title("Заявка через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка по цене без учёта акций)")
     def test_application_perelinkovka_with_filters(self):
@@ -68,7 +69,7 @@ class TestMolMainWithRegion:
             tariff_page.click_on_lat_prov()
             time.sleep(4)
             tariff_page.quiz_send_appl()
-            time.sleep(5)
+            time.sleep(55)
 
     @allure.title("Переход по разным районам и улицам в перелинковке + дом (без заявок)")
     def test_perelinkovka_without_application(self):
@@ -118,9 +119,11 @@ class TestMolMainWithRegion:
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application_with_address_second()
             search_page.close_quiz()
+            time.sleep(55)
 
     @allure.title(
-        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, фильтрация по провайдеру, скорости и цене)")
+        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, фильтрация по "
+        "провайдеру, скорости и цене)")
     def test_application_from_search_prov_block_with_filtres(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
@@ -149,7 +152,7 @@ class TestMolMainWithRegion:
             tariff_page.click_on_lat_prov()
             time.sleep(4)
             tariff_page.quiz_send_appl()
-            time.sleep(4)
+            time.sleep(55)
             # search_page.close_quiz()
 
     @allure.title("Заявка через компонент поиска по адресу (квиз)")
@@ -165,6 +168,7 @@ class TestMolMainWithRegion:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(60)
 
     @allure.title("Заявка через компонент поиска по адресу (неудачный квиз)")
     def test_application_from_search_unsuccessful_quiz(self):
@@ -177,7 +181,6 @@ class TestMolMainWithRegion:
             search_page.choose_coverage_map()
             map_page = MapCoveragePage(page=page)
             map_page.search_address_arbat()
-            time.sleep(3)
             # map_page.put_on_search_button()
             # select_page = SelectRegionPage(page=page)
             # select_page.choose_moscow()

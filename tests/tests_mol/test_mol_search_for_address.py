@@ -52,6 +52,7 @@ class TestMolSearch:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title(
         "Отправить заявку через компонент поиска по адресу в блоке провайдеров (адрес-тариф-подключить, без фильтрации)")
@@ -78,9 +79,11 @@ class TestMolSearch:
             tariff_page = TariffsSection(page=page)
             tariff_page.fill_the_application_with_address_second()
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title(
-        "Отправить заявку через компонент поиска по адресу под блоком провайдеров (адрес-фильтр-подключить, фильтрация по провайдеру, скорости и цене)")
+        "Отправить заявку через компонент поиска по адресу под блоком провайдеров (адрес-фильтр-подключить, "
+        "фильтрация по провайдеру, скорости и цене)")
     def test_application_below_prov_block(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
@@ -110,7 +113,7 @@ class TestMolSearch:
             tariff_page.click_on_lat_prov()
             time.sleep(4)
             tariff_page.quiz_send_appl()
-            time.sleep(4)
+            time.sleep(59)
             # search_page.close_quiz()
 
     @allure.title("Посмотреть детали тарифа")
@@ -141,6 +144,7 @@ class TestMolSearch:
             tohome_pol.fill_the_application_with_address_gag()
             search_page.close_quiz()
             tohome_pol.fill_the_application_with_address_mol()
+            time.sleep(59)
 
     @allure.title("Отправить заявку через компонент с тарифами")
     def test_send_application_from_tariff_component(self):
@@ -154,6 +158,7 @@ class TestMolSearch:
             tohome_mol = TohomeMol(page=page)
             tohome_mol.check_header_mol()
             tohome_mol.fill_the_application_with_address_vesn_second()
+            time.sleep(59)
 
     @allure.title("Отправить заявку через компонент поиска по адресу (квиз)")
     def test_perelinkovka_quiz(self):
@@ -168,9 +173,11 @@ class TestMolSearch:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title(
-        "Отправить заявку через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка по цене без учёта акций)")
+        "Отправить заявку через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка "
+        "по цене без учёта акций)")
     def test_perelinkovka_second_quiz(self):
         full_url = f"{mol_url}"
         with sync_playwright() as playwright:
@@ -197,6 +204,7 @@ class TestMolSearch:
             tariff_page.quiz_send_appl()
             time.sleep(4)
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Проверить переход по разным районам и улицам в перелинковке (без заявок)")
     def test_check_transfer(self):
@@ -236,3 +244,4 @@ class TestMolSearch:
             search_page.check_quiz()
             search_page.quiz_send_appl()
             search_page.close_quiz()
+            time.sleep(59)

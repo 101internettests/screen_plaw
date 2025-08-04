@@ -3,11 +3,8 @@ import time
 
 import allure
 from playwright.sync_api import sync_playwright
-from pages.orders_tohome_page import TohomePage
-from pages.mol_main_page import SearchFromMain, TariffsSection, OpenPopUpAddress
-from pages.mol_main_page import BlockProviders, ReviewBlockPage, PerelinkovkaCheck
-from pages.review_page import ReviewPageFeedback
-from pages.tariff_page import WindowPopUp, TariffPage
+from pages.mol_main_page import SearchFromMain
+from pages.tariff_page import TariffPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
@@ -35,7 +32,7 @@ class TestMolHousePage:
             tariff_page.click_on_first_prov()
             time.sleep(3)
             tariff_page.quiz_send_appl()
-            time.sleep(4)
+            time.sleep(59)
 
     @allure.title("Заявка тариф-подключить тег Интернет и ТВ")
     def test_application_tag_house_internet_tv(self):
@@ -61,11 +58,4 @@ class TestMolHousePage:
             tariff_page.click_on_four_prov()
             time.sleep(3)
             tariff_page.quiz_send_appl()
-            time.sleep(4)
-
-
-
-
-
-
-
+            time.sleep(59)

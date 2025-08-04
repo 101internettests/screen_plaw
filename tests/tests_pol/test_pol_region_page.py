@@ -4,12 +4,9 @@ import time
 import allure
 from playwright.sync_api import sync_playwright
 from pages.orders_tohome_page import TohomePage
-from pages.pol_main_page import MainPage, SelectRegionPage, SearchFromMain, TariffsSection, ReviewCatPopup, OpenPopUpAddress
-from pages.pol_main_page import BlockProviders, ReviewBlockPage
-from pages.review_page import ReviewPageFeedback
+from pages.pol_main_page import MainPage, SearchFromMain, TariffsSection
+from pages.pol_main_page import BlockProviders
 from pages.tariff_page import WindowPopUp, TariffPage, MiddlePage
-from pages.orders_office_page import OfficePage
-from pages.sat_page import SatPage
 HEADLESS = True if os.getenv("HEADLESS") == "True" else False
 
 
@@ -28,6 +25,7 @@ class TestPolRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент перелинковки (квиз)")
     def test_application_perelinkovki_quiz(self):
@@ -46,7 +44,7 @@ class TestPolRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
-            time.sleep(3)
+            time.sleep(59)
 
     @allure.title("Переход на страницу поиска без адреса через перелинковку района")
     def test_transition_search_page_from_perelinkovka(self):
@@ -92,8 +90,10 @@ class TestPolRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
-    @allure.title("Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, без фильтрации и сортировки)")
+    @allure.title("Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, "
+                  "без фильтрации и сортировки)")
     def test_application_search_providers_withoutfilters(self):
         full_url = "https://piter-online.net/vasileostrovskii-id1193"
         with sync_playwright() as playwright:
@@ -112,9 +112,10 @@ class TestPolRegionPage:
             time.sleep(3)
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application()
-            time.sleep(2)
+            time.sleep(59)
 
-    @allure.title("Заявка через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации).")
+    @allure.title("Заявка через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, "
+                  "без фильтрации).")
     def test_application_in_middle_page(self):
         full_url = "https://piter-online.net/vasileostrovskii-id1193"
         with sync_playwright() as playwright:
@@ -129,7 +130,7 @@ class TestPolRegionPage:
             time.sleep(3)
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application()
-            time.sleep(2)
+            time.sleep(59)
 
     @allure.title("Заявка через компонент с тарифами (с просмотром деталей тарифа)")
     def test_application_tariff_with_details(self):
@@ -144,6 +145,7 @@ class TestPolRegionPage:
             tariff_section.close_more_about_tariff()
             time.sleep(4)
             tariff_section.fill_the_application_with_address_gagarina()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент поиска по адресу под блоком тарифы (адрес-тариф-подключить, без фильтрации)")
     def test_application_search_from_tariffs_without_filters(self):
@@ -159,4 +161,4 @@ class TestPolRegionPage:
             main_page.close_quiz()
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application_second_tariff()
-            time.sleep(3)
+            time.sleep(59)

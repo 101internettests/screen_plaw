@@ -51,8 +51,10 @@ class TestPolCoverageMap:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(59)
 
-    @allure.title("Заявка через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка по цене без учёта акций)")
+    @allure.title("Заявка через компонент перелинковки (адрес-тариф-подключить, фильтрация по провайдеру, сортировка "
+                  "по цене без учёта акций)")
     def test_application_perelinkovka_with_filters(self):
         full_url = f"{pol_url}"
         with sync_playwright() as playwright:
@@ -79,6 +81,7 @@ class TestPolCoverageMap:
             tariff_page.quiz_send_appl()
             time.sleep(4)
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Переход по разным районам и улицам в перелинковке (без заявок)")
     def test_perelinkovka_without_application(self):
@@ -130,9 +133,11 @@ class TestPolCoverageMap:
             tariff_page = TariffPage(page=page)
             tariff_page.check_tag_home_internet()
             tariff_page.fill_the_application()
+            time.sleep(59)
 
     @allure.title(
-        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, фильтрация по провайдеру, скорости и цене)")
+        "Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, фильтрация по "
+        "провайдеру, скорости и цене)")
     def test_application_from_search_prov_block_with_filtres(self):
         full_url = f"{pol_url}"
         with sync_playwright() as playwright:
@@ -166,6 +171,7 @@ class TestPolCoverageMap:
             tariff_page.send_popup_wait_for_call()
             # main_page.check_success_popups()
             main_page.close_popup_wait_for_call()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент поиска по адресу (квиз)")
     def test_application_from_search_quiz(self):
@@ -180,6 +186,7 @@ class TestPolCoverageMap:
             search_page.quiz_send_appl()
             time.sleep(3)
             search_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент поиска по адресу (неудачный квиз)")
     def test_application_from_search_unsuccessful_quiz(self):
@@ -192,6 +199,7 @@ class TestPolCoverageMap:
             search_page.choose_coverage_map()
             map_page = MapCoveragePage(page=page)
             map_page.search_address_gor()
+            time.sleep(59)
             # map_page.put_on_search_button()
             # select_page = SelectRegionPage(page=page)
             # select_page.choose_saintp()

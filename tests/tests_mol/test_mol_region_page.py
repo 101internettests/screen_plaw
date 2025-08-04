@@ -23,6 +23,7 @@ class TestMolMainRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент перелинковки (квиз)")
     def test_application_perelinkovki_quiz(self):
@@ -40,6 +41,7 @@ class TestMolMainRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
     @allure.title("Переход на страницу поиска без адреса через перелинковку района")
     def test_transition_search_page_from_perelinkovka(self):
@@ -87,8 +89,10 @@ class TestMolMainRegionPage:
             main_page.quiz_send_appl()
             time.sleep(3)
             main_page.close_quiz()
+            time.sleep(59)
 
-    @allure.title("Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, без фильтрации и сортировки)")
+    @allure.title("Заявка через компонент поиска по адресу под блоком провайдеров (адрес-тариф-подключить, "
+                  "без фильтрации и сортировки)")
     def test_application_search_providers_withoutfilters(self):
         full_url = "https://www.moskvaonline.ru/address/%D0%B0%D1%80%D0%B1%D0%B0%D1%82-id1141"
         with sync_playwright() as playwright:
@@ -107,9 +111,10 @@ class TestMolMainRegionPage:
             time.sleep(3)
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application()
-            time.sleep(2)
+            time.sleep(59)
 
-    @allure.title("Заявка через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, без фильтрации).")
+    @allure.title("Заявка через компонент поиска по адресу в середине страницы (адрес-тариф-подключить, "
+                  "без фильтрации).")
     def test_application_in_middle_page(self):
         full_url = "https://www.moskvaonline.ru/address/%D0%B0%D1%80%D0%B1%D0%B0%D1%82-id1141"
         with sync_playwright() as playwright:
@@ -124,7 +129,7 @@ class TestMolMainRegionPage:
             time.sleep(3)
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application()
-            time.sleep(2)
+            time.sleep(59)
 
     @allure.title("Заявка через компонент с тарифами (с просмотром деталей тарифа)")
     def test_application_tariff_with_details(self):
@@ -139,6 +144,7 @@ class TestMolMainRegionPage:
             tariff_section.close_more_about_tariff()
             time.sleep(4)
             tariff_section.fill_the_application_with_address_new_arb()
+            time.sleep(59)
 
     @allure.title("Заявка через компонент поиска по адресу под блоком тарифы (адрес-тариф-подключить, без фильтрации)")
     def test_application_search_from_tariffs_without_filters(self):
@@ -154,3 +160,4 @@ class TestMolMainRegionPage:
             main_page.close_quiz()
             tariff_page = TariffPage(page=page)
             tariff_page.fill_the_application_second_tariff()
+            time.sleep(59)
